@@ -21,21 +21,20 @@ import {
 import { Link } from "react-router-dom";
 
 import logo from "../assets/imgs/logo.svg";
-import pic from "../unregistered.png";
+import pic from "../assets/imgs/unregistered.png";
 
 export const CustomNavbar = () => {
   return (
     <Navbar bg="white" expand="sm" className="py-0">
-      <Container>
+      <Container fluid>
         <Nav
           className="me-auto my-lg-0 align-items-center w-100"
           style={{ maxHeight: "100px" }}
         >
           <Col xs={1} lg={3} className="d-flex justify-content-center">
             <Link to={"/"}>
-              <img src={logo} alt="logo" className="logo navLogo me-lg-3"></img>
+              <img src={logo} alt="logo" className="logo me-lg-3"></img>
             </Link>
-            {/* <Navbar.Toggle aria-controls="navbarScroll" /> */}
             <Form className="d-none d-lg-block">
               <Form.Control
                 type="search"
@@ -57,52 +56,52 @@ export const CustomNavbar = () => {
                 </Nav.Link>
               </Col>
               <Col>
-                <Nav.Link
-                  href="#"
-                  className="d-flex flex-column align-items-center p-0"
+                <Link
+                  to={"/"}
+                  className="d-flex nav-link flex-column align-items-center p-0"
                 >
                   <HouseDoorFill className="navIcon" />
                   <span className="navSpan">Home</span>
-                </Nav.Link>
+                </Link>
               </Col>
               <Col>
-                <Nav.Link
-                  href="#"
-                  className="d-flex flex-column align-items-center p-0"
+                <Link
+                  to={"/"}
+                  className="d-flex nav-link flex-column align-items-center p-0"
                 >
                   <PeopleFill className="navIcon" />
                   <span className="navSpan">My Network</span>
-                </Nav.Link>
+                </Link>
               </Col>
               <Col>
-                <Nav.Link
-                  href="#"
-                  className="d-flex flex-column align-items-center p-0"
+                <Link
+                  to={"/"}
+                  className="d-flex nav-link flex-column align-items-center p-0"
                 >
                   <BriefcaseFill className="navIcon" />
                   <span className="navSpan">Jobs</span>
-                </Nav.Link>
+                </Link>
               </Col>
               <Col>
-                <Nav.Link
-                  href="#"
-                  className="d-flex flex-column align-items-center p-0"
+                <Link
+                  to={"/"}
+                  className="d-flex nav-link flex-column align-items-center p-0"
                 >
                   <ChatDotsFill className="navIcon" />
                   <span className="navSpan">Messaging</span>
-                </Nav.Link>
+                </Link>
               </Col>
               <Col>
-                <Nav.Link
-                  href="#"
-                  className="d-flex flex-column align-items-center p-0"
+                <Link
+                  to={"/"}
+                  className="d-flex nav-link flex-column align-items-center p-0"
                 >
                   <BellFill className="navIcon" />
                   <span className="navSpan">Notifications</span>
-                </Nav.Link>
+                </Link>
               </Col>
               <Col className="border-secondary border-end">
-                <Dropdown href="#">
+                <Dropdown href="#" className="d-flex justify-content-center">
                   <Dropdown.Toggle
                     variant="none"
                     id="dropdown-basic"
@@ -115,7 +114,7 @@ export const CustomNavbar = () => {
                     ></img>
                     <span className="navSpan profile">Me</span>
                   </Dropdown.Toggle>
-                  <Dropdown.Menu className="pb-0">
+                  <Dropdown.Menu className="pb-0 dropdown-menu-end">
                     <div className="border-bottom pb-2">
                       <Card className="d-flex flex-row px-2 border-0 mb-1">
                         <Card.Img
@@ -136,7 +135,7 @@ export const CustomNavbar = () => {
                         variant="outline-primary"
                         className="rounded-pill mx-2 viewProfile py-0 fw-bold"
                       >
-                        View Profile
+                        <Link to={"/me"}>View Profile</Link>
                       </Button>
                     </div>
                     <div className="p-3 py-2 border-bottom">
