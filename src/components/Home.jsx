@@ -1,3 +1,16 @@
+import { Container, Row } from "react-bootstrap";
+import InfoSection from "./InfoSection";
+import PeopleSection from "./PeopleSection";
+
 export const Home = () => {
-  return <h2>Homepage</h2>;
+  return (
+    <>
+      <Container>
+        <Row>
+          <InfoSection />
+          <PeopleSection />
+        </Row>
+      </Container>
+    </>
+  );
 };
