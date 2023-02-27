@@ -1,5 +1,5 @@
 import { Col, Dropdown, Form, Nav, Row } from "react-bootstrap";
-import logoBig from "../linkedin.svg";
+import logoBig from "../assets/imgs/linkedin.svg";
 import { QuestionCircleFill, GearFill } from "react-bootstrap-icons";
 
 export const CustomFooter = () => {
