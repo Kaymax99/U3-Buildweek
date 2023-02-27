@@ -5,7 +5,7 @@ const FetchProfileByID = async (idProfile) => {
     const response = await fetch(BaseUrl, {
       method: "GET",
       headers: {
-        Authentication:
+        Authorization:
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZjNmMzMmYxOTNlNjAwMTM4MDdmNTQiLCJpYXQiOjE2Nzc0ODcxNTQsImV4cCI6MTY3ODY5Njc1NH0.2ECzMWzAgGsIanmD5-fjCC-hmXzrHd0Xgq_o4L9_MQ8",
       },
     });
