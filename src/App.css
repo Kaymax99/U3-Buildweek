@@ -38,3 +38,7 @@
 .info-contatto:hover {
   text-decoration: dotted;
 }
+
+.people_img {
+  border-radius: 100%;
+}
