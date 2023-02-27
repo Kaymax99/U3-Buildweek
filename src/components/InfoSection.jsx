@@ -1,5 +1,4 @@
 import { Button, Col } from "react-bootstrap";
-import background from "../assets/imgs/background.jpg";
 import { FaPencilAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import bg from "../assets/imgs/bg.jpg";
@@ -7,10 +6,10 @@ import bg from "../assets/imgs/bg.jpg";
 const InfoSection = () => {
   return (
     <Col xs={12} md={8}>
-      <div style={{ width: 785 + "px" }}>
+      <div>
         <div className="d-flex flex-column rounded">
           <div className="background">
-            <img src={bg} alt="" style={{ width: 785 + "px" }} />
+            <img src={bg} alt="" className="img-fluid" />
             <img
               src="https://via.placeholder.com/150"
               alt="profile_img"
