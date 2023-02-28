@@ -11,10 +11,6 @@ import { EditExperience } from "./Fetches/EditExperience";
 import { EditProfile } from "./Fetches/EditProfile";
 import { DeleteExperience } from "./Fetches/DeleteExperience";
 
-const deleteExp = () => {
-  DeleteExperience();
-};
-
 const handleChange = (setData, data, propertyName, propertyValue) => {
   setData({ ...data, [propertyName]: propertyValue });
 };
@@ -202,7 +198,7 @@ export const ExperienceModal = ({
   experience,
   edit,
   userID,
-  fetchExp,
+  retrieveData,
 }) => {
   const [expData, setExpData] = useState({
     role: "",
@@ -233,11 +229,18 @@ export const ExperienceModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (edit) {
-      EditExperience(experience.user, experience._id, "PUT", expData, fetchExp);
+      EditExperience(
+        experience.user,
+        experience._id,
+        "PUT",
+        expData,
+        retrieveData
+      );
+      handleClose();
     } else {
-      EditExperience(userID, "", "POST", expData, fetchExp);
+      EditExperience(userID, "", "POST", expData, retrieveData);
+      handleClose();
     }
-    handleClose();
   };
 
   return (
@@ -290,7 +293,6 @@ export const ExperienceModal = ({
             <FormLabel>Start date</FormLabel>
             <FormControl
               type="date"
-              value={expData?.startDate}
               rows="1"
               onChange={(e) => {
                 handleChange(setExpData, expData, "startDate", e.target.value);
@@ -301,7 +303,6 @@ export const ExperienceModal = ({
             <FormLabel>End date (leave blank if current)</FormLabel>
             <FormControl
               type="date"
-              value={expData?.endDate}
               rows="1"
               onChange={(e) => {
                 handleChange(setExpData, expData, "endDate", e.target.value);
@@ -328,9 +329,15 @@ export const ExperienceModal = ({
           </FormGroup>
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={() => DeleteExperience(userID, experience._id)}>
-          Test
+      <Modal.Footer className="d-flex justify-content-between">
+        <Button
+          variant="danger"
+          onClick={() => {
+            DeleteExperience(userID, experience._id);
+            handleClose();
+          }}
+        >
+          Delete experience
         </Button>
 
         <Button

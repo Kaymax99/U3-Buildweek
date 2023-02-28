@@ -4,7 +4,7 @@ import { BsPlusLg } from "react-icons/bs";
 import { ExperienceModal } from "./CustomModals";
 import SingleExperience from "./SingleExperience";
 
-const Experiences = ({ experiences, fetchExp }) => {
+const Experiences = ({ experiences, retrieveData }) => {
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
   return (
@@ -22,7 +22,7 @@ const Experiences = ({ experiences, fetchExp }) => {
             setShowModal={setShowModal}
             experience={""}
             userID={experiences.user}
-            fetchExp={fetchExp}
+            retrieveData={retrieveData}
             edit={false}
           />
         </div>

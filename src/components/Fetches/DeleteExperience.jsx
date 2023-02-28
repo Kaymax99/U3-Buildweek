@@ -9,7 +9,7 @@ export const DeleteExperience = async (idProfile, idExperience) => {
       },
     });
     if (response.ok) {
-      const data = await response.json();
+      const data = await response;
       console.log("tutto ok: elemento rimosso:", data);
       return data;
     } else {

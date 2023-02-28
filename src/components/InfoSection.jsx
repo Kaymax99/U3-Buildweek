@@ -20,8 +20,6 @@ const InfoSection = ({ profile, retrieveData }) => {
     setExperienceArray(experiences);
   };
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     if (profile) {
       retrieveExperiences(profile._id);
@@ -87,7 +85,7 @@ const InfoSection = ({ profile, retrieveData }) => {
             <hr />
             <Experiences
               experiences={experienceArray}
-              fetchExp={retrieveExperiences}
+              retrieveData={retrieveData}
             />
           </div>
         </div>
