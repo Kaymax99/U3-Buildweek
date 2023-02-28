@@ -3,15 +3,15 @@ import { FaPencilAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import bg from "../assets/imgs/bg.jpg";
 
-const InfoSection = () => {
+const InfoSection = ({ profile }) => {
   return (
-    <Col xs={12} md={8}>
+    <Col xs={12} md={8} className={"mt-3"}>
       <div>
         <div className="d-flex flex-column rounded">
           <div className="background">
             <img src={bg} alt="" className="img-fluid" />
             <img
-              src="https://via.placeholder.com/150"
+              src={profile.image}
               alt="profile_img"
               className="profile_img"
             />
@@ -23,14 +23,14 @@ const InfoSection = () => {
           </div>
           <div className="m-3">
             <div className="name mt-4">
-              <h2>Antonio D'Amico</h2>
+              <h2>
+                {profile.name} {profile.surname}
+              </h2>
 
-              <small>Università degli Studi di Milano</small>
+              <small>{profile.title}</small>
             </div>
             <p>--</p>
-            <p className="text-secondary">
-              Reggio nell'Emilia, Emilia Romagna, Italia{" "}
-            </p>
+            <p className="text-secondary">{profile.area}</p>
             <Link style={{ textDecoration: "none" }}>
               <p className="text-primary info-contatto">
                 Informazioni di contatto
@@ -48,16 +48,7 @@ const InfoSection = () => {
         <div className="rounded mt-2">
           <div className="m-3 mt-4">
             <h4>Informazioni</h4>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam ab
-              temporibus pariatur aspernatur, amet nemo incidunt aliquam
-              corrupti vero nostrum nulla sed facere architecto provident aut
-              praesentium, adipisci molestiae earum. Lorem ipsum, dolor sit amet
-              consectetur adipisicing elit. Totam ab temporibus pariatur
-              aspernatur, amet nemo incidunt aliquam corrupti vero nostrum nulla
-              sed facere architecto provident aut praesentium, adipisci
-              molestiae earum.
-            </p>
+            <p>{profile.bio}</p>
           </div>
         </div>
       </div>

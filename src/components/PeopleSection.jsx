@@ -1,21 +1,14 @@
-import { Col, Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
+import People from "./People";
 
-const PeopleSection = () => {
+const PeopleSection = ({ profileArray }) => {
   return (
-    <Col xs={12} md={4}>
-      <h2>Persone che potresti conoscere</h2>
-      <div>
-        <Row>
-          <Col xs={2}>
-            <img
-              src="https://via.placeholder.com/100"
-              alt="people_img"
-              className="people_img"
-            />
-          </Col>
-          <Col xs={10}></Col>
-        </Row>
-        <hr />
+    <Col xs={12} md={3} className={"mt-3"}>
+      <h4>Persone che potresti conoscere</h4>
+      <div className="d-flex flex-column m-2 mt-3">
+        {profileArray.map((element) => (
+          <People singleProfile={element} />
+        ))}
       </div>
     </Col>
   );

@@ -8,6 +8,7 @@
   position: absolute;
   top: 90px;
   left: 30px;
+  width: 200px;
 }
 
 .pencil-container {
@@ -37,4 +38,10 @@
 
 .info-contatto:hover {
   text-decoration: dotted;
+}
+
+.people_img {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
 }

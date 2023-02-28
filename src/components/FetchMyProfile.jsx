@@ -1,6 +1,6 @@
-const FetchProfileByID = async (idProfile) => {
+const FetchMyProfile = async (idProfile) => {
   try {
-    const BaseUrl = `https://striveschool-api.herokuapp.com/api/profile/${idProfile}`;
+    const BaseUrl = `https://striveschool-api.herokuapp.com/api/profile/me`;
 
     const response = await fetch(BaseUrl, {
       method: "GET",
@@ -22,4 +22,4 @@ const FetchProfileByID = async (idProfile) => {
   }
 };
 
-export default FetchProfileByID;
+export default FetchMyProfile;
