@@ -242,11 +242,6 @@ export const ExperienceModal = ({
     }
   };
 
-  const testFn = () => {
-    DeleteExperience(userID, experience._id, retrieveData);
-    handleClose();
-  };
-
   return (
     <Modal show={showModal} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -338,7 +333,11 @@ export const ExperienceModal = ({
           <Button
             className="rounded-pill fw-bold"
             variant="danger"
-            onClick={testFn}
+            onClick={(e) => {
+              e.preventDefault();
+              DeleteExperience(userID, experience._id, retrieveData);
+              handleClose();
+            }}
           >
             Delete experience
           </Button>
