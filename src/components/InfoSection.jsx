@@ -1,14 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import bg from "../assets/imgs/bg.jpg";
 import { ProfileModal } from "./CustomModals";
 import Experiences from "./Experiences";
+import FetchExperience from "./Fetches/FetchExperience";
 
-const InfoSection = ({ profile, retrieveData, experiencesProp }) => {
+const InfoSection = ({ profile, retrieveData }) => {
   const [showModal, setShowModal] = useState(false);
+  // setta lo stato con le esperienze
+  const [experienceArray, setExperienceArray] = useState([]);
   const handleShow = () => setShowModal(true);
+
+  // fetch delle esperienze del profilo
+  const retrieveExperiences = async (id) => {
+    let experiences = await FetchExperience(id);
+    // console.log("ESPERIENZE", experiences);
+    setExperienceArray(experiences);
+  };
+
+  useEffect(() => {}, []);
+
+  useEffect(() => {
+    if (profile) {
+      retrieveExperiences(profile._id);
+    }
+  }, [profile]);
 
   return (
     <Col xs={12} md={8} className={"mt-3"}>
@@ -17,7 +35,7 @@ const InfoSection = ({ profile, retrieveData, experiencesProp }) => {
           <div className="background">
             <img src={bg} alt="" className="img-fluid" />
             <img
-              src={profile.image}
+              src={profile?.image}
               alt="profile_img"
               className="profile_img"
             />
@@ -38,11 +56,11 @@ const InfoSection = ({ profile, retrieveData, experiencesProp }) => {
           <div className="m-3">
             <div className="name mt-4">
               <h2>
-                {profile.name} {profile.surname}
+                {profile?.name} {profile?.surname}
               </h2>
             </div>
-            <p>{profile.title}</p>
-            <p className="text-secondary">{profile.area}</p>
+            <p>{profile?.title}</p>
+            <p className="text-secondary">{profile?.area}</p>
             <Link style={{ textDecoration: "none" }}>
               <p className="text-primary info-contatto">
                 Informazioni di contatto
@@ -60,9 +78,12 @@ const InfoSection = ({ profile, retrieveData, experiencesProp }) => {
         <div className="rounded mt-2">
           <div className="m-3 mt-4">
             <h4>Informazioni</h4>
-            <p>{profile.bio}</p>
+            <p>{profile?.bio}</p>
             <hr />
-            <Experiences experiences={experiencesProp} />
+            <Experiences
+              experiences={experienceArray}
+              fetchExp={retrieveExperiences}
+            />
           </div>
         </div>
       </div>

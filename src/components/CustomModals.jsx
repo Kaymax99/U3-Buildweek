@@ -7,7 +7,13 @@ import {
   FormLabel,
   Modal,
 } from "react-bootstrap";
-import { EditProfile } from "./Fetches/FetchProfileByID";
+import { EditExperience } from "./Fetches/EditExperience";
+import { EditProfile } from "./Fetches/EditProfile";
+import { DeleteExperience } from "./Fetches/DeleteExperience";
+
+const deleteExp = () => {
+  DeleteExperience();
+};
 
 const handleChange = (setData, data, propertyName, propertyValue) => {
   setData({ ...data, [propertyName]: propertyValue });
@@ -190,12 +196,19 @@ export const ProfileModal = ({
   );
 };
 
-export const ExperienceModal = ({ showModal, setShowModal, experience }) => {
+export const ExperienceModal = ({
+  showModal,
+  setShowModal,
+  experience,
+  edit,
+  userID,
+  fetchExp,
+}) => {
   const [expData, setExpData] = useState({
     role: "",
     company: "",
     startDate: "",
-    endDate: null,
+    endDate: "",
     description: "",
     area: "",
   });
@@ -203,12 +216,12 @@ export const ExperienceModal = ({ showModal, setShowModal, experience }) => {
   useEffect(() => {
     if (experience) {
       setExpData({
-        role: experience.role,
-        company: experience.company,
-        startDate: experience.startDate,
-        endDate: experience.endDate,
-        description: experience.description,
-        area: experience.area,
+        role: experience?.role,
+        company: experience?.company,
+        startDate: experience?.startDate,
+        endDate: experience?.endDate,
+        description: experience?.description,
+        area: experience?.area,
       });
     }
   }, [experience]);
@@ -219,6 +232,11 @@ export const ExperienceModal = ({ showModal, setShowModal, experience }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (edit) {
+      EditExperience(experience.user, experience._id, "PUT", expData, fetchExp);
+    } else {
+      EditExperience(userID, "", "POST", expData, fetchExp);
+    }
     handleClose();
   };
 
@@ -234,7 +252,7 @@ export const ExperienceModal = ({ showModal, setShowModal, experience }) => {
             <FormControl
               type="text"
               as="textarea"
-              value={expData.role}
+              value={expData?.role}
               placeholder="Insert your role in the company"
               rows="1"
               onChange={(e) => {
@@ -247,7 +265,7 @@ export const ExperienceModal = ({ showModal, setShowModal, experience }) => {
             <FormControl
               type="text"
               as="textarea"
-              value={expData.company}
+              value={expData?.company}
               placeholder="Insert the name of the company"
               rows="1"
               onChange={(e) => {
@@ -260,7 +278,7 @@ export const ExperienceModal = ({ showModal, setShowModal, experience }) => {
             <FormControl
               type="text"
               as="textarea"
-              value={expData.area}
+              value={expData?.area}
               placeholder="Insert the location"
               rows="1"
               onChange={(e) => {
@@ -272,7 +290,7 @@ export const ExperienceModal = ({ showModal, setShowModal, experience }) => {
             <FormLabel>Start date</FormLabel>
             <FormControl
               type="date"
-              value={expData.startDate}
+              value={expData?.startDate}
               rows="1"
               onChange={(e) => {
                 handleChange(setExpData, expData, "startDate", e.target.value);
@@ -283,7 +301,7 @@ export const ExperienceModal = ({ showModal, setShowModal, experience }) => {
             <FormLabel>End date (leave blank if current)</FormLabel>
             <FormControl
               type="date"
-              value={expData.endDate}
+              value={expData?.endDate}
               rows="1"
               onChange={(e) => {
                 handleChange(setExpData, expData, "endDate", e.target.value);
@@ -295,7 +313,7 @@ export const ExperienceModal = ({ showModal, setShowModal, experience }) => {
             <FormControl
               type="text"
               as="textarea"
-              value={expData.description}
+              value={expData?.description}
               placeholder="Insert the location"
               rows="5"
               onChange={(e) => {
@@ -311,6 +329,10 @@ export const ExperienceModal = ({ showModal, setShowModal, experience }) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
+        <Button onClick={() => DeleteExperience(userID, experience._id)}>
+          Test
+        </Button>
+
         <Button
           className="rounded-pill fw-bold"
           variant="primary"

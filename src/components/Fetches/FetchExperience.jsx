@@ -12,7 +12,7 @@ const FetchExperience = async (idProfile) => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log("tutto ok", data);
+      // console.log("tutto ok", data);
       return data;
     } else {
       console.log("errore status", response.status);

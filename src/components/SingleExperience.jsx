@@ -4,6 +4,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { ExperienceModal } from "./CustomModals";
 
 const SingleExperience = ({ experience }) => {
+  console.log(experience);
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
   return (
@@ -23,7 +24,7 @@ const SingleExperience = ({ experience }) => {
               </span>
             </p>
           </div>
-          <p className="mt-2">{experience.decription}</p>
+          <p className="mt-2">{experience.description}</p>
         </Col>
         <Col xs={2} className="justify-self-end">
           <Button variant="none" onClick={handleShow} className="p-0">
@@ -33,6 +34,8 @@ const SingleExperience = ({ experience }) => {
             showModal={showModal}
             setShowModal={setShowModal}
             experience={experience}
+            userID={experience.user}
+            edit={true}
           />
         </Col>
       </Row>
