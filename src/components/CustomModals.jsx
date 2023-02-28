@@ -7,7 +7,7 @@ import {
   FormLabel,
   Modal,
 } from "react-bootstrap";
-import { EditProfile } from "./FetchProfileByID";
+import { EditProfile } from "./Fetches/FetchProfileByID";
 
 export const ProfileModal = ({
   showModal,

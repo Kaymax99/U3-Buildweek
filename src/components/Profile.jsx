@@ -2,8 +2,8 @@ import { Container, Row } from "react-bootstrap";
 import InfoSection from "./InfoSection";
 import PeopleSection from "./PeopleSection";
 import { useParams } from "react-router";
-import FetchExperience from "./FetchExperience";
-import { FetchProfileByID } from "./FetchProfileByID";
+import FetchExperience from "./Fetches/FetchExperience";
+import { FetchProfileByID } from "./Fetches/FetchProfileByID";
 import { useEffect, useState } from "react";
 
 export const Profile = () => {
