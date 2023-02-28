@@ -7,10 +7,13 @@ import { useEffect, useState } from "react";
 
 export const Profile = () => {
   const [profile, setProfile] = useState({});
+  const [profileArray, setProfileArray] = useState([]);
   const params = useParams();
   const retrieveData = async () => {
     let data = await FetchProfileByID(params.profileID);
+    let profiles = await FetchProfileByID("");
     setProfile(data);
+    setProfileArray(profiles);
     console.log(profile);
   };
 
@@ -24,7 +27,7 @@ export const Profile = () => {
       <Container>
         <Row>
           <InfoSection profile={profile} />
-          <PeopleSection />
+          <PeopleSection profileArray={profileArray.slice(0, 5)} />
         </Row>
       </Container>
     </>
