@@ -1,6 +1,6 @@
 const FetchProfileByID = async (idProfile) => {
   try {
-    const BaseUrl = `https://striveschool-api.herokuapp.com/api/profile/${idProfile}`;
+    const BaseUrl = `https://striveschool-api.herokuapp.com/api/profile/${idProfile}/`;
 
     const response = await fetch(BaseUrl, {
       method: "GET",
