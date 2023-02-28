@@ -1,12 +1,20 @@
+import { BsPlusLg } from "react-icons/bs";
 import SingleExperience from "./SingleExperience";
 
 const Experiences = ({ experiences }) => {
   console.log(experiences);
   return (
     <>
-      <h4>Esperienza</h4>
-      {experiences.map(function (e, i) {
-        return <SingleExperience key={"experience-" + i} e={e} />;
+      <div className="d-flex">
+        <h4>Esperienze</h4>
+        <div className="pencil-container mt-2 container-fluid">
+          <BsPlusLg className="pencil fs-6 me-2" />
+        </div>
+      </div>
+      {experiences.map(function (experience, i) {
+        return (
+          <SingleExperience key={"experience-" + i} experience={experience} />
+        );
       })}
     </>
   );

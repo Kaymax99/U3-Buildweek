@@ -1,8 +1,11 @@
-import { Col, Row } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Col, Row } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
-import { BsPlusLg } from "react-icons/bs";
+import { ExperienceModal } from "./CustomModals";
 
-const SingleExperience = ({ e }) => {
+const SingleExperience = ({ experience }) => {
+  const [showModal, setShowModal] = useState(false);
+  const handleShow = () => setShowModal(true);
   return (
     <>
       <Row className="mt-4 align-items-start">
@@ -12,27 +15,25 @@ const SingleExperience = ({ e }) => {
         </Col>
         <Col xs={8}>
           <div>
-            <h5>{e.role}</h5>
+            <h5>{experience.role}</h5>
             <p>
-              {e.company} <br />
-              <span className="text-secondary">{e.startDate}</span>
+              {experience.company} <br />
+              <span className="text-secondary">
+                {experience.startDate.slice(0, 10)}
+              </span>
             </p>
           </div>
-          <p className="mt-2">{e.decription}</p>
+          <p className="mt-2">{experience.decription}</p>
         </Col>
-        <Col xs={2}>
-          <div className="d-flex experience-icons">
-            <div className="pencil-container mt-2 container-fluid">
-              <div>
-                <BsPlusLg className="pencil fs-6" />
-              </div>
-            </div>
-            <div className="pencil-container mt-2 container-fluid">
-              <div>
-                <FaPencilAlt className="pencil fs-6" />
-              </div>
-            </div>
-          </div>
+        <Col xs={2} className="justify-self-end">
+          <Button variant="none" onClick={handleShow} className="p-0">
+            <FaPencilAlt className="pencil fs-6" />
+          </Button>
+          <ExperienceModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            experience={experience}
+          />
         </Col>
       </Row>
     </>
