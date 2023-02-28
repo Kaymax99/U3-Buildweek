@@ -7,7 +7,17 @@ import {
   FormLabel,
   Modal,
 } from "react-bootstrap";
-import { EditProfile } from "./Fetches/FetchProfileByID";
+import { EditExperience } from "./Fetches/EditExperience";
+import { EditProfile } from "./Fetches/EditProfile";
+import { DeleteExperience } from "./Fetches/DeleteExperience";
+
+const deleteExp = () => {
+  DeleteExperience();
+};
+
+const handleChange = (setData, data, propertyName, propertyValue) => {
+  setData({ ...data, [propertyName]: propertyValue });
+};
 
 export const ProfileModal = ({
   showModal,
@@ -36,10 +46,6 @@ export const ProfileModal = ({
       });
     }
   }, [profile]);
-
-  const handleChange = (propertyName, propertyValue) => {
-    setProfileData({ ...profileData, [propertyName]: propertyValue });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,7 +82,12 @@ export const ProfileModal = ({
               placeholder="Insert your first name"
               rows="1"
               onChange={(e) => {
-                handleChange("name", e.target.value);
+                handleChange(
+                  setProfileData,
+                  profileData,
+                  "name",
+                  e.target.value
+                );
               }}
             ></FormControl>
           </FormGroup>
@@ -89,7 +100,12 @@ export const ProfileModal = ({
               placeholder="Insert your last name"
               rows="1"
               onChange={(e) => {
-                handleChange("surname", e.target.value);
+                handleChange(
+                  setProfileData,
+                  profileData,
+                  "surname",
+                  e.target.value
+                );
               }}
             ></FormControl>
           </FormGroup>
@@ -102,7 +118,12 @@ export const ProfileModal = ({
               placeholder="The headline of your profile"
               rows="1"
               onChange={(e) => {
-                handleChange("title", e.target.value);
+                handleChange(
+                  setProfileData,
+                  profileData,
+                  "title",
+                  e.target.value
+                );
               }}
             ></FormControl>
           </FormGroup>
@@ -115,7 +136,12 @@ export const ProfileModal = ({
               placeholder="Insert your nickname"
               rows="1"
               onChange={(e) => {
-                handleChange("username", e.target.value);
+                handleChange(
+                  setProfileData,
+                  profileData,
+                  "username",
+                  e.target.value
+                );
               }}
             ></FormControl>
           </FormGroup>
@@ -128,7 +154,12 @@ export const ProfileModal = ({
               placeholder="Ex. Italy"
               rows="1"
               onChange={(e) => {
-                handleChange("area", e.target.value);
+                handleChange(
+                  setProfileData,
+                  profileData,
+                  "area",
+                  e.target.value
+                );
               }}
             ></FormControl>
           </FormGroup>
@@ -141,13 +172,167 @@ export const ProfileModal = ({
               placeholder="Tell us something about you"
               rows="5"
               onChange={(e) => {
-                handleChange("bio", e.target.value);
+                handleChange(
+                  setProfileData,
+                  profileData,
+                  "bio",
+                  e.target.value
+                );
               }}
             ></FormControl>
           </FormGroup>
         </Form>
       </Modal.Body>
       <Modal.Footer>
+        <Button
+          className="rounded-pill fw-bold"
+          variant="primary"
+          onClick={handleSubmit}
+        >
+          Save
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+export const ExperienceModal = ({
+  showModal,
+  setShowModal,
+  experience,
+  edit,
+  userID,
+  fetchExp,
+}) => {
+  const [expData, setExpData] = useState({
+    role: "",
+    company: "",
+    startDate: "",
+    endDate: "",
+    description: "",
+    area: "",
+  });
+
+  useEffect(() => {
+    if (experience) {
+      setExpData({
+        role: experience?.role,
+        company: experience?.company,
+        startDate: experience?.startDate,
+        endDate: experience?.endDate,
+        description: experience?.description,
+        area: experience?.area,
+      });
+    }
+  }, [experience]);
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (edit) {
+      EditExperience(experience.user, experience._id, "PUT", expData, fetchExp);
+    } else {
+      EditExperience(userID, "", "POST", expData, fetchExp);
+    }
+    handleClose();
+  };
+
+  return (
+    <Modal show={showModal} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Edit experience</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <FormGroup className="mb-2">
+            <FormLabel>Title</FormLabel>
+            <FormControl
+              type="text"
+              as="textarea"
+              value={expData?.role}
+              placeholder="Insert your role in the company"
+              rows="1"
+              onChange={(e) => {
+                handleChange(setExpData, expData, "role", e.target.value);
+              }}
+            ></FormControl>
+          </FormGroup>
+          <FormGroup className="mb-2">
+            <FormLabel>Company name</FormLabel>
+            <FormControl
+              type="text"
+              as="textarea"
+              value={expData?.company}
+              placeholder="Insert the name of the company"
+              rows="1"
+              onChange={(e) => {
+                handleChange(setExpData, expData, "company", e.target.value);
+              }}
+            ></FormControl>
+          </FormGroup>
+          <FormGroup className="mb-2">
+            <FormLabel>Location</FormLabel>
+            <FormControl
+              type="text"
+              as="textarea"
+              value={expData?.area}
+              placeholder="Insert the location"
+              rows="1"
+              onChange={(e) => {
+                handleChange(setExpData, expData, "area", e.target.value);
+              }}
+            ></FormControl>
+          </FormGroup>
+          <FormGroup className="mb-2">
+            <FormLabel>Start date</FormLabel>
+            <FormControl
+              type="date"
+              value={expData?.startDate}
+              rows="1"
+              onChange={(e) => {
+                handleChange(setExpData, expData, "startDate", e.target.value);
+              }}
+            ></FormControl>
+          </FormGroup>
+          <FormGroup className="mb-2">
+            <FormLabel>End date (leave blank if current)</FormLabel>
+            <FormControl
+              type="date"
+              value={expData?.endDate}
+              rows="1"
+              onChange={(e) => {
+                handleChange(setExpData, expData, "endDate", e.target.value);
+              }}
+            ></FormControl>
+          </FormGroup>
+          <FormGroup className="mb-2">
+            <FormLabel>Description</FormLabel>
+            <FormControl
+              type="text"
+              as="textarea"
+              value={expData?.description}
+              placeholder="Insert the location"
+              rows="5"
+              onChange={(e) => {
+                handleChange(
+                  setExpData,
+                  expData,
+                  "description",
+                  e.target.value
+                );
+              }}
+            ></FormControl>
+          </FormGroup>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={() => DeleteExperience(userID, experience._id)}>
+          Test
+        </Button>
+
         <Button
           className="rounded-pill fw-bold"
           variant="primary"

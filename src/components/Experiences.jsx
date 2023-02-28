@@ -1,12 +1,34 @@
+import { useState } from "react";
+import { Button } from "react-bootstrap";
+import { BsPlusLg } from "react-icons/bs";
+import { ExperienceModal } from "./CustomModals";
 import SingleExperience from "./SingleExperience";
 
-const Experiences = ({ experiences }) => {
-  console.log(experiences);
+const Experiences = ({ experiences, fetchExp }) => {
+  const [showModal, setShowModal] = useState(false);
+  const handleShow = () => setShowModal(true);
   return (
     <>
-      <h4>Esperienza</h4>
-      {experiences.map(function (e, i) {
-        return <SingleExperience key={"experience-" + i} e={e} />;
+      <div className="d-flex">
+        <h4>Esperienze</h4>
+        <div className="pencil-container mt-2 container-fluid">
+          <Button variant="none" onClick={handleShow} className="p-0">
+            <BsPlusLg className="pencil fs-6 me-2" />
+          </Button>
+          <ExperienceModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            experience={""}
+            userID={experiences.user}
+            fetchExp={fetchExp}
+            edit={false}
+          />
+        </div>
+      </div>
+      {experiences.map(function (experience, i) {
+        return (
+          <SingleExperience key={"experience-" + i} experience={experience} />
+        );
       })}
     </>
   );

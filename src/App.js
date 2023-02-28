@@ -12,7 +12,6 @@ function App() {
       <CustomNavbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/me" element={<Profile />} /> */}
         <Route path="/:profileID" element={<Profile />} />
       </Routes>
       <CustomFooter />
