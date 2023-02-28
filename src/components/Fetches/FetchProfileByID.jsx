@@ -8,8 +8,7 @@ export const FetchProfileByID = async (idProfile) => {
     const response = await fetch(BaseUrl, {
       method: "GET",
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZjNzIwMGYxOTNlNjAwMTM4MDdmNWIiLCJpYXQiOjE2Nzc0ODg2NDAsImV4cCI6MTY3ODY5ODI0MH0.H3ZUySip6xTH6Tcn37l6hNGL4xEGoaGK35Qkbu_4aSg",
+        Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
       },
     });
 
