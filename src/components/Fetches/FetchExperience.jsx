@@ -5,8 +5,7 @@ const FetchExperience = async (idProfile) => {
     const response = await fetch(BaseUrl, {
       method: "GET",
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZjNzZiM2YxOTNlNjAwMTM4MDdmNWMiLCJpYXQiOjE2Nzc0ODk4NDYsImV4cCI6MTY3ODY5OTQ0Nn0.-q5P2Ax3mO5nMG15FKAyvQeJ_Krlmy2Z-VmSSdBuRQ0",
+        Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
       },
     });
 
