@@ -5,7 +5,7 @@ import bg from "../assets/imgs/bg.jpg";
 
 const InfoSection = ({ profile }) => {
   return (
-    <Col xs={12} md={8}>
+    <Col xs={12} md={8} className={"mt-3"}>
       <div>
         <div className="d-flex flex-column rounded">
           <div className="background">
