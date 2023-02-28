@@ -11,10 +11,12 @@ const Experiences = ({ experiences, fetchExp }) => {
     <>
       <div className="d-flex">
         <h4>Esperienze</h4>
-        <div className="pencil-container mt-2 container-fluid">
-          <Button variant="none" onClick={handleShow} className="p-0">
-            <BsPlusLg className="pencil fs-6 me-2" />
-          </Button>
+        <div className="add-container mt-2 container-fluid">
+          <div>
+            <Button variant="none" onClick={handleShow} className="p-0">
+              <BsPlusLg className="pencil fs-6 add-icon" />
+            </Button>
+          </div>
           <ExperienceModal
             showModal={showModal}
             setShowModal={setShowModal}

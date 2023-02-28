@@ -12,16 +12,18 @@ const People = ({ singleProfile }) => {
             className="people_img"
           />
         </Col>
-        <Col xs={8} className="mx-3">
+        <Col xs={8} className="mx-1">
           <h5>{singleProfile.name} </h5>
           <p>{singleProfile.title}</p>
           <Button variant="outline-secondary rounded-pill px-3">
-            {<BsFillPersonPlusFill className="mb-1 me-2" />}
+            {<BsFillPersonPlusFill className="mb-1 me-2 collegati" />}
             Collegati
           </Button>
         </Col>
       </Row>
-      <hr className="align-self-center" style={{ width: "90%" }} />
+      <div className="d-flex justify-content-center">
+        <hr style={{ width: "90%" }} />
+      </div>
     </>
   );
 };

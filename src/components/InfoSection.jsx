@@ -29,7 +29,12 @@ const InfoSection = ({ profile, retrieveData }) => {
   }, [profile]);
 
   return (
-    <Col xs={12} md={8} className={"mt-3"}>
+    <Col
+      xs={12}
+      md={7}
+      className={"mt-3 me-3"}
+      style={{ backgroundColor: "white", borderRadius: "15px" }}
+    >
       <div>
         <div className="d-flex flex-column rounded">
           <div className="background">

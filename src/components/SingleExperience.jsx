@@ -28,7 +28,7 @@ const SingleExperience = ({ experience }) => {
         </Col>
         <Col xs={2} className="justify-self-end">
           <Button variant="none" onClick={handleShow} className="p-0">
-            <FaPencilAlt className="pencil fs-6" />
+            <FaPencilAlt className="pencil fs-6 link-secondary" />
           </Button>
           <ExperienceModal
             showModal={showModal}

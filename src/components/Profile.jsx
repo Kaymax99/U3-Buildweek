@@ -2,7 +2,6 @@ import { Container, Row } from "react-bootstrap";
 import InfoSection from "./InfoSection";
 import PeopleSection from "./PeopleSection";
 import { useParams } from "react-router";
-
 import { FetchProfileByID } from "./Fetches/FetchProfileByID";
 import { useEffect, useState } from "react";
 
@@ -26,6 +25,7 @@ export const Profile = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     retrieveData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

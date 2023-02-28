@@ -135,7 +135,7 @@ nav .viewProfile {
 }
 
 .pencil-container div {
-  padding: 9px 13px;
+  padding: 6px 10px;
   border-radius: 100%;
 }
 
@@ -146,6 +146,21 @@ nav .viewProfile {
 
 .pencil {
   color: rgb(80, 80, 80);
+}
+
+.add-container {
+  display: flex;
+  justify-content: end;
+}
+
+.add-container div {
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+
+.add-container div:hover {
+  background-color: lightgray;
+  cursor: pointer;
 }
 
 .name {
@@ -163,4 +178,10 @@ nav .viewProfile {
   border-radius: 100%;
   width: 40px;
   height: 40px;
+}
+
+@media screen and (max-width: 997px) {
+  .collegati {
+    display: none;
+  }
 }/*# sourceMappingURL=app.css.map */

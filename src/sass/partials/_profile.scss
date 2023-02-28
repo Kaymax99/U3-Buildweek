@@ -26,7 +26,7 @@
 }
 
 .pencil-container div {
-  padding: 9px 13px;
+  padding: 6px 10px;
   border-radius: 100%;
 }
 
@@ -37,6 +37,21 @@
 
 .pencil {
   color: rgb(80, 80, 80);
+}
+
+.add-container {
+  display: flex;
+  justify-content: end;
+}
+
+.add-container div {
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+
+.add-container div:hover {
+  background-color: lightgray;
+  cursor: pointer;
 }
 
 .name {
@@ -53,6 +68,12 @@
   border-radius: 100%;
   width: 40px;
   height: 40px;
+}
+
+.collegati {
+  @media screen and (max-width: 997px) {
+    display: none;
+  }
 }
 
 // .experience-icons {
