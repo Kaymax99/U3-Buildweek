@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { Button, Col } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import bg from "../assets/imgs/bg.jpg";
+import { ProfileModal } from "./CustomModals";
 
-const InfoSection = ({ profile }) => {
+const InfoSection = ({ profile, retrieveData }) => {
+  const [showModal, setShowModal] = useState(false);
+  const handleShow = () => setShowModal(true);
+
   return (
     <Col xs={12} md={8} className={"mt-3"}>
       <div>
@@ -18,7 +23,15 @@ const InfoSection = ({ profile }) => {
           </div>
           <div className="pencil-container mt-2 container-fluid">
             <div>
-              <FaPencilAlt className="pencil fs-5" />
+              <Button variant="none" onClick={handleShow} className="p-0">
+                <FaPencilAlt className="pencil fs-5" />
+              </Button>
+              <ProfileModal
+                showModal={showModal}
+                setShowModal={setShowModal}
+                profile={profile}
+                retrieveData={retrieveData}
+              />
             </div>
           </div>
           <div className="m-3">
@@ -26,10 +39,8 @@ const InfoSection = ({ profile }) => {
               <h2>
                 {profile.name} {profile.surname}
               </h2>
-
-              <small>{profile.title}</small>
             </div>
-            <p>--</p>
+            <p>{profile.title}</p>
             <p className="text-secondary">{profile.area}</p>
             <Link style={{ textDecoration: "none" }}>
               <p className="text-primary info-contatto">

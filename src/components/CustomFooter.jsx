@@ -1,12 +1,12 @@
-import { Col, Dropdown, Form, Nav, Row } from "react-bootstrap";
+import { Col, Container, Dropdown, Form, Nav, Row } from "react-bootstrap";
 import logoBig from "../assets/imgs/linkedin.svg";
 import { QuestionCircleFill, GearFill } from "react-bootstrap-icons";
 
 export const CustomFooter = () => {
   return (
-    <footer className="py-5 text-muted">
+    <Container fluid className="py-5 text-muted">
       <img src={logoBig} alt="logo" className="logo mb-2" />
-      <Row>
+      <Row className="w-100 mx-0">
         <Col xs={7} md={6}>
           <Row>
             <Col xs={4} className="mb-3">
@@ -161,6 +161,6 @@ export const CustomFooter = () => {
           </li>
         </ul>
       </div>
-    </footer>
+    </Container>
   );
 };

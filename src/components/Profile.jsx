@@ -2,7 +2,7 @@ import { Container, Row } from "react-bootstrap";
 import InfoSection from "./InfoSection";
 import PeopleSection from "./PeopleSection";
 import { useParams } from "react-router";
-import FetchProfileByID from "./FetchProfileByID";
+import { FetchProfileByID } from "./FetchProfileByID";
 import { useEffect, useState } from "react";
 
 export const Profile = () => {
@@ -14,7 +14,6 @@ export const Profile = () => {
     let profiles = await FetchProfileByID("");
     setProfile(data);
     setProfileArray(profiles);
-    console.log(profile);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,7 +25,7 @@ export const Profile = () => {
     <>
       <Container>
         <Row>
-          <InfoSection profile={profile} />
+          <InfoSection profile={profile} retrieveData={retrieveData} />
           <PeopleSection profileArray={profileArray.slice(0, 5)} />
         </Row>
       </Container>
