@@ -2,8 +2,10 @@ import { Button, Col } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import bg from "../assets/imgs/bg.jpg";
+import Experiences from "./Experiences";
 
-const InfoSection = ({ profile }) => {
+const InfoSection = ({ profile, experiencesProp }) => {
+  console.log(experiencesProp);
   return (
     <Col xs={12} md={8} className={"mt-3"}>
       <div>
@@ -49,6 +51,8 @@ const InfoSection = ({ profile }) => {
           <div className="m-3 mt-4">
             <h4>Informazioni</h4>
             <p>{profile.bio}</p>
+            <hr />
+            <Experiences experiences={experiencesProp} />
           </div>
         </div>
       </div>
