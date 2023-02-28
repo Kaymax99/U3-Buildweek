@@ -242,10 +242,6 @@ export const ExperienceModal = ({
       handleClose();
     }
   };
-  const testFn = () => {
-    DeleteExperience(userID, experience._id);
-    handleClose();
-  };
 
   return (
     <Modal show={showModal} onHide={handleClose}>
@@ -334,7 +330,13 @@ export const ExperienceModal = ({
         </Form>
       </Modal.Body>
       <Modal.Footer className="d-flex justify-content-between">
-        <Button variant="danger" onClick={() => testFn()}>
+        <Button
+          variant="danger"
+          onClick={() => {
+            DeleteExperience(userID, experience._id);
+            handleClose();
+          }}
+        >
           Delete experience
         </Button>
 
