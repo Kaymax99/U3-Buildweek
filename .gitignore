@@ -24,3 +24,6 @@ yarn-error.log*
 
 src/sass/app.css
 src/sass/app.css.map
+
+src/css/app.css
+src/css/app.css.map
