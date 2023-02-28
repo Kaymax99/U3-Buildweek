@@ -228,6 +228,7 @@ export const ExperienceModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleClose();
     if (edit) {
       EditExperience(
         experience.user,
@@ -236,11 +237,14 @@ export const ExperienceModal = ({
         expData,
         retrieveData
       );
-      handleClose();
     } else {
       EditExperience(userID, "", "POST", expData, retrieveData);
-      handleClose();
     }
+  };
+
+  const testFn = () => {
+    DeleteExperience(userID, experience._id, retrieveData);
+    handleClose();
   };
 
   return (
@@ -330,18 +334,20 @@ export const ExperienceModal = ({
         </Form>
       </Modal.Body>
       <Modal.Footer className="d-flex justify-content-between">
-        <Button
-          variant="danger"
-          onClick={() => {
-            DeleteExperience(userID, experience._id);
-            handleClose();
-          }}
-        >
-          Delete experience
-        </Button>
+        {edit ? (
+          <Button
+            className="rounded-pill fw-bold"
+            variant="danger"
+            onClick={testFn}
+          >
+            Delete experience
+          </Button>
+        ) : (
+          <div></div>
+        )}
 
         <Button
-          className="rounded-pill fw-bold"
+          className="rounded-pill fw-bold align-self-end"
           variant="primary"
           onClick={handleSubmit}
         >

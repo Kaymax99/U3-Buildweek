@@ -4,7 +4,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { ExperienceModal } from "./CustomModals";
 
 const SingleExperience = ({ experience }) => {
-  console.log(experience);
+  // console.log(experience);
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
   return (

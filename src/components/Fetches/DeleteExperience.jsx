@@ -1,4 +1,4 @@
-export const DeleteExperience = async (idProfile, idExperience) => {
+export const DeleteExperience = async (idProfile, idExperience, callbackFn) => {
   try {
     const BaseUrl = `https://striveschool-api.herokuapp.com/api/profile/${idProfile}/experiences/${idExperience}`;
     const response = await fetch(BaseUrl, {
@@ -9,6 +9,7 @@ export const DeleteExperience = async (idProfile, idExperience) => {
       },
     });
     if (response.ok) {
+      callbackFn();
       const data = await response;
       console.log("tutto ok: elemento rimosso:", data);
       return data;
