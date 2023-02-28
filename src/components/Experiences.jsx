@@ -5,8 +5,8 @@ const Experiences = ({ experiences }) => {
   return (
     <>
       <h4>Esperienza</h4>
-      {experiences.map(function (e) {
-        return <SingleExperience e={e} />;
+      {experiences.map(function (e, i) {
+        return <SingleExperience key={"experience-" + i} e={e} />;
       })}
     </>
   );
