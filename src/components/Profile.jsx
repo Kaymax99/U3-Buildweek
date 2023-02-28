@@ -2,8 +2,8 @@ import { Container, Row } from "react-bootstrap";
 import InfoSection from "./InfoSection";
 import PeopleSection from "./PeopleSection";
 import { useParams } from "react-router";
-import FetchProfileByID from "./FetchProfileByID";
 import FetchExperience from "./FetchExperience";
+import { FetchProfileByID } from "./FetchProfileByID";
 import { useEffect, useState } from "react";
 
 export const Profile = () => {
@@ -42,7 +42,11 @@ export const Profile = () => {
     <>
       <Container>
         <Row>
-          <InfoSection profile={profile} experiencesProp={experienceArray} />
+          <InfoSection
+            profile={profile}
+            experiencesProp={experienceArray}
+            retrieveData={retrieveData}
+          />
           <PeopleSection profileArray={profileArray.slice(0, 5)} />
         </Row>
       </Container>

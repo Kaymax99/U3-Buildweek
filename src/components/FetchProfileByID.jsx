@@ -1,4 +1,4 @@
-const FetchProfileByID = async (idProfile) => {
+export const FetchProfileByID = async (idProfile) => {
   try {
     const BaseUrl = `https://striveschool-api.herokuapp.com/api/profile/${idProfile}/`;
 
@@ -6,7 +6,7 @@ const FetchProfileByID = async (idProfile) => {
       method: "GET",
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZjNzZiM2YxOTNlNjAwMTM4MDdmNWMiLCJpYXQiOjE2Nzc0ODk4NDYsImV4cCI6MTY3ODY5OTQ0Nn0.-q5P2Ax3mO5nMG15FKAyvQeJ_Krlmy2Z-VmSSdBuRQ0",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZjNzIwMGYxOTNlNjAwMTM4MDdmNWIiLCJpYXQiOjE2Nzc0ODg2NDAsImV4cCI6MTY3ODY5ODI0MH0.H3ZUySip6xTH6Tcn37l6hNGL4xEGoaGK35Qkbu_4aSg",
       },
     });
 
@@ -22,4 +22,25 @@ const FetchProfileByID = async (idProfile) => {
   }
 };
 
-export default FetchProfileByID;
+export const EditProfile = async (newProfileObj, callbackFn) => {
+  const baseUrl = `https://striveschool-api.herokuapp.com/api/profile/`;
+  try {
+    const res = await fetch(baseUrl, {
+      method: "PUT",
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZjNzIwMGYxOTNlNjAwMTM4MDdmNWIiLCJpYXQiOjE2Nzc0ODg2NDAsImV4cCI6MTY3ODY5ODI0MH0.H3ZUySip6xTH6Tcn37l6hNGL4xEGoaGK35Qkbu_4aSg",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newProfileObj),
+    });
+    if (res.ok) {
+      console.log("Successfully posted");
+      callbackFn();
+    } else {
+      console.log("Unable to submit");
+    }
+  } catch (error) {
+    console.log("FATAL ERROR: ", error);
+  }
+};
