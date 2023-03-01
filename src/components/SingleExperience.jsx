@@ -3,7 +3,7 @@ import { Button, Col, Row } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import { ExperienceModal } from "./CustomModals";
 
-const SingleExperience = ({ experience }) => {
+const SingleExperience = ({ experience, retrieveData }) => {
   // console.log(experience);
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
@@ -35,6 +35,7 @@ const SingleExperience = ({ experience }) => {
             setShowModal={setShowModal}
             experience={experience}
             userID={experience.user}
+            retrieveData={retrieveData}
             edit={true}
           />
         </Col>
