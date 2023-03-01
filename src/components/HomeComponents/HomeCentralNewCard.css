@@ -1,0 +1,77 @@
+.ConenitorePrincipale {
+  background-color: white;
+  width: 450px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+
+.PostProfileImg {
+  width: 50px;
+  height: 50px;
+  border: solid 1px lightgrey;
+}
+
+.PostMainImg {
+  height: 270px;
+  padding: 0px;
+}
+
+.AdvertismentRow {
+  background-color: fuchsia;
+  border-top: solid 1px grey;
+  border-bottom: solid 1px grey;
+}
+
+.PostH1 {
+  font-size: medium;
+}
+
+.PostH2 {
+  font-size: small;
+}
+
+.PostH3 {
+  font-size: small;
+  color: grey;
+}
+
+.PostIconsTop {
+  padding-left: 20px;
+  display: flex;
+  gap: 5px;
+  color: rgb(96, 95, 95);
+}
+
+.PostSingleIcon {
+  font-size: 25px;
+}
+
+.PostSingleIcon :hover {
+  color: grey;
+  cursor: pointer;
+}
+
+.marginTopMod {
+  margin-bottom: 0px;
+}
+
+.BottomButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.BottomButtons Button {
+  background-color: white;
+  border: none;
+  color: rgb(96, 95, 95);
+  font-size: smaller;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.BottomButtons Button:hover {
+  background-color: rgba(211, 211, 211, 0.595);
+  color: rgb(96, 95, 95);
+}
