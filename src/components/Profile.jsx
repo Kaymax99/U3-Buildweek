@@ -31,7 +31,7 @@ export const Profile = () => {
   return (
     <>
       <Container>
-        <Row>
+        <Row className="justify-content-between">
           <InfoSection profile={profile} retrieveData={retrieveData} />
           <PeopleSection profileArray={profileArray.slice(0, 5)} />
         </Row>
