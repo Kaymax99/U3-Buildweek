@@ -8,16 +8,17 @@ import {
 } from "./Fetches/FetchPosts";
 
 export const Home = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(null);
   const [postContent, setPostContent] = useState({});
   const [singlePost, setSinglePost] = useState(null);
   const numeroPost = 10;
   const retrievePosts = async () => {
     const data = await fetchPosts();
     let indexRandom = Math.floor(Math.random() * (data.length - numeroPost));
-    console.log(indexRandom);
     setPosts(data.slice(indexRandom, indexRandom + numeroPost));
+    // setPosts(data);
   };
+  console.log(posts);
   const retrieveSinglePost = async () => {
     const data = await fetchPostById("63ff6067f443aa00132286e5");
     setSinglePost(data);
@@ -38,9 +39,7 @@ export const Home = () => {
       <Container>
         <div>
           <ul>
-            {posts.map((e, index) => (
-              <li key={index}>{e.text}</li>
-            ))}
+            {posts && posts?.map((e, index) => <li key={index}>{e.text}</li>)}
           </ul>
         </div>
         <div>
