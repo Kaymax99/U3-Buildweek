@@ -3,8 +3,7 @@
 }
 
 .logo {
-  filter: invert(22%) sepia(76%) saturate(2644%) hue-rotate(198deg)
-    brightness(96%) contrast(92%);
+  filter: invert(22%) sepia(76%) saturate(2644%) hue-rotate(198deg) brightness(96%) contrast(92%);
 }
 
 ul {
@@ -172,7 +171,7 @@ nav .viewProfile {
 
 .info-contatto:hover {
   -webkit-text-decoration: dotted;
-  text-decoration: dotted;
+          text-decoration: dotted;
 }
 
 .people_img {
@@ -180,27 +179,19 @@ nav .viewProfile {
   width: 40px;
   height: 40px;
 }
-.ImgProfileCard {
-  width: 5rem !important;
-  border-radius: 50% !important;
-  border: 2px solid !important;
-}
 
-<<<<<<< Updated upstream
-.experience-icons {
-  margin-right: 30px;
-  position: absolute;
-}
-
-.experience-icons div {
-  position: relative;
-  bottom: 10px;
-  right: 5px;
-}/*# sourceMappingURL=app.css.map */
-=======
 @media screen and (max-width: 997px) {
   .collegati {
     display: none;
   }
-} /*# sourceMappingURL=app.css.map */
->>>>>>> Stashed changes
+}
+
+.ImgProfileCard {
+  width: 5rem !important;
+  border-radius: 50% !important;
+  border: 3px solid !important;
+}
+
+.SfondoCardProfilo {
+  height: 100px !important;
+}/*# sourceMappingURL=app.css.map */
