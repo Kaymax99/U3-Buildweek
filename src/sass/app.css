@@ -3,8 +3,7 @@
 }
 
 .logo {
-  filter: invert(22%) sepia(76%) saturate(2644%) hue-rotate(198deg)
-    brightness(96%) contrast(92%);
+  filter: invert(22%) sepia(76%) saturate(2644%) hue-rotate(198deg) brightness(96%) contrast(92%);
 }
 
 ul {
@@ -88,11 +87,16 @@ nav .viewProfile {
   }
 }
 
-footer {
+.container-fluid {
   font-size: 0.85em;
 }
+@media screen and (min-width: 1200px) {
+  .container-fluid {
+    max-width: 1200px;
+  }
+}
 
-footer .footerIcon {
+.container-fluid .footerIcon {
   margin-right: 0.75em;
   scale: 1.5;
 }
@@ -105,9 +109,24 @@ footer .footerIcon {
   border: 4px solid white;
   border-radius: 100%;
   position: absolute;
-  top: 90px;
-  left: 30px;
-  width: 200px;
+  bottom: -80px;
+  left: 20px;
+  width: 110px;
+}
+@media screen and (min-width: 400px) {
+  .background .profile_img {
+    width: 125px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .background .profile_img {
+    width: 180px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .background .profile_img {
+    width: 200px;
+  }
 }
 
 .pencil-container {
@@ -116,7 +135,7 @@ footer .footerIcon {
 }
 
 .pencil-container div {
-  padding: 9px 13px;
+  padding: 6px 10px;
   border-radius: 100%;
 }
 
@@ -129,6 +148,21 @@ footer .footerIcon {
   color: rgb(80, 80, 80);
 }
 
+.add-container {
+  display: flex;
+  justify-content: end;
+}
+
+.add-container div {
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+
+.add-container div:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
 .name {
   display: flex;
   align-items: center;
@@ -137,7 +171,7 @@ footer .footerIcon {
 
 .info-contatto:hover {
   -webkit-text-decoration: dotted;
-  text-decoration: dotted;
+          text-decoration: dotted;
 }
 
 .people_img {
@@ -145,27 +179,19 @@ footer .footerIcon {
   width: 40px;
   height: 40px;
 }
-.ImgProfileCard {
-  width: 5rem !important;
-  border-radius: 50% !important;
-  border: 2px solid !important;
-}
 
-<<<<<<< Updated upstream
-.experience-icons {
-  margin-right: 30px;
-  position: absolute;
-}
-
-.experience-icons div {
-  position: relative;
-  bottom: 10px;
-  right: 5px;
-}/*# sourceMappingURL=app.css.map */
-=======
 @media screen and (max-width: 997px) {
   .collegati {
     display: none;
   }
-} /*# sourceMappingURL=app.css.map */
->>>>>>> Stashed changes
+}
+
+.ImgProfileCard {
+  width: 5rem !important;
+  border-radius: 50% !important;
+  border: 3px solid !important;
+}
+
+.SfondoCardProfilo {
+  height: 100px !important;
+}/*# sourceMappingURL=app.css.map */
