@@ -4,9 +4,9 @@ import { QuestionCircleFill, GearFill } from "react-bootstrap-icons";
 
 export const CustomFooter = () => {
   return (
-    <Container fluid className="py-5 text-muted">
+    <Container className="py-5 text-muted">
       <img src={logoBig} alt="logo" className="logo mb-2" />
-      <Row className="w-100 mx-0">
+      <Row className="mx-0">
         <Col xs={7} md={6}>
           <Row>
             <Col xs={4} className="mb-3">
