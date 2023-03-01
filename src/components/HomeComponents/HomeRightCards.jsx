@@ -1,60 +1,31 @@
-import { Col, Row, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import "./HomeProfileCard.css";
+import Card from "react-bootstrap/Card";
+import React from "react";
 
-import {
-  BsFillBookmarkFill,
-  BsFillPersonPlusFill,
-  BsFillCalendar3Fill,
-} from "react-icons/bs";
-function HomeProfileCard() {
+function HomeRightCard() {
   return (
-    <>
-      <div className="Contenitore">
-        <Row xs={12}>
-          <Image
-            className="imgcover"
-            src="https://placekitten.com/200/300"
-            alt=""
-          />
-        </Row>
-        <Row>
-          <img
-            className="imgprofile"
-            src="https://placekitten.com/200/200"
-            alt=""
-          />
-        </Row>
-        <Row className="TitoloCard">
-          <h6>Ti diamo il benvenuto Nome</h6>
-          <Link to="#"> Aggiungi una foto</Link>
-          <hr />
-        </Row>
-        <Row className="secondpart">
-          <Col xs={9}>
-            <h6>Collegamenti</h6>
-            <h6 className="bold">Espandi la tua rete</h6>
-          </Col>
-          <Col xs={3}>
-            <BsFillPersonPlusFill />
-          </Col>{" "}
-          <hr />
-        </Row>
-        <Row className="my-2">
-          <p className="iconplusp">
-            Accedi a strumenti e informazioni in esclusiva{" "}
-          </p>
-          <Link to="#">
-            <BsFillCalendar3Fill /> Prova Premium gratis
-          </Link>
-          <hr />
-        </Row>
-        <Col className="d-flex gap-1 ">
-          <BsFillBookmarkFill /> <p className="iconplusp">I miei elementi</p>
-        </Col>
-      </div>
-    </>
+    <Card style={{ width: "20rem" }}>
+      <Card.Body>
+        <Card.Title className="bold">LinkedIn Notizie</Card.Title>
+
+        <div>
+          <ul>
+            <li className="bold">Nuova proroga per lo smart working</li>1 giorno
+            fa-964lettori
+            <li className="bold">Per iniziare con il piede giusto</li>1 giorno
+            fa-964lettori
+            <li className="bold">Oltre il nuovo logo di Nokia</li>1 giorno
+            fa-964lettori
+            <li className="bold">Cosa cambia della giustizia civile</li>1 giorno
+            fa-964lettori
+            <li className="bold">Come si sta digitalizzando il retail</li>1
+            giorno fa-964lettori
+          </ul>
+        </div>
+
+        <Card.Link href="#">Visualizza altro</Card.Link>
+      </Card.Body>
+    </Card>
   );
 }
 
-export default HomeProfileCard;
+export default HomeRightCard;

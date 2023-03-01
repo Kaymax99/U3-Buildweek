@@ -10,6 +10,7 @@ import {
   fetchPostById,
   deletePost,
 } from "./Fetches/FetchPosts";
+import HomeRightCard from "./HomeComponents/HomeRightCards";
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -53,8 +54,10 @@ export const Home = () => {
             </Row>
           </Col>
         </Row>
-        <Col xs={3} md={12}>
-          <Row></Row>
+        <Col xs={3} md={3}>
+          <Row>
+            <HomeRightCard />
+          </Row>
         </Col>
       </Container>
     </>
