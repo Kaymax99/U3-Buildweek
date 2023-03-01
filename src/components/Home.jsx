@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import HomeProfileCard from "./HomeComponents/HomeProfileCard";
-import HomeCentralNewCard from "./HomeComponents/HomeCentralNewCard";
+
+import PostLinkedin from "./HomeComponents/PostLinkedin";
 
 export const Home = () => {
   return (
@@ -15,11 +16,13 @@ export const Home = () => {
 
           <Col xs={6} md={6}>
             <Row>
-              <HomeCentralNewCard />
+              <PostLinkedin />
             </Row>
           </Col>
         </Row>
-        <Col xs={3} md={12}></Col>
+        <Col xs={3} md={12}>
+          <Row></Row>
+        </Col>
       </Container>
     </>
   );
