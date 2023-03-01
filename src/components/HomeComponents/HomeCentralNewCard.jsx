@@ -18,7 +18,9 @@ function HomeCentralNewCard() {
           <Col xs={8} className="">
             <h1 className="PostH1 bold marginTopMod">Nome</h1>
             <h3 className="PostH3 marginTopMod"># follower</h3>
-            <h3 className="PostH3 marginTopMod">tempo trascorso dal post <BiWorld/></h3>
+            <h3 className="PostH3 marginTopMod">
+              tempo trascorso dal post <BiWorld />
+            </h3>
           </Col>
           <Col xs={2} className="PostIconsTop">
             <div>
