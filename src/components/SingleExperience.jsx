@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 import { ExperienceModal } from "./CustomModals";
 
-const SingleExperience = ({ experience, retrieveData }) => {
+const SingleExperience = ({ experience, updateExp }) => {
   // console.log(experience);
   const [showModal, setShowModal] = useState(false);
+  const params = useParams();
   const handleShow = () => setShowModal(true);
   return (
     <>
@@ -26,19 +28,23 @@ const SingleExperience = ({ experience, retrieveData }) => {
           </div>
           <p className="mt-2">{experience.description}</p>
         </Col>
-        <Col xs={2} className="justify-self-end">
-          <Button variant="none" onClick={handleShow} className="p-0">
-            <FaPencilAlt className="pencil fs-6 link-secondary" />
-          </Button>
-          <ExperienceModal
-            showModal={showModal}
-            setShowModal={setShowModal}
-            experience={experience}
-            userID={experience.user}
-            retrieveData={retrieveData}
-            edit={true}
-          />
-        </Col>
+        {params.profileID === "me" ? (
+          <Col xs={2} className="justify-self-end">
+            <Button variant="none" onClick={handleShow} className="p-0">
+              <FaPencilAlt className="pencil fs-6 link-secondary" />
+            </Button>
+            <ExperienceModal
+              showModal={showModal}
+              setShowModal={setShowModal}
+              experience={experience}
+              userID={experience.user}
+              updateExp={updateExp}
+              edit={true}
+            />
+          </Col>
+        ) : (
+          <Col className="justify-self-end"></Col>
+        )}
       </Row>
     </>
   );

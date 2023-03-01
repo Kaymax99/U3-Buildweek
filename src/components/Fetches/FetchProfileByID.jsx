@@ -1,8 +1,5 @@
 export const FetchProfileByID = async (idProfile) => {
   let BaseUrl = `https://striveschool-api.herokuapp.com/api/profile/${idProfile}/`;
-  if (idProfile === "me") {
-    BaseUrl = "https://striveschool-api.herokuapp.com/api/profile/me";
-  }
 
   try {
     const response = await fetch(BaseUrl, {

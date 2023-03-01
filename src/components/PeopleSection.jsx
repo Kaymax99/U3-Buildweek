@@ -1,7 +1,10 @@
 import { Col, Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import People from "./People";
 
-const PeopleSection = ({ profileArray }) => {
+const PeopleSection = () => {
+  const peopleArray = useSelector((state) => state.people.content);
+  const profileArray = peopleArray.slice(0, 5);
   return (
     <Col
       xs={12}

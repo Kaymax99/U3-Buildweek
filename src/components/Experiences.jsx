@@ -1,30 +1,38 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { BsPlusLg } from "react-icons/bs";
+import { useParams } from "react-router-dom";
 import { ExperienceModal } from "./CustomModals";
 import SingleExperience from "./SingleExperience";
 
-const Experiences = ({ experiences, retrieveData }) => {
+const Experiences = ({ experiences, updateExp }) => {
+  const params = useParams();
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
   return (
     <>
       <div className="d-flex">
         <h4>Esperienze</h4>
-        <div className="add-container mt-2 container-fluid">
-          <div>
-            <Button variant="none" onClick={handleShow} className="p-0">
-              <BsPlusLg className="pencil fs-6 add-icon" />
-            </Button>
-          </div>
-          <ExperienceModal
-            showModal={showModal}
-            setShowModal={setShowModal}
-            experience={""}
-            userID={experiences.user}
-            retrieveData={retrieveData}
-            edit={false}
-          />
+        <div className="add-container container-fluid">
+          {params.profileID === "me" ? (
+            <>
+              <div>
+                <Button variant="none" onClick={handleShow} className="p-0">
+                  <BsPlusLg className="pencil fs-6 add-icon" />
+                </Button>
+              </div>
+              <ExperienceModal
+                showModal={showModal}
+                setShowModal={setShowModal}
+                experience={""}
+                userID={experiences.user}
+                updateExp={updateExp}
+                edit={false}
+              />
+            </>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       {experiences.map(function (experience, i) {
@@ -32,7 +40,7 @@ const Experiences = ({ experiences, retrieveData }) => {
           <SingleExperience
             key={"experience-" + i}
             experience={experience}
-            retrieveData={retrieveData}
+            updateExp={updateExp}
           />
         );
       })}

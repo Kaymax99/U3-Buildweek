@@ -18,12 +18,14 @@ import {
   BellFill,
   Grid3x3GapFill,
 } from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import logo from "../assets/imgs/logo.svg";
 import pic from "../assets/imgs/unregistered.png";
 
 export const CustomNavbar = () => {
+  const profile = useSelector((state) => state.profile.content);
   return (
     <Navbar bg="white" expand="sm" className="py-0">
       <Container fluid>
@@ -108,7 +110,7 @@ export const CustomNavbar = () => {
                     className="d-flex flex-column align-items-center"
                   >
                     <img
-                      src={pic}
+                      src={profile.image ? profile.image : pic}
                       alt="profile-XS"
                       className="profile-XS rounded-circle"
                     ></img>
@@ -119,16 +121,14 @@ export const CustomNavbar = () => {
                       <Card className="d-flex flex-row px-2 border-0 mb-1">
                         <Card.Img
                           variant="top"
-                          src={pic}
+                          src={profile.image ? profile.image : pic}
                           className="profile-SM rounded-circle"
                         />
                         <Card.Body className="p-0 ps-2">
-                          <Card.Title className="fs-6">Name</Card.Title>
-                          <Card.Text>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Dicta nisi incidunt sequi, quos sed laudantium
-                            unde quia minima!
-                          </Card.Text>
+                          <Card.Title className="fs-6">
+                            {profile.name}
+                          </Card.Title>
+                          <Card.Text>{profile.title}</Card.Text>
                         </Card.Body>
                       </Card>
                       <Button

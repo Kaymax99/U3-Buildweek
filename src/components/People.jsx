@@ -1,7 +1,9 @@
 import { Button, Col, Row } from "react-bootstrap";
 import { BsFillPersonPlusFill } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
 
 const People = ({ singleProfile }) => {
+  const navigate = useNavigate();
   return (
     <>
       <Row>
@@ -13,7 +15,9 @@ const People = ({ singleProfile }) => {
           />
         </Col>
         <Col xs={8} className="mx-1">
-          <h5>{singleProfile.name} </h5>
+          <Link to={`/` + singleProfile._id}>
+            <h5>{singleProfile.name} </h5>
+          </Link>
           <p>{singleProfile.title}</p>
           <Button variant="outline-secondary rounded-pill px-3">
             {<BsFillPersonPlusFill className="mb-1 me-2 collegati" />}
