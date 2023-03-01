@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { fetchPosts } from "./Fetches/FetchPosts";
+import { addPost, fetchPosts } from "./Fetches/FetchPosts";
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
+  const [postContent, setPostContent] = useState({});
   const numeroPost = 10;
   const retrievePosts = async () => {
     const data = await fetchPosts();
@@ -25,6 +26,27 @@ export const Home = () => {
               <li key={index}>{e.text}</li>
             ))}
           </ul>
+        </div>
+        <div>
+          <form>
+            <input
+              onChange={(e) => {
+                console.log(e.target.value);
+                setPostContent({ text: e.target.value });
+              }}
+              type="text"
+              name=""
+              id=""
+            />
+            <button
+              onClick={(e) => {
+                addPost(postContent);
+                e.preventDefault();
+              }}
+            >
+              INVIA
+            </button>
+          </form>
         </div>
       </Container>
     </>
