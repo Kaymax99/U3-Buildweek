@@ -124,24 +124,6 @@ export const ProfileModal = ({
             ></FormControl>
           </FormGroup>
           <FormGroup className="mb-2">
-            <FormLabel>Nickname</FormLabel>
-            <FormControl
-              type="text"
-              as="textarea"
-              value={profileData.username}
-              placeholder="Insert your nickname"
-              rows="1"
-              onChange={(e) => {
-                handleChange(
-                  setProfileData,
-                  profileData,
-                  "username",
-                  e.target.value
-                );
-              }}
-            ></FormControl>
-          </FormGroup>
-          <FormGroup className="mb-2">
             <FormLabel>Location</FormLabel>
             <FormControl
               type="text"

@@ -59,7 +59,7 @@ function HomeRightCards() {
           <Link>Altro</Link>
         </div>
       </div>
-      <div className="logo">
+      <div className="logoImg">
         <div>
           <img src={logoLinkedin} alt="" />
         </div>{" "}

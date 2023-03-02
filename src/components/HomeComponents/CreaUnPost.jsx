@@ -137,7 +137,6 @@ function CreaUnPost() {
           )}
         </Modal.Footer>
       </Modal>
-      +
     </>
   );
 }

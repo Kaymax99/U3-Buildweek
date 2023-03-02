@@ -161,10 +161,10 @@
   Button {
     background-color: white;
     border: none;
+    border-radius: 5px;
     color: rgb(96, 95, 95);
     font-size: smaller;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
     &:hover {
       background-color: rgba(211, 211, 211, 0.595);
       color: rgb(96, 95, 95);
@@ -222,14 +222,14 @@
 .footerlinks a {
   margin: 2px;
 }
-.logo img {
+.logoImg img {
   width: 50px;
 }
-.logo p {
+.logoImg p {
   font-size: x-small;
   color: black;
 }
-.logo {
+.logoImg {
   display: block ruby;
   text-decoration: none;
   text-align: center;
