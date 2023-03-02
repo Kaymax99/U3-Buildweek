@@ -6,6 +6,18 @@
   filter: invert(22%) sepia(76%) saturate(2644%) hue-rotate(198deg) brightness(96%) contrast(92%);
 }
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+body {
+  background-color: #f3f2ef;
+=======
+.listaNews li {
+  list-style-type: disc;
+>>>>>>> Stashed changes
+}
+
+>>>>>>> Stashed changes
 ul {
   padding: 0;
   margin: 0;
