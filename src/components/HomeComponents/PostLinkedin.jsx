@@ -1,11 +1,9 @@
-import "./PostLinkedin.css";
 import { Col, Row, Image, Button } from "react-bootstrap";
 
 import { BsX, BsThreeDots, BsShare } from "react-icons/bs";
 import { BiLike, BiWorld } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa";
 import { RiSendPlaneFill } from "react-icons/ri";
-import { Postage } from "react-bootstrap-icons";
 
 const PostLinkedin = ({ post }) => {
   console.log(post);

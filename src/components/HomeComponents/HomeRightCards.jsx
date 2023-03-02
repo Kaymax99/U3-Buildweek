@@ -1,6 +1,5 @@
 import { Col, Row, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./HomeProfileCard.css";
 
 import {
   BsFillBookmarkFill,

@@ -4,24 +4,29 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { Row, Col, Image } from "react-bootstrap";
 
-import "./CreaUnPost.css";
-
 import { HiOutlinePhotograph } from "react-icons/hi";
 import { BsFillPlayBtnFill, BsCalendarEvent } from "react-icons/bs";
 import { RiArticleFill } from "react-icons/ri";
+import { useSelector } from "react-redux";
+import unRegistered from "../../assets/imgs/unregistered.png";
 
 function CreaUnPost() {
   const [show, setShow] = useState(false);
+  const profile = useSelector((state) => state.profile.content);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
     <>
-      <div className="ContenitorePrincipalePost">
+      <div className="ContenitorePrincipalePost mb-3">
         <Row xs={12} className="my-2 d-flex">
           <Col xs={2}>
-            <Image className="PostProfileImage" src="https://placekitten.com/100/100" alt="" />
+            <Image
+              className="PostProfileImage"
+              src={profile?.image ? profile.image : unRegistered}
+              alt=""
+            />
           </Col>
           <Col xs={10} className="">
             <Button className="PostButton" onClick={handleShow}>
@@ -48,7 +53,8 @@ function CreaUnPost() {
           </Col>
           <Col xs={12} md={3}>
             <Button className="PostButtons">
-              <RiArticleFill className="text-danger post_icons" /> Scrivi un Articolo
+              <RiArticleFill className="text-danger post_icons" /> Scrivi un
+              Articolo
             </Button>
           </Col>
         </Row>
@@ -60,8 +66,14 @@ function CreaUnPost() {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1"></Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlInput1"
+            ></Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
               <Form.Label>Di cosa vorresti parlare?</Form.Label>
               <Form.Control as="textarea" rows={3} />
             </Form.Group>

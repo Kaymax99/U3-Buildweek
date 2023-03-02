@@ -234,12 +234,152 @@ nav .viewProfile {
   border: unset;
 }
 
-.ImgProfileCard {
-  width: 5rem !important;
-  border-radius: 50% !important;
-  border: 3px solid !important;
+.ContenitorePrincipalePost {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px lightgray;
+  border-radius: 10px;
 }
 
-.SfondoCardProfilo {
-  height: 100px !important;
+.PostProfileImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  position: relative;
+  padding: 0px;
+}
+
+.post_icons {
+  font-size: 20px;
+}
+
+.PostButton {
+  background: none;
+  color: gray;
+  font-weight: 500;
+  width: 100%;
+  border: 1px solid gray;
+  border-radius: 30px;
+  padding: 10px;
+  display: flex;
+  width: 100%;
+}
+.PostButton:hover {
+  color: rgb(169, 169, 169);
+  background-color: rgba(211, 211, 211, 0.448);
+  border-color: gray;
+}
+.PostButton:active {
+  color: gray;
+}
+
+.imgcover {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.imgprofile {
+  width: 70px;
+  border: 2px solid white;
+  height: 70px;
+  border-radius: 100%;
+  padding: 0px;
+  margin: -35px auto 0;
+}
+
+.Contenitore {
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+
+.TitoloCard {
+  margin-top: 20px;
+  text-align: center;
+  width: bold;
+}
+
+.collegamenti col {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.ContenitorePrincipale {
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+
+.PostProfileImg {
+  width: 50px;
+  height: 50px;
+  border: solid 1px lightgrey;
+}
+
+.PostMainImg {
+  height: 270px;
+  padding: 0px;
+}
+
+.AdvertismentRow {
+  background-color: fuchsia;
+  border-top: solid 1px grey;
+  border-bottom: solid 1px grey;
+}
+
+.PostH1 {
+  font-size: medium;
+}
+
+.PostH2 {
+  font-size: small;
+}
+
+.PostH3 {
+  font-size: small;
+  color: grey;
+}
+
+.PostIconsTop {
+  padding-left: 20px;
+  display: flex;
+  gap: 5px;
+  color: rgb(96, 95, 95);
+}
+
+.PostSingleIcon {
+  font-size: 25px;
+}
+.PostSingleIcon:hover {
+  color: grey;
+  cursor: pointer;
+}
+
+.marginTopMod {
+  margin-bottom: 0px;
+}
+
+.BottomButtons {
+  display: flex;
+  justify-content: space-between;
+}
+.BottomButtons Button {
+  background-color: white;
+  border: none;
+  color: rgb(96, 95, 95);
+  font-size: smaller;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.BottomButtons Button:hover {
+  background-color: rgba(211, 211, 211, 0.595);
+  color: rgb(96, 95, 95);
 }/*# sourceMappingURL=app.css.map */
