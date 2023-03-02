@@ -27,7 +27,7 @@ import pic from "../assets/imgs/unregistered.png";
 export const CustomNavbar = () => {
   const profile = useSelector((state) => state.profile.content);
   return (
-    <Navbar bg="white" expand="sm" className="py-0">
+    <Navbar bg="white" expand="sm" className="py-0" fixed="top">
       <Container fluid>
         <Nav
           className="me-auto my-lg-0 align-items-center w-100"

@@ -39,8 +39,8 @@ export const Profile = () => {
 
   return (
     <>
-      <Container>
-        <Row className="justify-content-evenly">
+      <Container className="mt-5">
+        <Row className="justify-content-evenly pt-3">
           <InfoSection profileData={profileData} updateData={updateData} />
           <PeopleSection />
         </Row>

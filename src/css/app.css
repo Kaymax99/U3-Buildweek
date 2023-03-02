@@ -6,6 +6,10 @@
   filter: invert(22%) sepia(76%) saturate(2644%) hue-rotate(198deg) brightness(96%) contrast(92%);
 }
 
+body {
+  background-color: #f3f2ef;
+}
+
 ul {
   padding: 0;
   margin: 0;
@@ -101,6 +105,10 @@ nav .viewProfile {
   scale: 1.5;
 }
 
+#dropdown-basic {
+  background-color: white;
+}
+
 .background {
   position: relative;
 }
@@ -154,11 +162,14 @@ nav .viewProfile {
 }
 
 .add-container div {
-  padding: 5px 10px;
   border-radius: 50%;
 }
 
-.add-container div:hover {
+.add-container button {
+  padding: 6px 10px;
+  border-radius: 100%;
+}
+.add-container button:hover {
   background-color: lightgray;
   cursor: pointer;
 }
@@ -184,4 +195,41 @@ nav .viewProfile {
   .collegati {
     display: none;
   }
+}
+
+.profSection {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.bgImgProf {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.editBtn {
+  position: absolute;
+  right: 0;
+}
+.editBtn button {
+  padding: 6px 10px;
+  border-radius: 100%;
+}
+.editBtn button:hover {
+  background-color: lightgray;
+}
+
+.expSection .experience {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.expSection .experience:last-child {
+  border: unset;
+}
+
+.person {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.person:last-child {
+  border: unset;
 }/*# sourceMappingURL=app.css.map */

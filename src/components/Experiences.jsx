@@ -12,15 +12,13 @@ const Experiences = ({ experiences, updateExp }) => {
   return (
     <>
       <div className="d-flex">
-        <h4>Esperienze</h4>
+        <h4>Esperienza</h4>
         <div className="add-container container-fluid">
           {params.profileID === "me" ? (
             <>
-              <div>
-                <Button variant="none" onClick={handleShow} className="p-0">
-                  <BsPlusLg className="pencil fs-6 add-icon" />
-                </Button>
-              </div>
+              <Button variant="none" onClick={handleShow}>
+                <BsPlusLg className="pencil fs-6 add-icon" />
+              </Button>
               <ExperienceModal
                 showModal={showModal}
                 setShowModal={setShowModal}

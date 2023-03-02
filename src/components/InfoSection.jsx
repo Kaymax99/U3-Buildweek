@@ -55,16 +55,11 @@ const InfoSection = ({ profileData, updateData }) => {
   }, [profile._id]);
 
   return (
-    <Col
-      xs={12}
-      md={7}
-      className={"mt-3"}
-      style={{ backgroundColor: "white", borderRadius: "15px" }}
-    >
+    <Col xs={12} md={7} className={"mt-3"}>
       <div>
-        <div className="d-flex flex-column rounded">
+        <div className="d-flex flex-column profSection">
           <div className="background">
-            <img src={bg} alt="" className="img-fluid" />
+            <img src={bg} alt="" className="img-fluid bgImgProf" />
             <img
               src={profile?.image}
               alt="profile_img"
@@ -96,51 +91,54 @@ const InfoSection = ({ profileData, updateData }) => {
             </div>
             <p>{profile?.title}</p>
             <p className="text-secondary mb-0 fs-7">{profile?.area}</p>
-            <Link style={{ textDecoration: "none" }}>
+            <Link>
               <p className="text-primary info-contatto fs-7">
                 Informazioni di contatto
               </p>
             </Link>
             {params.profileID === "me" ? (
               <>
-                <Button variant="primary rounded-pill py-1 px-3 text-bold me-2">
+                <Button variant="primary rounded-pill py-1 px-3 fw-bold me-2 fs-7">
                   Disponibile per
                 </Button>
-                <Button variant="outline-primary rounded-pill py-1 px-3">
+                <Button variant="outline-primary rounded-pill py-1 px-3 fw-bold me-2 fs-7">
                   Aggiungi sezione del profilo
                 </Button>
               </>
             ) : (
               <>
-                <Button variant="primary rounded-pill py-1 px-3 me-2 fw-bold">
+                <Button variant="primary rounded-pill py-1 px-3 me-2 fw-bold fs-7">
                   <PersonPlusFill className="me-1 mb-1" />{" "}
                   <span>Collegati</span>
                 </Button>
-                <Button variant="outline-primary rounded-pill py-1 px-3 me-2 fw-bold">
+                <Button variant="outline-primary rounded-pill py-1 px-3 me-2 fw-bold fs-7">
                   <ShieldLockFill className="me-1 mb-1" />
                   <span>Messaggio</span>
                 </Button>
               </>
             )}
-            <Button variant="outline-secondary rounded-pill py-0 px-1 py-md-1 px-md-3 fw-bold">
+            <Button variant="outline-secondary rounded-pill py-0 px-1 py-md-1 px-md-3 fw-bold fs-7">
               <span className="d-none d-md-inline">Altro</span>{" "}
               <ThreeDots className="d-md-none mb-1" />
             </Button>
           </div>
         </div>
         <div className="rounded mt-2">
-          <div className="m-3 mt-4">
+          <div className="mt-2">
             {profile?.bio ? (
-              <>
+              <div className="profSection py-3 px-4">
                 <h4>Informazioni</h4>
-                <p>{profile?.bio}</p>
-                <hr />
-              </>
+                <p className="m-0 fs-7">{profile?.bio}</p>
+              </div>
             ) : (
               ""
             )}
-
-            <Experiences experiences={experienceArray} updateExp={updateExp} />
+            <div className="profSection expSection p-3 mt-2">
+              <Experiences
+                experiences={experienceArray}
+                updateExp={updateExp}
+              />
+            </div>
           </div>
         </div>
       </div>
