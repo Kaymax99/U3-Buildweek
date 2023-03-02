@@ -6,6 +6,11 @@ import like from "../../assets/imgs/like.svg";
 import clap from "../../assets/imgs/clap.svg";
 import love from "../../assets/imgs/love.svg";
 
+import { deletePost } from "../Fetches/FetchPosts";
+
+
+
+
 const PostLinkedin = ({ post }) => {
   const formatDate = (input) => {
     var datePart = input.match(/\d+/g),
@@ -47,7 +52,9 @@ const PostLinkedin = ({ post }) => {
               <BsThreeDots className="PostSingleIcon" />
             </div>
             <div>
-              <BsX className="PostSingleIcon" />
+              <BsX className="PostSingleIcon" onClick={deletePost} />
+              {/*onclick che richama la funzione delete, 
+              dentro il componente parametro id del singolo commento dentro questa funzione chiamare la delete post */}
             </div>
           </Col>
         </Row>

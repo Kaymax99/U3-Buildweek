@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { addPost } from "../Fetches/FetchPosts";
+import { addPost} from "../Fetches/FetchPosts";
+
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
