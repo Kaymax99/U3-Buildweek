@@ -1,8 +1,8 @@
 import { Container, Row, Col } from "react-bootstrap";
 import HomeProfileCard from "./HomeComponents/HomeProfileCard";
-
 import PostLinkedin from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
 
 import {
   addPost,
@@ -11,54 +11,67 @@ import {
   deletePost,
 } from "./Fetches/FetchPosts";
 import HomeRightCard from "./HomeComponents/HomeRightCards";
+=======
+import { fetchPosts } from "./Fetches/FetchPosts";
+import CreaUnPost from "./HomeComponents/CreaUnPost";
+import HomeRightCards from "./HomeComponents/HomeRightCards";
+import LeftFixedCard from "./HomeComponents/LeftFixedCard";
+>>>>>>> claudio
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
-  const [postContent, setPostContent] = useState({});
-  const [singlePost, setSinglePost] = useState(null);
-  const numeroPost = 10;
+
   const retrievePosts = async () => {
     const data = await fetchPosts();
-    let indexRandom = Math.floor(Math.random() * (data.length - numeroPost));
-    console.log(indexRandom);
-    setPosts(data.slice(indexRandom, indexRandom + numeroPost));
-  };
-  const retrieveSinglePost = async () => {
-    const data = await fetchPostById("63ff6067f443aa00132286e5");
-    setSinglePost(data);
-  };
-
-  const deleteSinglePost = async () => {
-    const data = await deletePost("63ff6067f443aa00132286e5");
-    setSinglePost(data);
+    setPosts(() => {
+      return data.reverse().slice(0, 100);
+    });
   };
 
   useEffect(() => {
     retrievePosts();
-    retrieveSinglePost();
+    console.log(posts);
   }, []);
 
   return (
     <>
-      <Container>
-        <Row>
-          <Col xs={3} md={6}>
+      <Container className="mt-5 pt-4">
+        <Row className="justify-content-evenly">
+          <Col xs={12} md={4} lg={3}>
             <Row>
               <HomeProfileCard />
+              <LeftFixedCard />
             </Row>
           </Col>
 
-          <Col xs={6} md={6}>
+          <Col xs={12} md={7} lg={5}>
             <Row>
-              <PostLinkedin />
+              <CreaUnPost />
+            </Row>
+            <Row>
+              <hr />
+            </Row>
+            <Row>
+              {posts.map((post) => {
+                return <PostLinkedin post={post} />;
+              })}
+            </Row>
+          </Col>
+
+          <Col xs={0} lg={3}>
+            <Row>
+              <HomeRightCards />
             </Row>
           </Col>
         </Row>
+<<<<<<< HEAD
         <Col xs={3} md={3}>
           <Row>
             <HomeRightCard />
           </Row>
         </Col>
+=======
+>>>>>>> claudio
       </Container>
     </>
   );

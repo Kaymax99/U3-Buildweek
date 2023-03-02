@@ -3,21 +3,14 @@
 }
 
 .logo {
-  filter: invert(22%) sepia(76%) saturate(2644%) hue-rotate(198deg) brightness(96%) contrast(92%);
+  filter: invert(22%) sepia(76%) saturate(2644%) hue-rotate(198deg)
+    brightness(96%) contrast(92%);
 }
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
 body {
   background-color: #f3f2ef;
-=======
-.listaNews li {
-  list-style-type: disc;
->>>>>>> Stashed changes
 }
 
->>>>>>> Stashed changes
 ul {
   padding: 0;
   margin: 0;
@@ -113,6 +106,10 @@ nav .viewProfile {
   scale: 1.5;
 }
 
+#dropdown-basic {
+  background-color: white;
+}
+
 .background {
   position: relative;
 }
@@ -124,6 +121,7 @@ nav .viewProfile {
   bottom: -80px;
   left: 20px;
   width: 110px;
+  height: 100%;
 }
 @media screen and (min-width: 400px) {
   .background .profile_img {
@@ -166,11 +164,14 @@ nav .viewProfile {
 }
 
 .add-container div {
-  padding: 5px 10px;
   border-radius: 50%;
 }
 
-.add-container div:hover {
+.add-container button {
+  padding: 6px 10px;
+  border-radius: 100%;
+}
+.add-container button:hover {
   background-color: lightgray;
   cursor: pointer;
 }
@@ -183,7 +184,7 @@ nav .viewProfile {
 
 .info-contatto:hover {
   -webkit-text-decoration: dotted;
-          text-decoration: dotted;
+  text-decoration: dotted;
 }
 
 .people_img {
@@ -198,12 +199,267 @@ nav .viewProfile {
   }
 }
 
-.ImgProfileCard {
-  width: 5rem !important;
-  border-radius: 50% !important;
-  border: 3px solid !important;
+.profSection {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-.SfondoCardProfilo {
-  height: 100px !important;
-}/*# sourceMappingURL=app.css.map */
+.bgImgProf {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.editBtn {
+  position: absolute;
+  right: 0;
+}
+.editBtn button {
+  padding: 6px 10px;
+  border-radius: 100%;
+}
+.editBtn button:hover {
+  background-color: lightgray;
+}
+
+.expSection .experience {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.expSection .experience:last-child {
+  border: unset;
+}
+
+.person {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.person:last-child {
+  border: unset;
+}
+
+.ContenitorePrincipalePost {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px lightgray;
+  border-radius: 10px;
+}
+
+.PostProfileImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  position: relative;
+  padding: 0px;
+}
+
+.post_icons {
+  font-size: 20px;
+}
+
+.PostButton {
+  background: none;
+  color: gray;
+  font-weight: 500;
+  width: 100%;
+  border: 1px solid gray;
+  border-radius: 30px;
+  padding: 10px;
+  display: flex;
+  width: 100%;
+}
+.PostButton:hover {
+  color: rgb(169, 169, 169);
+  background-color: rgba(211, 211, 211, 0.448);
+  border-color: gray;
+}
+.PostButton:active {
+  color: gray;
+}
+
+.imgcover {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.imgprofile {
+  width: 70px;
+  border: 2px solid white;
+  height: 70px;
+  border-radius: 100%;
+  padding: 0px;
+  margin: -35px auto 0;
+}
+
+.Contenitore {
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+
+.TitoloCard {
+  margin-top: 20px;
+  text-align: center;
+  width: bold;
+}
+
+.collegamenti col {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.listaNews li {
+  list-style-type: disc;
+}
+
+.ContenitorePrincipale {
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+
+.PostProfileImg {
+  width: 50px;
+  height: 50px;
+  border: solid 1px lightgrey;
+  border-radius: 100%;
+}
+
+.PostMainImg {
+  height: 270px;
+  padding: 0px;
+}
+
+.AdvertismentRow {
+  background-color: fuchsia;
+  border-top: solid 1px grey;
+  border-bottom: solid 1px grey;
+}
+
+.PostH1 {
+  font-size: medium;
+}
+
+.PostH2 {
+  font-size: small;
+}
+
+.PostH3 {
+  font-size: small;
+  display: flex;
+  align-items: center;
+  color: grey;
+}
+
+.PostIconsTop {
+  padding-left: 20px;
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+  color: rgb(96, 95, 95);
+}
+
+.PostSingleIcon {
+  font-size: 25px;
+}
+.PostSingleIcon:hover {
+  color: grey;
+  cursor: pointer;
+}
+
+.marginTopMod {
+  margin-bottom: 0px;
+}
+
+.BottomButtons {
+  display: flex;
+  justify-content: space-between;
+}
+.BottomButtons Button {
+  background-color: white;
+  border: none;
+  color: rgb(96, 95, 95);
+  font-size: smaller;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.BottomButtons Button:hover {
+  background-color: rgba(211, 211, 211, 0.595);
+  color: rgb(96, 95, 95);
+}
+
+.reactionsContainer {
+  font-size: 0.8em;
+  color: #6c757d;
+}
+.reactionsContainer .reaction:nth-child(2),
+.reactionsContainer .reaction:nth-child(3) {
+  background-color: white;
+  padding: 1px;
+  border-radius: 100%;
+  margin-left: -5px;
+}
+
+.like {
+  background-color: skyblue;
+  border-radius: 100%;
+  padding: 2px 4px;
+}
+.like .likeSVG {
+  font-size: 8px;
+  margin-bottom: 5px;
+}
+
+.linkscard p {
+  text-align: center;
+  font-weight: bold;
+  color: gray;
+  cursor: pointer;
+}
+
+.linkscard li {
+  font-weight: bold;
+  color: rgb(77, 114, 181);
+  font-size: smaller;
+}
+
+.linkscard {
+  padding: 0px;
+}
+
+.imgbcard {
+  margin-top: 10px;
+}
+
+.footerlinks {
+  margin-top: 10px;
+  text-align: center;
+  font-size: x-small;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.footerlinks a {
+  margin: 2px;
+}
+
+.logo img {
+  width: 50px;
+}
+
+.logo p {
+  font-size: x-small;
+  color: black;
+}
+
+.logo {
+  display: block ruby;
+  text-decoration: none;
+  text-align: center;
+} /*# sourceMappingURL=app.css.map */

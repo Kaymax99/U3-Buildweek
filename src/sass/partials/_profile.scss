@@ -9,6 +9,7 @@
   bottom: -80px;
   left: 20px;
   width: 110px;
+  height: 100%;
   @media screen and (min-width: 400px) {
     width: 125px;
   }
@@ -45,13 +46,18 @@
 }
 
 .add-container div {
-  padding: 5px 10px;
   border-radius: 50%;
 }
 
-.add-container div:hover {
-  background-color: lightgray;
-  cursor: pointer;
+.add-container {
+  button {
+    padding: 6px 10px;
+    border-radius: 100%;
+    &:hover {
+      background-color: lightgray;
+      cursor: pointer;
+    }
+  }
 }
 
 .name {
@@ -76,13 +82,42 @@
   }
 }
 
-// .experience-icons {
-//   margin-right: 30px;
-//   position: absolute;
-// }
+.profSection {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
 
-// .experience-icons div {
-//   position: relative;
-//   bottom: 10px;
-//   right: 5px;
-// }
+.bgImgProf {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.editBtn {
+  position: absolute;
+  right: 0;
+  button {
+    padding: 6px 10px;
+    border-radius: 100%;
+    &:hover {
+      background-color: lightgray;
+    }
+  }
+}
+
+.expSection {
+  .experience {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    &:last-child {
+      border: unset;
+    }
+  }
+}
+
+.person {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  &:last-child {
+    border: unset;
+  }
+}
