@@ -19,7 +19,7 @@ export const ProfileModal = ({
   showModal,
   setShowModal,
   profile,
-  retrieveData,
+  updateOnEdit,
 }) => {
   const [profileData, setProfileData] = useState({
     name: "",
@@ -46,7 +46,7 @@ export const ProfileModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log("test", profileData);
-    EditProfile(profileData, retrieveData);
+    EditProfile(profileData, updateOnEdit);
     handleClose();
   };
 
@@ -198,7 +198,7 @@ export const ExperienceModal = ({
   experience,
   edit,
   userID,
-  retrieveData,
+  updateExp,
 }) => {
   const [expData, setExpData] = useState({
     role: "",
@@ -235,10 +235,10 @@ export const ExperienceModal = ({
         experience._id,
         "PUT",
         expData,
-        retrieveData
+        updateExp
       );
     } else {
-      EditExperience(userID, "", "POST", expData, retrieveData);
+      EditExperience(userID, "", "POST", expData, updateExp);
     }
   };
 
@@ -249,8 +249,9 @@ export const ExperienceModal = ({
       </Modal.Header>
       <Modal.Body>
         <Form>
+          <p className="text-muted">* Indicates required</p>
           <FormGroup className="mb-2">
-            <FormLabel>Title</FormLabel>
+            <FormLabel>Title*</FormLabel>
             <FormControl
               type="text"
               as="textarea"
@@ -263,7 +264,7 @@ export const ExperienceModal = ({
             ></FormControl>
           </FormGroup>
           <FormGroup className="mb-2">
-            <FormLabel>Company name</FormLabel>
+            <FormLabel>Company name*</FormLabel>
             <FormControl
               type="text"
               as="textarea"
@@ -276,7 +277,7 @@ export const ExperienceModal = ({
             ></FormControl>
           </FormGroup>
           <FormGroup className="mb-2">
-            <FormLabel>Location</FormLabel>
+            <FormLabel>Location*</FormLabel>
             <FormControl
               type="text"
               as="textarea"
@@ -289,7 +290,7 @@ export const ExperienceModal = ({
             ></FormControl>
           </FormGroup>
           <FormGroup className="mb-2">
-            <FormLabel>Start date</FormLabel>
+            <FormLabel>Start date*</FormLabel>
             <FormControl
               type="date"
               rows="1"
@@ -299,7 +300,7 @@ export const ExperienceModal = ({
             ></FormControl>
           </FormGroup>
           <FormGroup className="mb-2">
-            <FormLabel>End date (leave blank if current)</FormLabel>
+            <FormLabel>End date</FormLabel>
             <FormControl
               type="date"
               rows="1"
@@ -309,7 +310,7 @@ export const ExperienceModal = ({
             ></FormControl>
           </FormGroup>
           <FormGroup className="mb-2">
-            <FormLabel>Description</FormLabel>
+            <FormLabel>Description*</FormLabel>
             <FormControl
               type="text"
               as="textarea"
@@ -335,7 +336,7 @@ export const ExperienceModal = ({
             variant="danger"
             onClick={(e) => {
               e.preventDefault();
-              DeleteExperience(userID, experience._id, retrieveData);
+              DeleteExperience(userID, experience._id, updateExp);
               handleClose();
             }}
           >
