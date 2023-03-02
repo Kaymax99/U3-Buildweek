@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import HomeProfileCard from "./HomeComponents/HomeProfileCard";
 import PostLinkedin from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
@@ -18,7 +18,7 @@ export const Home = () => {
 
   useEffect(() => {
     retrievePosts();
-    console.log(posts);
+    // console.log(posts);
   }, []);
 
   return (
@@ -39,9 +39,15 @@ export const Home = () => {
               <hr />
             </Row>
             <Row>
-              {posts.map((post) => {
-                return <PostLinkedin post={post} />;
-              })}
+              {posts?.length === 0 ? (
+                <div className="text-center mt-5">
+                  <Spinner variant="primary" />
+                </div>
+              ) : (
+                posts.map((post) => {
+                  return <PostLinkedin post={post} />;
+                })
+              )}
             </Row>
           </Col>
 

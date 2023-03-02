@@ -28,6 +28,9 @@ a:hover {
   text-decoration: underline;
 }
 
+nav {
+  z-index: 10;
+}
 @media screen and (min-width: 1200px) {
   nav .container-fluid {
     max-width: 1200px;
@@ -91,6 +94,10 @@ nav .viewProfile {
   }
 }
 
+.subNav {
+  z-index: 5;
+}
+
 .container-fluid {
   font-size: 0.85em;
 }
@@ -109,6 +116,10 @@ nav .viewProfile {
   background-color: white;
 }
 
+.footerIcon {
+  margin-right: 5px;
+}
+
 .background {
   position: relative;
 }
@@ -120,6 +131,7 @@ nav .viewProfile {
   bottom: -80px;
   left: 20px;
   width: 110px;
+  aspect-ratio: 1/1;
 }
 @media screen and (min-width: 400px) {
   .background .profile_img {
@@ -232,6 +244,32 @@ nav .viewProfile {
 }
 .person:last-child {
   border: unset;
+}
+
+.pic-SM {
+  width: 36px;
+  height: 36px;
+}
+
+.subNav {
+  z-index: 1;
+  background-color: white;
+  box-shadow: none;
+  transform: translateY(-100%);
+  transition: box-shadow 667ms ease-in-out, transform 667ms ease-in-out, visibility 0s linear 667ms;
+  visibility: hidden;
+}
+@media screen and (max-width: 800px) {
+  .subNav {
+    display: none;
+  }
+}
+
+.visible {
+  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.5);
+  transform: translateY(59px);
+  transition: box-shadow 667ms ease-in-out, transform 667ms ease-in-out, visibility 0s linear 0s;
+  visibility: visible;
 }
 
 .ContenitorePrincipalePost {
@@ -382,10 +420,10 @@ nav .viewProfile {
 .BottomButtons Button {
   background-color: white;
   border: none;
+  border-radius: 5px;
   color: rgb(96, 95, 95);
   font-size: smaller;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
 }
 .BottomButtons Button:hover {
   background-color: rgba(211, 211, 211, 0.595);

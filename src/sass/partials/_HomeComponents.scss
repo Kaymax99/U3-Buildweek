@@ -161,10 +161,10 @@
   Button {
     background-color: white;
     border: none;
+    border-radius: 5px;
     color: rgb(96, 95, 95);
     font-size: smaller;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
     &:hover {
       background-color: rgba(211, 211, 211, 0.595);
       color: rgb(96, 95, 95);

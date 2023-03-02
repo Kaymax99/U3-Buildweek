@@ -2,21 +2,24 @@
   position: relative;
 }
 
-.background .profile_img {
-  border: 4px solid white;
-  border-radius: 100%;
-  position: absolute;
-  bottom: -80px;
-  left: 20px;
-  width: 110px;
-  @media screen and (min-width: 400px) {
-    width: 125px;
-  }
-  @media screen and (min-width: 992px) {
-    width: 180px;
-  }
-  @media screen and (min-width: 1200px) {
-    width: 200px;
+.background {
+  .profile_img {
+    border: 4px solid white;
+    border-radius: 100%;
+    position: absolute;
+    bottom: -80px;
+    left: 20px;
+    width: 110px;
+    aspect-ratio: 1/1;
+    @media screen and (min-width: 400px) {
+      width: 125px;
+    }
+    @media screen and (min-width: 992px) {
+      width: 180px;
+    }
+    @media screen and (min-width: 1200px) {
+      width: 200px;
+    }
   }
 }
 
@@ -119,4 +122,30 @@
   &:last-child {
     border: unset;
   }
+}
+
+.pic-SM {
+  width: 36px;
+  height: 36px;
+}
+
+.subNav {
+  z-index: 1;
+  background-color: white;
+  box-shadow: none;
+  transform: translateY(-100%);
+  transition: box-shadow 667ms ease-in-out, transform 667ms ease-in-out,
+    visibility 0s linear 667ms;
+  visibility: hidden;
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+}
+
+.visible {
+  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.5);
+  transform: translateY(59px);
+  transition: box-shadow 667ms ease-in-out, transform 667ms ease-in-out,
+    visibility 0s linear 0s;
+  visibility: visible;
 }
