@@ -1,5 +1,5 @@
+const baseUrl = `https://striveschool-api.herokuapp.com/api/profile/`;
 export const EditProfile = async (newProfileObj, callbackFn) => {
-  const baseUrl = `https://striveschool-api.herokuapp.com/api/profile/`;
   try {
     const res = await fetch(baseUrl, {
       method: "PUT",
@@ -17,5 +17,25 @@ export const EditProfile = async (newProfileObj, callbackFn) => {
     }
   } catch (error) {
     console.log("FATAL ERROR: ", error);
+  }
+};
+
+export const EditProfilePhoto = async (idProfile, formData) => {
+  try {
+    let res = await fetch(baseUrl + idProfile + "/picture", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
+      },
+    });
+    if (res.ok) {
+      let data = await res.json();
+      console.log(data);
+    } else {
+      console.log("ATTENZIONE! ", res.status);
+    }
+  } catch (error) {
+    console.log(error);
   }
 };

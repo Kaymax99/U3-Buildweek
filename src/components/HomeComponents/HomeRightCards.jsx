@@ -1,60 +1,68 @@
-import { Col, Row, Image } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { fetchPosts } from "../Fetches/FetchPosts";
+import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./HomeProfileCard.css";
+import logoLinkedin from "../logo/Linkedin-Logo-700x394.png";
+function HomeRightCards() {
+  const [titles, setTitles] = useState([]);
 
-import {
-  BsFillBookmarkFill,
-  BsFillPersonPlusFill,
-  BsFillCalendar3Fill,
-} from "react-icons/bs";
-function HomeProfileCard() {
+  useEffect(() => {
+    const getPostTitles = async () => {
+      const titles = await fetchPosts();
+      setTitles(titles);
+    };
+    getPostTitles();
+  }, []);
+  console.log(titles);
   return (
     <>
-      <div className="Contenitore">
-        <Row xs={12}>
-          <Image
-            className="imgcover"
-            src="https://placekitten.com/200/300"
-            alt=""
-          />
-        </Row>
-        <Row>
-          <img
-            className="imgprofile"
-            src="https://placekitten.com/200/200"
-            alt=""
-          />
-        </Row>
-        <Row className="TitoloCard">
-          <h6>Ti diamo il benvenuto Nome</h6>
-          <Link to="#"> Aggiungi una foto</Link>
-          <hr />
-        </Row>
-        <Row className="secondpart">
-          <Col xs={9}>
-            <h6>Collegamenti</h6>
-            <h6 className="bold">Espandi la tua rete</h6>
-          </Col>
-          <Col xs={3}>
-            <BsFillPersonPlusFill />
-          </Col>{" "}
-          <hr />
-        </Row>
-        <Row className="my-2">
-          <p className="iconplusp">
-            Accedi a strumenti e informazioni in esclusiva{" "}
-          </p>
-          <Link to="#">
-            <BsFillCalendar3Fill /> Prova Premium gratis
-          </Link>
-          <hr />
-        </Row>
-        <Col className="d-flex gap-1 ">
-          <BsFillBookmarkFill /> <p className="iconplusp">I miei elementi</p>
-        </Col>
+      <Card style={{ width: "20rem" }}>
+        <Card.Body>
+          <Card.Title className="bold">LinkedIn Notizie</Card.Title>
+
+          <div>
+            <ul className="listaNews">
+              {titles.slice(0, 5).map((post, i) => (
+                <li key={i}>
+                  By:<p className="bold">{post.user.name}</p> Contenuto:
+                  <p className="bold"> {post.text.slice(0, 20)}...</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <Card.Link href="#">Visualizza altro</Card.Link>
+        </Card.Body>
+      </Card>
+      <Card className="imgbcard" style={{ width: "20rem" }}>
+        <Card.Img variant="top" src="holder.js/100px180" />
+      </Card>
+      <div className="footerlinks">
+        <div>
+          <Link>informazioni</Link> <Link>Accessibilità</Link>
+        </div>
+        <div>
+          <Link>Centro Assistenza</Link> <Link>Privacy e condizioni</Link>
+        </div>
+        <div>
+          <Link>Opzioni per gli annunci pubblicitari</Link>
+        </div>
+        <div>
+          <Link>Pubblicità</Link> <Link>Servizi alle aziende</Link>
+        </div>
+        <div>
+          <Link>Scarica l'app Linkedin</Link>
+          <Link>Altro</Link>
+        </div>
+      </div>
+      <div className="logo">
+        <div>
+          <img src={logoLinkedin} alt="" />
+        </div>{" "}
+        <p> Linkedin Corporation ©2023</p>{" "}
       </div>
     </>
   );
 }
 
-export default HomeProfileCard;
+export default HomeRightCards;

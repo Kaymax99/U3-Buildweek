@@ -3,10 +3,9 @@ import HomeProfileCard from "./HomeComponents/HomeProfileCard";
 import PostLinkedin from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
 import { fetchPosts } from "./Fetches/FetchPosts";
-// import CreaUnPost from "./HomeComponents/CreaUnPost";
-
 import CreaUnPost from "./HomeComponents/CreaUnPost";
-import { file } from "@babel/types";
+import HomeRightCards from "./HomeComponents/HomeRightCards";
+import LeftFixedCard from "./HomeComponents/LeftFixedCard";
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -25,17 +24,17 @@ export const Home = () => {
 
   return (
     <>
-      <Container className="mt-5 pt-3">
-        <Row>
-          <Col xs={3}>
+      <Container className="mt-5 pt-4">
+        <Row className="justify-content-evenly">
+          <Col xs={12} md={4} lg={3}>
             <Row>
               <HomeProfileCard />
+              <LeftFixedCard />
             </Row>
           </Col>
 
-          <Col xs={5}>
+          <Col xs={12} md={7} lg={5}>
             <Row>
-              {" "}
               <CreaUnPost />
             </Row>
             <Row>
@@ -47,10 +46,13 @@ export const Home = () => {
               })}
             </Row>
           </Col>
+
+          <Col xs={0} lg={3}>
+            <Row>
+              <HomeRightCards />
+            </Row>
+          </Col>
         </Row>
-        <Col xs={4}>
-          <Row></Row>
-        </Col>
       </Container>
     </>
   );

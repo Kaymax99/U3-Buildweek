@@ -8,7 +8,7 @@ import {
   Modal,
 } from "react-bootstrap";
 import { EditExperience } from "./Fetches/EditExperience";
-import { EditProfile } from "./Fetches/EditProfile";
+import { EditProfile, EditProfilePhoto } from "./Fetches/EditProfile";
 import { DeleteExperience } from "./Fetches/DeleteExperience";
 
 const handleChange = (setData, data, propertyName, propertyValue) => {
@@ -369,32 +369,13 @@ export const ImageModal = (props) => {
   const handleFile = (ev) => {
     setFd((prev) => {
       prev.delete("profile");
-      prev.append("profile", ev.target?.file?.[0]);
+      prev.append("profile", ev.target?.files[0]);
       return prev;
     });
   };
 
   const sendPicture = async () => {
-    try {
-      let res = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/63fc76b3f193e60013807f5c/picture`,
-        {
-          method: "POST",
-          body: fd,
-          headers: {
-            Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
-          },
-        }
-      );
-      if (res.ok) {
-        let data = await res.json();
-        console.log(data);
-      } else {
-        console.log("ATTENZIONE! ", res.status);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    await EditProfilePhoto(props.idProfile, fd);
   };
 
   const handleSubmit = (e) => {
