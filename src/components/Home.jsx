@@ -3,9 +3,8 @@ import HomeProfileCard from "./HomeComponents/HomeProfileCard";
 import PostLinkedin from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
 import { fetchPosts } from "./Fetches/FetchPosts";
-// import CreaUnPost from "./HomeComponents/CreaUnPost";
-
 import CreaUnPost from "./HomeComponents/CreaUnPost";
+import HomeRightCards from "./HomeComponents/HomeRightCards";
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -31,7 +30,6 @@ export const Home = () => {
               <HomeProfileCard />
             </Row>
           </Col>
-
           <Col xs={5}>
             <Row>
               <CreaUnPost />
@@ -45,10 +43,12 @@ export const Home = () => {
               })}
             </Row>
           </Col>
+          <Col xs={3}>
+            <Row>
+              <HomeRightCards />
+            </Row>
+          </Col>{" "}
         </Row>
-        <Col xs={4}>
-          <Row></Row>
-        </Col>
       </Container>
     </>
   );
