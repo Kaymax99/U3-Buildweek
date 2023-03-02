@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, Col } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
+import { MdPhotoCamera } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import bg from "../assets/imgs/bg.jpg";
-import { ProfileModal } from "./CustomModals";
+import { ProfileModal, ImageModal } from "./CustomModals";
 import Experiences from "./Experiences";
 import FetchExperience from "./Fetches/FetchExperience";
 import {
@@ -14,12 +15,16 @@ import {
 } from "react-bootstrap-icons";
 
 const InfoSection = ({ profileData, updateData }) => {
+  const [experienceArray, setExperienceArray] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showImageModal, setShowImageModal] = useState(false);
+
+  const handleShow = () => setShowModal(true);
+  const handleShowImageModal = () => setShowImageModal(true);
+
   let profile = null;
   const personalProfile = useSelector((state) => state.profile.content);
-  // setta lo stato con le esperienze
-  const [experienceArray, setExperienceArray] = useState([]);
-  const handleShow = () => setShowModal(true);
+
   const params = useParams();
 
   // fetch delle esperienze del profilo
@@ -37,6 +42,7 @@ const InfoSection = ({ profileData, updateData }) => {
     }
   };
   setTargetProfile();
+  console.log(profile);
 
   const updateOnEdit = async () => {
     await updateData();
@@ -68,6 +74,14 @@ const InfoSection = ({ profileData, updateData }) => {
           </div>
           {params.profileID === "me" ? (
             <div className="pencil-container mt-2 container-fluid">
+              <Button variant="none" onClick={handleShowImageModal}>
+                <MdPhotoCamera className="fs-4" />{" "}
+              </Button>
+              <ImageModal
+                idProfile={profile?._id}
+                showModal={showImageModal}
+                setShowModal={setShowImageModal}
+              />
               <div>
                 <Button variant="none" onClick={handleShow} className="p-0">
                   <FaPencilAlt className="pencil fs-5" />

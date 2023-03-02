@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { addPost} from "../Fetches/FetchPosts";
-
+import { addPost, addPostImage } from "../Fetches/FetchPosts";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -14,38 +13,38 @@ import { useSelector } from "react-redux";
 import unRegistered from "../../assets/imgs/unregistered.png";
 
 function CreaUnPost() {
-  const [show, setShow] = useState(false);
   const profile = useSelector((state) => state.profile.content);
+  const [show, setShow] = useState(false);
   const [postText, setPostText] = useState("");
+  const [formData, setFormData] = useState(new FormData());
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/posts/",
-        {
-          method: "POST",
-          headers: {
-            Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ text: postText }),
-        }
-      );
-      if (response.ok) {
-        console.log("Post added successfully!");
-        setShow(false);
-      } else {
-        console.log("Response is not OK", response.status);
+    let res = await addPost({ text: postText });
+
+    if (res.hasError) {
+      setErrorMessage(res.message);
+    } else {
+      setErrorMessage("");
+      setShow(false);
+
+      //verifica se presente immagine da caricare
+      if (formData.get("post")) {
+        addPostImage(res._id, formData);
       }
-    } catch (error) {
-      console.log("ERRORE CATCH", error);
     }
   };
 
+  const handleFile = async (ev) => {
+    setFormData((prev) => {
+      prev.delete("post");
+      prev.append("post", ev.target.files[0]);
+      return prev;
+    });
+  };
   return (
     <>
       <div className="ContenitorePrincipalePost mb-3">
@@ -102,7 +101,6 @@ function CreaUnPost() {
           </Button>
         </Container>
       </div>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Crea un post</Modal.Title>
@@ -118,8 +116,13 @@ function CreaUnPost() {
                 as="textarea"
                 rows={3}
                 value={postText}
-                onChange={(e) => setPostText(e.target.value)}
+                onChange={(e) => {
+                  setPostText(e.target.value);
+                  setErrorMessage("");
+                }}
               />
+              <Form.Label>Aggiungi Immagine</Form.Label>
+              <Form.Control type="file" onChange={handleFile}></Form.Control>
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -127,8 +130,14 @@ function CreaUnPost() {
           <Button className="PostButton" onClick={handleSubmit}>
             Pubblica
           </Button>
+          {errorMessage && (
+            <div className="alert alert-danger" role="alert">
+              {errorMessage}
+            </div>
+          )}
         </Modal.Footer>
       </Modal>
+      +
     </>
   );
 }
