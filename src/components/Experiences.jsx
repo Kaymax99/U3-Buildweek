@@ -29,7 +29,11 @@ const Experiences = ({ experiences, retrieveData }) => {
       </div>
       {experiences.map(function (experience, i) {
         return (
-          <SingleExperience key={"experience-" + i} experience={experience} />
+          <SingleExperience
+            key={"experience-" + i}
+            experience={experience}
+            retrieveData={retrieveData}
+          />
         );
       })}
     </>
