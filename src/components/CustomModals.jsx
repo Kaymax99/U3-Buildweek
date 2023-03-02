@@ -368,7 +368,7 @@ export const ImageModal = (props) => {
 
   const handleFile = (ev) => {
     setFd((prev) => {
-      prev.append("profile", ev.target.file[0]);
+      prev.append("profile", ev.target?.file?.[0]);
       prev.delete("profile");
       return prev;
     });
@@ -377,7 +377,7 @@ export const ImageModal = (props) => {
   const sendPicture = async () => {
     try {
       let res = await fetch(
-        `https://striveschool-api.herokuapp.com/api/${props.idProfile}/picture`,
+        `https://striveschool-api.herokuapp.com/api/63fc76b3f193e60013807f5c/picture`,
         {
           method: "POST",
           body: fd,

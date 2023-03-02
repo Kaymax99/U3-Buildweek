@@ -42,6 +42,7 @@ const InfoSection = ({ profileData, updateData }) => {
     }
   };
   setTargetProfile();
+  console.log(profile);
 
   const updateOnEdit = async () => {
     await updateData();
