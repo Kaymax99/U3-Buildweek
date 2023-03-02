@@ -17,7 +17,6 @@ export const EditExperience = async (
     });
     if (res.ok) {
       console.log("Successfully posted");
-      console.log(callbackFn);
       callbackFn();
     } else {
       console.log("Unable to submit");

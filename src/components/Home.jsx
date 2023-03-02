@@ -1,9 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import HomeProfileCard from "./HomeComponents/HomeProfileCard";
-
 import PostLinkedin from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
-
 import { fetchPosts } from "./Fetches/FetchPosts";
 // import CreaUnPost from "./HomeComponents/CreaUnPost";
 
@@ -26,7 +24,7 @@ export const Home = () => {
 
   return (
     <>
-      <Container>
+      <Container className="mt-5 pt-3">
         <Row>
           <Col xs={3}>
             <Row>

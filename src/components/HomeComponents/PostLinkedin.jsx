@@ -9,7 +9,7 @@ const PostLinkedin = ({ post }) => {
   console.log(post);
   return (
     <>
-      <div className="ContenitorePrincipale">
+      <div className="ContenitorePrincipale mb-3">
         <Row xs={12} className="my-2 d-flex">
           <Col xs={2}>
             <Image className="PostProfileImg" src={post.user.image} alt="image-profile" />
