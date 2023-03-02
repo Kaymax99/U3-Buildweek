@@ -194,3 +194,43 @@
     margin-bottom: 5px;
   }
 }
+.linkscard p {
+  text-align: center;
+  font-weight: bold;
+  color: gray;
+  cursor: pointer;
+}
+
+.linkscard li {
+  font-weight: bold;
+  color: rgb(77, 114, 181);
+  font-size: smaller;
+}
+.linkscard {
+  padding: 0px;
+}
+.imgbcard {
+  margin-top: 10px;
+}
+.footerlinks {
+  margin-top: 10px;
+  text-align: center;
+  font-size: x-small;
+  color: #6c757d;
+  font-weight: 500;
+}
+.footerlinks a {
+  margin: 2px;
+}
+.logo img {
+  width: 50px;
+}
+.logo p {
+  font-size: x-small;
+  color: black;
+}
+.logo {
+  display: block ruby;
+  text-decoration: none;
+  text-align: center;
+}
