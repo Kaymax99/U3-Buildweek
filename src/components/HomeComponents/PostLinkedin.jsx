@@ -10,16 +10,12 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import like from "../../assets/imgs/like.svg";
 import clap from "../../assets/imgs/clap.svg";
 import love from "../../assets/imgs/love.svg";
+import { formatDate } from "../../hooks/formatDate";
+import { deletePost } from "../Fetches/FetchPosts";
+import { useSelector } from "react-redux";
 
 const PostLinkedin = ({ post }) => {
-  const formatDate = (input) => {
-    var datePart = input.match(/\d+/g),
-      year = datePart[0].substring(2), // get only two digits
-      month = datePart[1],
-      day = datePart[2];
-
-    return day + "-" + month + "-" + year;
-  };
+  const profile = useSelector((state) => state.profile.content);
   const randomReactions = () => {
     return Math.floor(Math.random() * (50 - 1 + 1)) + 20;
   };
@@ -27,8 +23,18 @@ const PostLinkedin = ({ post }) => {
     return Math.floor(Math.random() * (20 - 1 + 1)) + 1;
   };
 
-  formatDate("2010/01/18"); // "18/01/10"
-  console.log(post);
+  // console.log(post);
+
+  const handleDeletePost = async (postId) => {
+    try {
+      await deletePost(postId, () => {
+        console.log("post deleted");
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div className="ContenitorePrincipale mb-3">
@@ -41,11 +47,13 @@ const PostLinkedin = ({ post }) => {
             />
           </Col>
           <Col xs={8} className="ps-0">
-            <h1 className="PostH1 bold marginTopMod">
-              {post.user.name
-                ? post.user.name + " " + post.user.surname
-                : "Unknown User"}
-            </h1>
+            <a href={`/` + post.user._id}>
+              <h1 className="PostH1 bold marginTopMod">
+                {post.user.name
+                  ? post.user.name + " " + post.user.surname
+                  : "Unknown User"}
+              </h1>
+            </a>
             <h3 className="PostH3 marginTopMod gap-1">
               {formatDate(post.createdAt.slice(0, 10))}
               <GlobeAmericas />
@@ -56,7 +64,14 @@ const PostLinkedin = ({ post }) => {
               <BsThreeDots className="PostSingleIcon" />
             </div>
             <div>
-              <BsX className="PostSingleIcon" />
+              {post.user._id === profile._id ? (
+                <BsX
+                  className="PostSingleIcon"
+                  onClick={() => handleDeletePost(post._id)}
+                />
+              ) : (
+                <div></div>
+              )}
             </div>
           </Col>
         </Row>
@@ -85,9 +100,6 @@ const PostLinkedin = ({ post }) => {
                   variant="none"
                   className="reactionsContainer px-0 d-flex align-items-center"
                 >
-                  {/* <span className="like">
-                    <HandThumbsUpFill color="white" className="likeSVG" />
-                  </span> */}
                   <img src={like} alt="like" className="reaction"></img>
                   <img src={clap} alt="clap" className="reaction"></img>
                   <img src={love} alt="love" className="reaction"></img>
@@ -103,18 +115,18 @@ const PostLinkedin = ({ post }) => {
           </Col>
         </Row>
 
-        <Row xs={12} className="mt-2">
+        <Row xs={12} className="my-1">
           <div className="BottomButtons">
-            <Button className="pt-0">
+            <Button>
               <HandThumbsUp /> Consiglia
             </Button>
-            <Button className="pt-0">
+            <Button>
               <ChatText /> Commenta
             </Button>
-            <Button className="pt-0">
+            <Button>
               <ArrowRepeat /> Diffondi il post
             </Button>
-            <Button className="pt-0">
+            <Button>
               <RiSendPlaneFill /> Invia
             </Button>
           </div>

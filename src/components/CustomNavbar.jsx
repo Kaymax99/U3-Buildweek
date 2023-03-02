@@ -19,15 +19,16 @@ import {
   Grid3x3GapFill,
 } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/imgs/logo.svg";
 import pic from "../assets/imgs/unregistered.png";
 
 export const CustomNavbar = () => {
+  const navigate = useNavigate();
   const profile = useSelector((state) => state.profile.content);
   return (
-    <Navbar bg="white" expand="sm" className="py-0" fixed="top">
+    <Navbar bg="white" expand="sm" className="py-0 border-bottom" fixed="top">
       <Container fluid>
         <Nav
           className="me-auto my-lg-0 align-items-center w-100"
@@ -102,7 +103,7 @@ export const CustomNavbar = () => {
                   <span className="navSpan">Notifications</span>
                 </Link>
               </Col>
-              <Col className="border-secondary border-end">
+              <Col className="border-end">
                 <Dropdown href="#" className="d-flex justify-content-center">
                   <Dropdown.Toggle
                     variant="none"
@@ -134,8 +135,12 @@ export const CustomNavbar = () => {
                       <Button
                         variant="outline-primary"
                         className="rounded-pill mx-2 viewProfile py-0 fw-bold"
+                        onClick={() => {
+                          navigate("/me");
+                        }}
                       >
-                        <Link to={"/me"}>View Profile</Link>
+                        {/* <Link to={"/me"}></Link> */}
+                        View Profile
                       </Button>
                     </div>
                     <div className="p-3 py-2 border-bottom">

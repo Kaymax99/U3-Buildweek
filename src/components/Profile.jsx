@@ -1,4 +1,4 @@
-import { Container, Row } from "react-bootstrap";
+import { Container, Navbar, Row } from "react-bootstrap";
 import InfoSection from "./InfoSection";
 import PeopleSection from "./PeopleSection";
 import { useParams } from "react-router";
@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { getProfileAction, GET_PROFILE } from "../redux/actions";
 
 export const Profile = () => {
+  // console.log(scrollPosition);
+
   // setta lo stato del profilo
   const [profileData, setProfileData] = useState(null);
   // useParams per prendere l'id dinamico dalla pagina

@@ -1,4 +1,5 @@
 nav {
+  z-index: 10;
   .container-fluid {
     @media screen and (min-width: 1200px) {
       max-width: 1200px;
@@ -67,4 +68,8 @@ nav {
       scale: 1.5;
     }
   }
+}
+
+.subNav {
+  z-index: 5;
 }
