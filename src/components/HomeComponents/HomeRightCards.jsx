@@ -23,7 +23,11 @@ function HomeRightCards() {
             <ul className="listaNews">
               {titles.slice(0, 5).map((post, i) => (
                 <li key={i}>
-                  By:<p className="bold">{post.user.name}</p> Contenuto:
+                  By:
+                  <a href={`/` + post.user._id}>
+                    <p className="bold">{post.user.name}</p>
+                  </a>{" "}
+                  Contenuto:
                   <p className="bold"> {post.text.slice(0, 20)}...</p>
                 </li>
               ))}
