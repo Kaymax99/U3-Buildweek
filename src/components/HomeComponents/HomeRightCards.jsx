@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { Col, Row, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./HomeProfileCard.css";
@@ -54,6 +55,42 @@ function HomeProfileCard() {
         </Col>
       </div>
     </>
+=======
+import { useEffect, useState } from "react";
+import { fetchPosts } from "../Fetches/FetchPosts";
+import { Card } from "react-bootstrap";
+
+function HomeRightCard() {
+  const [titles, setTitles] = useState([]);
+
+  useEffect(() => {
+    const getPostTitles = async () => {
+      const titles = await fetchPosts();
+      setTitles(titles);
+    };
+    getPostTitles();
+  }, []);
+  console.log(titles);
+  return (
+    <Card style={{ width: "20rem" }}>
+      <Card.Body>
+        <Card.Title className="bold">LinkedIn Notizie</Card.Title>
+
+        <div>
+          <ul className="listaNews">
+            {titles.slice(0, 5).map((post, i) => (
+              <li key={i}>
+                By:<p className="bold">{post.user.name}</p> Contenuto:
+                <p className="bold"> {post.text.slice(0, 20)}...</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <Card.Link href="#">Visualizza altro</Card.Link>
+      </Card.Body>
+    </Card>
+>>>>>>> Stashed changes
   );
 }
 
