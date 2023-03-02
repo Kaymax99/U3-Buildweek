@@ -4,7 +4,7 @@ import { addPost } from "../Fetches/FetchPosts";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { Row, Col, Image } from "react-bootstrap";
+import { Row, Col, Image, Container } from "react-bootstrap";
 
 import { HiOutlinePhotograph } from "react-icons/hi";
 import { BsFillPlayBtnFill, BsCalendarEvent } from "react-icons/bs";
@@ -56,14 +56,13 @@ function CreaUnPost() {
               alt=""
             />
           </Col>
-          <Col xs={10} className="">
+          <Col xs={10}>
             <Button className="PostButton" onClick={handleShow}>
               Avvia un post
             </Button>
           </Col>
         </Row>
-        [12:25]
-        <Row xs={12} className="BottomButtons">
+        {/* <Row xs={12} className="BottomButtons">
           <Col md={3}>
             <Button className="PostButtons">
               <HiOutlinePhotograph className="text-primary post_icons" /> Foto
@@ -85,7 +84,22 @@ function CreaUnPost() {
               Articolo
             </Button>
           </Col>
-        </Row>
+        </Row> */}
+        <Container className="BottomButtons">
+          <Button className="PostButtons">
+            <HiOutlinePhotograph className="text-primary post_icons" /> Foto
+          </Button>
+          <Button className="PostButtons">
+            <BsFillPlayBtnFill className="text-success post_icons" /> Video
+          </Button>
+          <Button className="PostButtons">
+            <BsCalendarEvent className="text-warning post_icons" /> Evento
+          </Button>
+          <Button className="PostButtons d-block">
+            <RiArticleFill className="text-danger post_icons" /> Scrivi un
+            Articolo
+          </Button>
+        </Container>
       </div>
 
       <Modal show={show} onHide={handleClose}>

@@ -312,6 +312,10 @@ nav .viewProfile {
   font-weight: bold;
 }
 
+.listaNews li {
+  list-style-type: disc;
+}
+
 .ContenitorePrincipale {
   background-color: white;
   border-radius: 10px;
@@ -322,6 +326,7 @@ nav .viewProfile {
   width: 50px;
   height: 50px;
   border: solid 1px lightgrey;
+  border-radius: 100%;
 }
 
 .PostMainImg {
@@ -345,12 +350,15 @@ nav .viewProfile {
 
 .PostH3 {
   font-size: small;
+  display: flex;
+  align-items: center;
   color: grey;
 }
 
 .PostIconsTop {
   padding-left: 20px;
   display: flex;
+  justify-content: end;
   gap: 5px;
   color: rgb(96, 95, 95);
 }
@@ -382,4 +390,25 @@ nav .viewProfile {
 .BottomButtons Button:hover {
   background-color: rgba(211, 211, 211, 0.595);
   color: rgb(96, 95, 95);
+}
+
+.reactionsContainer {
+  font-size: 0.8em;
+  color: #6c757d;
+}
+.reactionsContainer .reaction:nth-child(2), .reactionsContainer .reaction:nth-child(3) {
+  background-color: white;
+  padding: 1px;
+  border-radius: 100%;
+  margin-left: -5px;
+}
+
+.like {
+  background-color: skyblue;
+  border-radius: 100%;
+  padding: 2px 4px;
+}
+.like .likeSVG {
+  font-size: 8px;
+  margin-bottom: 5px;
 }/*# sourceMappingURL=app.css.map */
