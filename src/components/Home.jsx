@@ -6,6 +6,7 @@ import { fetchPosts } from "./Fetches/FetchPosts";
 // import CreaUnPost from "./HomeComponents/CreaUnPost";
 
 import CreaUnPost from "./HomeComponents/CreaUnPost";
+import { file } from "@babel/types";
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -33,7 +34,10 @@ export const Home = () => {
           </Col>
 
           <Col xs={5}>
-            <Row>{/* <CreaUnPost /> */}</Row>
+            <Row>
+              {" "}
+              <CreaUnPost />
+            </Row>
             <Row>
               <hr />
             </Row>

@@ -357,3 +357,71 @@ export const ExperienceModal = ({
     </Modal>
   );
 };
+
+// MODALE PER L'IMMAGINE
+export const ImageModal = (props) => {
+  const handleClose = () => {
+    props.setShowModal(false);
+  };
+
+  const [fd, setFd] = useState(new FormData());
+
+  const handleFile = (ev) => {
+    setFd((prev) => {
+      prev.append("profile", ev.target.file[0]);
+      prev.delete("profile");
+      return prev;
+    });
+  };
+
+  const sendPicture = async (idProfile) => {
+    try {
+      let res = await fetch(
+        `https://striveschool-api.herokuapp.com/api/${idProfile}/picture`,
+        {
+          method: "POST",
+          body: fd,
+          headers: {
+            Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
+          },
+        }
+      );
+      if (res.ok) {
+        let data = await res.json();
+        console.log(data);
+      } else {
+        console.log("ATTENZIONE! ", res.status);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendPicture();
+  };
+
+  return (
+    <>
+      <Modal show={props.showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cambia l'immagine profilo</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form>
+            <input type="file" onChange={handleFile} />
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            Send
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+};
