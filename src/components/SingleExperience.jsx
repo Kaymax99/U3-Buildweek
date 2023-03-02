@@ -23,10 +23,11 @@ const SingleExperience = ({ experience, updateExp }) => {
             <p>
               {experience.company} <br />
               <span className="text-secondary">
-                {formatDate(experience.startDate.slice(0, 10))}{" "}
+                {experience?.startDate &&
+                  formatDate(experience?.startDate.slice(0, 10))}{" "}
                 {experience.endDate
                   ? "- " + formatDate(experience.endDate.slice(0, 10))
-                  : ""}{" "}
+                  : ""}
                 <br />
                 {experience.area}
               </span>
