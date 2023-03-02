@@ -1,0 +1,45 @@
+.imgcover {
+  width: 250px;
+  height: 75px;
+  position: absolute;
+  padding: 1px;
+  border-radius: 10px 10px 0px 0px;
+}
+.imgprofile {
+  width: 70px;
+  border: 2px solid white;
+  height: 70px;
+  border-radius: 100%;
+  position: relative;
+  padding: 0px;
+  left: 85px;
+  top: 35px;
+}
+.Contenitore {
+  width: 250px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  margin: 20px 0 20px 0;
+}
+.TitoloCard {
+  margin-top: 40px;
+  text-align: center;
+  width: bold;
+}
+.secondpart col {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.bold {
+  font-weight: bold;
+}
+.iconplusp {
+  gap: 2px;
+}
+
+a {
+  margin-bottom: 10px;
+}
