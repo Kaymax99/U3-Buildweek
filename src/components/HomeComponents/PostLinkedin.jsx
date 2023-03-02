@@ -8,9 +8,6 @@ import love from "../../assets/imgs/love.svg";
 
 import { deletePost } from "../Fetches/FetchPosts";
 
-
-
-
 const PostLinkedin = ({ post }) => {
   const formatDate = (input) => {
     var datePart = input.match(/\d+/g),
@@ -29,6 +26,17 @@ const PostLinkedin = ({ post }) => {
 
   formatDate("2010/01/18"); // "18/01/10"
   console.log(post);
+
+  const handleDeletePost = async (postId) => {
+    try {
+      await deletePost(postId, () => {
+        console.log("post deleted");
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div className="ContenitorePrincipale mb-3">
@@ -52,9 +60,7 @@ const PostLinkedin = ({ post }) => {
               <BsThreeDots className="PostSingleIcon" />
             </div>
             <div>
-              <BsX className="PostSingleIcon" onClick={deletePost} />
-              {/*onclick che richama la funzione delete, 
-              dentro il componente parametro id del singolo commento dentro questa funzione chiamare la delete post */}
+              <BsX className="PostSingleIcon" onClick={() => handleDeletePost(post._id)} />
             </div>
           </Col>
         </Row>

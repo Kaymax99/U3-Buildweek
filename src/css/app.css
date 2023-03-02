@@ -276,7 +276,6 @@ nav .viewProfile {
 }
 
 .imgcover {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 1px;
