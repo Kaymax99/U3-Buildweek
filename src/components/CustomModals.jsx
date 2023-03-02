@@ -374,10 +374,10 @@ export const ImageModal = (props) => {
     });
   };
 
-  const sendPicture = async (idProfile) => {
+  const sendPicture = async () => {
     try {
       let res = await fetch(
-        `https://striveschool-api.herokuapp.com/api/${idProfile}/picture`,
+        `https://striveschool-api.herokuapp.com/api/${props.idProfile}/picture`,
         {
           method: "POST",
           body: fd,

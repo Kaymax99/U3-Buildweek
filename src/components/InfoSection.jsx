@@ -77,7 +77,7 @@ const InfoSection = ({ profileData, updateData }) => {
                 <MdPhotoCamera className="fs-4" />{" "}
               </Button>
               <ImageModal
-                idProfile={profile}
+                idProfile={profile._id}
                 showModal={showImageModal}
                 setShowModal={setShowImageModal}
               />
