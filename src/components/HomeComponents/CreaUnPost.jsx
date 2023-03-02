@@ -1,20 +1,43 @@
 import React, { useState } from "react";
+import { addPost } from "../Fetches/FetchPosts";
+
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { Row, Col, Image } from "react-bootstrap";
-
 import "./CreaUnPost.css";
-
 import { HiOutlinePhotograph } from "react-icons/hi";
 import { BsFillPlayBtnFill, BsCalendarEvent } from "react-icons/bs";
 import { RiArticleFill } from "react-icons/ri";
 
 function CreaUnPost() {
   const [show, setShow] = useState(false);
+  const [postText, setPostText] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("https://striveschool-api.herokuapp.com/api/posts/", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ text: postText }),
+      });
+      if (response.ok) {
+        console.log("Post added successfully!");
+        setShow(false);
+      } else {
+        console.log("Response is not OK", response.status);
+      }
+    } catch (error) {
+      console.log("ERRORE CATCH", error);
+    }
+  };
 
   return (
     <>
@@ -29,7 +52,7 @@ function CreaUnPost() {
             </Button>
           </Col>
         </Row>
-
+        [12:25]
         <Row xs={12} className="BottomButtons">
           <Col md={3}>
             <Button className="PostButtons">
@@ -59,16 +82,15 @@ function CreaUnPost() {
           <Modal.Title>Crea un post</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1"></Form.Group>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
               <Form.Label>Di cosa vorresti parlare?</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Control as="textarea" rows={3} value={postText} onChange={(e) => setPostText(e.target.value)} />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="PostButton" onClick={handleClose}>
+          <Button className="PostButton" onClick={handleSubmit}>
             Pubblica
           </Button>
         </Modal.Footer>

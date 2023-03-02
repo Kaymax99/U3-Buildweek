@@ -35,7 +35,9 @@ export const Home = () => {
           </Col>
 
           <Col xs={5}>
-            <Row>{/* <CreaUnPost /> */}</Row>
+            <Row>
+              <CreaUnPost />
+            </Row>
             <Row>
               <hr />
             </Row>
