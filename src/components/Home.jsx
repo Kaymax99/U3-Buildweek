@@ -1,9 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import HomeProfileCard from "./HomeComponents/HomeProfileCard";
-
 import PostLinkedin from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
-
 import { fetchPosts } from "./Fetches/FetchPosts";
 // import CreaUnPost from "./HomeComponents/CreaUnPost";
 
