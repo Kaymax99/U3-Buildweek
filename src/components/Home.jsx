@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { fetchPosts } from "./Fetches/FetchPosts";
 // import CreaUnPost from "./HomeComponents/CreaUnPost";
 
+import CreaUnPost from "./HomeComponents/CreaUnPost";
+
 export const Home = () => {
   const [posts, setPosts] = useState([]);
 
