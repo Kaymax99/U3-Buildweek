@@ -8,7 +8,7 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import { Postage } from "react-bootstrap-icons";
 
 const PostLinkedin = ({ post }) => {
-  console.log(post);
+  // console.log(post);
   return (
     <>
       <div className="ContenitorePrincipale mb-3">
