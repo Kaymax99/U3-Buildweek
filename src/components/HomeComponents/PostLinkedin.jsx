@@ -1,4 +1,3 @@
-import "./PostLinkedin.css";
 import { Col, Row, Image, Button } from "react-bootstrap";
 import { BsX, BsThreeDots, BsShare } from "react-icons/bs";
 import { BiLike, BiWorld } from "react-icons/bi";

@@ -23,14 +23,15 @@ export const Home = () => {
 
   return (
     <>
-      <Container className="mt-5 pt-3">
-        <Row>
-          <Col xs={3}>
+      <Container className="mt-5 pt-4">
+        <Row className="justify-content-evenly">
+          <Col xs={12} md={4} lg={3}>
             <Row>
               <HomeProfileCard />
             </Row>
           </Col>
-          <Col xs={5}>
+
+          <Col xs={12} md={7} lg={5}>
             <Row>
               <CreaUnPost />
             </Row>
@@ -43,11 +44,12 @@ export const Home = () => {
               })}
             </Row>
           </Col>
-          <Col xs={3}>
+
+          <Col xs={0} lg={3}>
             <Row>
               <HomeRightCards />
             </Row>
-          </Col>{" "}
+          </Col>
         </Row>
       </Container>
     </>

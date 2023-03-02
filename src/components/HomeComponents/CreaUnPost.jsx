@@ -5,13 +5,16 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { Row, Col, Image } from "react-bootstrap";
-import "./CreaUnPost.css";
+
 import { HiOutlinePhotograph } from "react-icons/hi";
 import { BsFillPlayBtnFill, BsCalendarEvent } from "react-icons/bs";
 import { RiArticleFill } from "react-icons/ri";
+import { useSelector } from "react-redux";
+import unRegistered from "../../assets/imgs/unregistered.png";
 
 function CreaUnPost() {
   const [show, setShow] = useState(false);
+  const profile = useSelector((state) => state.profile.content);
   const [postText, setPostText] = useState("");
 
   const handleClose = () => setShow(false);
@@ -20,14 +23,17 @@ function CreaUnPost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://striveschool-api.herokuapp.com/api/posts/", {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ text: postText }),
-      });
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/",
+        {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ text: postText }),
+        }
+      );
       if (response.ok) {
         console.log("Post added successfully!");
         setShow(false);
@@ -41,10 +47,14 @@ function CreaUnPost() {
 
   return (
     <>
-      <div className="ContenitorePrincipalePost">
+      <div className="ContenitorePrincipalePost mb-3">
         <Row xs={12} className="my-2 d-flex">
           <Col xs={2}>
-            <Image className="PostProfileImage" src="https://placekitten.com/100/100" alt="" />
+            <Image
+              className="PostProfileImage"
+              src={profile?.image ? profile.image : unRegistered}
+              alt=""
+            />
           </Col>
           <Col xs={10} className="">
             <Button className="PostButton" onClick={handleShow}>
@@ -71,7 +81,8 @@ function CreaUnPost() {
           </Col>
           <Col xs={12} md={3}>
             <Button className="PostButtons">
-              <RiArticleFill className="text-danger post_icons" /> Scrivi un Articolo
+              <RiArticleFill className="text-danger post_icons" /> Scrivi un
+              Articolo
             </Button>
           </Col>
         </Row>
@@ -83,9 +94,17 @@ function CreaUnPost() {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
               <Form.Label>Di cosa vorresti parlare?</Form.Label>
-              <Form.Control as="textarea" rows={3} value={postText} onChange={(e) => setPostText(e.target.value)} />
+              <Form.Control
+                as="textarea"
+                rows={3}
+                value={postText}
+                onChange={(e) => setPostText(e.target.value)}
+              />
             </Form.Group>
           </Form>
         </Modal.Body>
