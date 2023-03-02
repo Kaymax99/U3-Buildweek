@@ -24,7 +24,7 @@ export const Home = () => {
 
   return (
     <>
-      <Container>
+      <Container className="mt-5 pt-3">
         <Row>
           <Col xs={3}>
             <Row>
