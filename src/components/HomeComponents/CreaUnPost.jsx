@@ -60,7 +60,10 @@ function CreaUnPost() {
             />
           </Col>
           <Col xs={10}>
-            <Button className="PostButton" onClick={handleShow}>
+            <Button
+              className="PostButton justify-content-start"
+              onClick={handleShow}
+            >
               Avvia un post
             </Button>
           </Col>
@@ -130,13 +133,15 @@ function CreaUnPost() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="PostButton" onClick={handleSubmit}>
-            Pubblica
-          </Button>
+          <Col xs={3}>
+            <Button className="PostButton" onClick={handleSubmit}>
+              Pubblica
+            </Button>
+          </Col>
           {errorMessage && (
-            <div className="alert alert-danger" role="alert">
+            <Col xs={12} className="alert alert-danger" role="alert">
               {errorMessage}
-            </div>
+            </Col>
           )}
         </Modal.Footer>
       </Modal>

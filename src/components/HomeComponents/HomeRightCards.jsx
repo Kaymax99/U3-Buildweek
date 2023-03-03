@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchPosts } from "../Fetches/FetchPosts";
-import { Card } from "react-bootstrap";
+import { Card, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logoLinkedin from "../logo/Linkedin-Logo-700x394.png";
+import logoLinkedin from "../../assets/imgs/Linkedin-Logo-700x394.png";
 function HomeRightCards() {
   const [titles, setTitles] = useState([]);
 
@@ -13,37 +13,51 @@ function HomeRightCards() {
     };
     getPostTitles();
   }, []);
-  console.log(titles);
+  // console.log(titles.reverse().slice(0, 5));
   return (
     <>
-      <Card style={{ width: "20rem" }}>
+      <Card>
         <Card.Body>
           <Card.Title className="bold">LinkedIn Notizie</Card.Title>
 
           <div>
             <ul className="listaNews">
-              {titles.slice(0, 5).map((post, i) => (
-                <li key={i}>
-                  By:
-                  <a href={`/` + post.user._id}>
-                    <p className="bold">{post.user.name}</p>
-                  </a>{" "}
-                  Contenuto:
-                  <p className="bold"> {post.text.slice(0, 20)}...</p>
-                </li>
-              ))}
+              {titles?.length > 0 ? (
+                titles.slice(0, 5).map((post, i) => (
+                  <li key={i}>
+                    By:
+                    <a href={`/` + post.user._id}>
+                      <p className="bold">{post.user.name}</p>
+                    </a>{" "}
+                    Contenuto:
+                    <p className="bold"> {post.text.slice(0, 20)}...</p>
+                  </li>
+                ))
+              ) : (
+                <div className="text-center my-5">
+                  <Spinner variant="primary" />
+                </div>
+              )}
             </ul>
           </div>
 
-          <Card.Link href="#">Visualizza altro</Card.Link>
+          {titles?.length > 0 ? (
+            <Card.Link href="#">Visualizza altro</Card.Link>
+          ) : (
+            ""
+          )}
         </Card.Body>
       </Card>
-      <Card className="imgbcard" style={{ width: "20rem" }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
+      <Card className="imgbcard rounded">
+        <Card.Img
+          variant="top"
+          src="https://cdn.discordapp.com/attachments/1055858256800645171/1081214781693890651/AAYQAgTPAAgAAQAAAAAAADVuOvKzTF-3RD6j-qFPqhubBQ.png"
+          className="rounded"
+        />
       </Card>
       <div className="footerlinks">
         <div>
-          <Link>informazioni</Link> <Link>Accessibilità</Link>
+          <Link>Informazioni</Link> <Link>Accessibilità</Link>
         </div>
         <div>
           <Link>Centro Assistenza</Link> <Link>Privacy e condizioni</Link>
@@ -58,12 +72,13 @@ function HomeRightCards() {
           <Link>Scarica l'app Linkedin</Link>
           <Link>Altro</Link>
         </div>
-      </div>
-      <div className="logoImg">
-        <div>
-          <img src={logoLinkedin} alt="" />
-        </div>{" "}
-        <p> Linkedin Corporation ©2023</p>{" "}
+
+        <div className="logoImg mt-3">
+          <div>
+            <img src={logoLinkedin} alt="" />{" "}
+            <span className="fw-semibold"> Linkedin Corporation ©2023</span>
+          </div>
+        </div>
       </div>
     </>
   );
