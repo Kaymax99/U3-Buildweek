@@ -160,11 +160,9 @@ export const CustomNavbar = () => {
                     <div className="p-3 py-2 border-bottom">
                       <h6>Manage</h6>
                       <ul className="text-muted">
-                        <a href="#">
-                          <Link to={"/"}>
-                            <li>Posts & Activity</li>
-                          </Link>
-                        </a>
+                        <Link to={"/"}>
+                          <li>Posts & Activity</li>
+                        </Link>
                         <a href="#">
                           <li>Job Posting Account</li>
                         </a>

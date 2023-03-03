@@ -12,7 +12,7 @@ import { RiArticleFill } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import unRegistered from "../../assets/imgs/unregistered.png";
 
-function CreaUnPost() {
+function CreaUnPost({ retrievePosts }) {
   const profile = useSelector((state) => state.profile.content);
   const [show, setShow] = useState(false);
   const [postText, setPostText] = useState("");
@@ -35,8 +35,9 @@ function CreaUnPost() {
       if (formData.get("post")) {
         addPostImage(res._id, formData);
       }
+      retrievePosts();
       setTimeout(() => {
-        window.location.reload();
+        alert("Much wow, very post. Will be visible in a couple of seconds");
       }, 100);
     }
   };
@@ -68,29 +69,6 @@ function CreaUnPost() {
             </Button>
           </Col>
         </Row>
-        {/* <Row xs={12} className="BottomButtons">
-          <Col md={3}>
-            <Button className="PostButtons">
-              <HiOutlinePhotograph className="text-primary post_icons" /> Foto
-            </Button>
-          </Col>
-          <Col md={3}>
-            <Button className="PostButtons">
-              <BsFillPlayBtnFill className="text-success post_icons" /> Video
-            </Button>
-          </Col>
-          <Col md={3}>
-            <Button className="PostButtons">
-              <BsCalendarEvent className="text-warning post_icons" /> Evento
-            </Button>
-          </Col>
-          <Col xs={12} md={3}>
-            <Button className="PostButtons">
-              <RiArticleFill className="text-danger post_icons" /> Scrivi un
-              Articolo
-            </Button>
-          </Col>
-        </Row> */}
         <Container className="BottomButtons">
           <Button className="PostButtons">
             <HiOutlinePhotograph className="text-primary post_icons" /> Foto

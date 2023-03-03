@@ -13,7 +13,7 @@ export const Home = () => {
   const retrievePosts = async () => {
     const data = await fetchPosts();
     setPosts(() => {
-      return data.reverse().slice(0, 10);
+      return data.reverse().slice(0, 20);
     });
   };
 
@@ -35,7 +35,7 @@ export const Home = () => {
 
           <Col xs={12} md={7} lg={5}>
             <Row>
-              <CreaUnPost />
+              <CreaUnPost retrievePosts={retrievePosts} />
             </Row>
             <Row>
               <hr />
@@ -47,7 +47,13 @@ export const Home = () => {
                 </div>
               ) : (
                 posts.map((post, i) => {
-                  return <PostLinkedin key={"post-" + i} post={post} />;
+                  return (
+                    <PostLinkedin
+                      key={"post-" + i}
+                      post={post}
+                      retrievePosts={retrievePosts}
+                    />
+                  );
                 })
               )}
             </Row>
