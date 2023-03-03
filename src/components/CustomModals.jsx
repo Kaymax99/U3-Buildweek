@@ -31,6 +31,8 @@ export const ProfileModal = ({
     area: "",
   });
 
+  const [experienceId, setExperienceId] = useState();
+
   useEffect(() => {
     if (profile) {
       setProfileData({
@@ -224,9 +226,9 @@ export const ExperienceModal = ({
       );
     } else {
       EditExperience(userID, "", "POST", expData, updateExp);
-      console.log(experience._id);
     }
-    EditExperienceImage(userID, formData, experience._id);
+    EditExperienceImage(userID, formData, experience?._id);
+    console.log(experience._id);
   };
 
   // handleFile per l'immagine del post
