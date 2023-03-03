@@ -33,7 +33,7 @@ const Experiences = ({ experiences, updateExp }) => {
           )}
         </div>
       </div>
-      {experiences.map(function (experience, i) {
+      {experiences?.map(function (experience, i) {
         return (
           <SingleExperience
             key={"experience-" + i}

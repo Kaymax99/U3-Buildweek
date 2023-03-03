@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { fetchPosts } from "./Fetches/FetchPosts";
 import CreaUnPost from "./HomeComponents/CreaUnPost";
 import HomeRightCards from "./HomeComponents/HomeRightCards";
+import LeftFixedCard from "./HomeComponents/LeftFixedCard";
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -28,6 +29,7 @@ export const Home = () => {
           <Col xs={12} md={4} lg={3}>
             <Row>
               <HomeProfileCard />
+              <LeftFixedCard />
             </Row>
           </Col>
 
@@ -44,8 +46,8 @@ export const Home = () => {
                   <Spinner variant="primary" />
                 </div>
               ) : (
-                posts.map((post) => {
-                  return <PostLinkedin post={post} />;
+                posts.map((post, i) => {
+                  return <PostLinkedin key={"post-" + i} post={post} />;
                 })
               )}
             </Row>

@@ -8,7 +8,7 @@ import {
   Modal,
 } from "react-bootstrap";
 import { EditExperience } from "./Fetches/EditExperience";
-import { EditProfile } from "./Fetches/EditProfile";
+import { EditProfile, EditProfilePhoto } from "./Fetches/EditProfile";
 import { DeleteExperience } from "./Fetches/DeleteExperience";
 
 const handleChange = (setData, data, propertyName, propertyValue) => {
@@ -339,5 +339,57 @@ export const ExperienceModal = ({
         </Button>
       </Modal.Footer>
     </Modal>
+  );
+};
+
+// MODALE PER L'IMMAGINE
+export const ImageModal = (props) => {
+  const handleClose = () => {
+    props.setShowModal(false);
+  };
+
+  const [fd, setFd] = useState(new FormData());
+
+  const handleFile = (ev) => {
+    setFd((prev) => {
+      prev.delete("profile");
+      prev.append("profile", ev.target?.files[0]);
+      return prev;
+    });
+  };
+
+  const sendPicture = async () => {
+    await EditProfilePhoto(props.idProfile, fd);
+  };
+
+  const handleSubmit = () => {
+    sendPicture();
+    setInterval(() => {
+      handleClose();
+      window.location.reload();
+    }, 100);
+  };
+
+  return (
+    <>
+      <Modal show={props.showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cambia l'immagine profilo</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form>
+            <input type="file" onChange={handleFile} />
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            Send
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };

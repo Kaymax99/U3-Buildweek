@@ -38,6 +38,7 @@
   border-radius: 30px;
   padding: 10px;
   display: flex;
+  justify-content: center;
   width: 100%;
   &:hover {
     color: rgb(169, 169, 169);
@@ -193,4 +194,44 @@
     font-size: 8px;
     margin-bottom: 5px;
   }
+}
+.linkscard p {
+  text-align: center;
+  font-weight: bold;
+  color: gray;
+  cursor: pointer;
+}
+
+.linkscard li {
+  font-weight: bold;
+  color: rgb(77, 114, 181);
+  font-size: smaller;
+}
+.linkscard {
+  padding: 0px;
+}
+.imgbcard {
+  margin-top: 10px;
+}
+.footerlinks {
+  margin-top: 10px;
+  text-align: center;
+  font-size: x-small;
+  color: #6c757d;
+  font-weight: 500;
+}
+.footerlinks a {
+  margin: 2px;
+}
+.logoImg img {
+  width: 50px;
+}
+.logoImg p {
+  font-size: x-small;
+  color: black;
+}
+.logoImg {
+  display: block ruby;
+  text-decoration: none;
+  text-align: center;
 }
