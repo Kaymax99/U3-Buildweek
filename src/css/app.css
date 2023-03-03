@@ -355,6 +355,42 @@ nav .viewProfile {
   list-style-type: disc;
 }
 
+.footerlinks {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.75em;
+  color: #6c757d;
+  font-weight: 400;
+}
+.footerlinks div {
+  margin-top: 5px;
+}
+.footerlinks div a {
+  margin: 2px;
+  margin-left: 10px;
+}
+.footerlinks div a:nth-child(1) {
+  margin-left: 0;
+}
+
+.logoImg {
+  display: block ruby;
+  text-decoration: none;
+  text-align: center;
+}
+.logoImg p {
+  font-size: x-small;
+  color: black;
+}
+.logoImg img {
+  width: 50px;
+}
+
+.imgbcard {
+  margin-top: 10px;
+  padding: 0;
+}
+
 .ContenitorePrincipale {
   background-color: white;
   border-radius: 10px;
@@ -452,50 +488,25 @@ nav .viewProfile {
   margin-bottom: 5px;
 }
 
-.linkscard p {
-  text-align: center;
-  font-weight: bold;
-  color: gray;
-  cursor: pointer;
-}
-
-.linkscard li {
-  font-weight: bold;
-  color: rgb(77, 114, 181);
-  font-size: smaller;
+.addPeople {
+  position: absolute;
+  right: 0;
 }
 
 .linkscard {
   padding: 0px;
 }
-
-.imgbcard {
-  margin-top: 10px;
+.linkscard .card-body {
+  padding: 0 12px;
+  padding-top: 4px;
 }
-
-.footerlinks {
-  margin-top: 10px;
+.linkscard li {
+  margin: 10px auto;
+  font-weight: bold;
+  color: rgb(81, 128, 214);
+  font-size: smaller;
+}
+.linkscard p {
   text-align: center;
-  font-size: x-small;
-  color: #6c757d;
-  font-weight: 500;
-}
-
-.footerlinks a {
-  margin: 2px;
-}
-
-.logoImg img {
-  width: 50px;
-}
-
-.logoImg p {
-  font-size: x-small;
-  color: black;
-}
-
-.logoImg {
-  display: block ruby;
-  text-decoration: none;
-  text-align: center;
+  cursor: pointer;
 }/*# sourceMappingURL=app.css.map */

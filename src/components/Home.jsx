@@ -4,8 +4,8 @@ import PostLinkedin from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
 import { fetchPosts } from "./Fetches/FetchPosts";
 import CreaUnPost from "./HomeComponents/CreaUnPost";
-import HomeRightCards from "./HomeComponents/HomeRightCards";
 import LeftFixedCard from "./HomeComponents/LeftFixedCard";
+import HomeRightCards from "./HomeComponents/HomeRightCards";
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -13,7 +13,7 @@ export const Home = () => {
   const retrievePosts = async () => {
     const data = await fetchPosts();
     setPosts(() => {
-      return data.reverse().slice(0, 100);
+      return data.reverse().slice(0, 10);
     });
   };
 
@@ -53,7 +53,7 @@ export const Home = () => {
             </Row>
           </Col>
 
-          <Col xs={0} lg={3}>
+          <Col sm={0} lg={3}>
             <Row>
               <HomeRightCards />
             </Row>

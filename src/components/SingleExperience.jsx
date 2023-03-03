@@ -6,18 +6,18 @@ import { formatDate } from "../hooks/formatDate";
 import { ExperienceModal } from "./CustomModals";
 
 const SingleExperience = ({ experience, updateExp }) => {
-  console.log(experience);
+  // console.log(experience);
   const [showModal, setShowModal] = useState(false);
   const params = useParams();
   const handleShow = () => setShowModal(true);
   return (
     <>
       <Row className="mt-4 align-items-start experience mx-1 position-relative">
-        <Col xs={2} className="ps-3 pe-0">
+        <Col xs={3} sm={2} className="ps-md-3 pe-md-0">
           {" "}
           <img src="http://via.placeholder.com/50x50" alt="" />{" "}
         </Col>
-        <Col xs={10}>
+        <Col xs={9} sm={10}>
           <div>
             <h5>{experience.role}</h5>
             <p>
