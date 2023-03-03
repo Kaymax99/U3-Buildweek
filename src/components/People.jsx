@@ -16,7 +16,13 @@ const People = ({ singleProfile }) => {
         </Col>
         <Col xs={9} className="px-0">
           <Link to={`/` + singleProfile._id}>
-            <h5>{singleProfile.name} </h5>
+            <h5>
+              {singleProfile.name
+                ? singleProfile.surname
+                  ? singleProfile.name + " " + singleProfile.surname
+                  : singleProfile.name
+                : "Unknown User"}
+            </h5>
           </Link>
           <p className="mb-1">{singleProfile.title}</p>
           <Button variant="outline-secondary rounded-pill px-3 py-1 mb-3">

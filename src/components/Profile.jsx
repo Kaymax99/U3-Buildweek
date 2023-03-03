@@ -1,6 +1,6 @@
-import { Container, Navbar, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import InfoSection from "./InfoSection";
-import PeopleSection from "./PeopleSection";
+import { PeopleSection } from "./PeopleSection";
 import { useParams } from "react-router";
 import { FetchProfileByID } from "./Fetches/FetchProfileByID";
 import { useEffect, useState } from "react";
@@ -44,7 +44,9 @@ export const Profile = () => {
       <Container className="mt-5">
         <Row className="justify-content-evenly pt-3">
           <InfoSection profileData={profileData} updateData={updateData} />
-          <PeopleSection />
+          <Col xs={12} md={4} className={"mt-3"}>
+            <PeopleSection />
+          </Col>
         </Row>
       </Container>
     </>

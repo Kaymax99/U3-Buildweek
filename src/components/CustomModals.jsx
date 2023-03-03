@@ -10,7 +10,10 @@ import {
 import { EditExperience } from "./Fetches/EditExperience";
 import { EditProfile, EditProfilePhoto } from "./Fetches/EditProfile";
 import { DeleteExperience } from "./Fetches/DeleteExperience";
-import { EditExperienceImage } from "./Fetches/FetchExperience";
+import {
+  EditExperienceImage,
+  FetchExperience,
+} from "./Fetches/FetchExperience";
 
 const handleChange = (setData, data, propertyName, propertyValue) => {
   setData({ ...data, [propertyName]: propertyValue });
@@ -211,22 +214,40 @@ export const ExperienceModal = ({
     setShowModal(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     handleClose();
+
     if (edit) {
-      EditExperience(
+      await EditExperience(
         experience.user,
         experience._id,
         "PUT",
         expData,
         updateExp
       );
+
+      EditExperienceImage(userID, formData, experience._id);
     } else {
-      EditExperience(userID, "", "POST", expData, updateExp);
-      console.log(experience._id);
+      let ex = await EditExperience(
+        experience.user,
+        "",
+        "POST",
+        expData,
+        updateExp
+      );
+      // await FetchExperience(userID);
+
+      await EditExperienceImage(experience.user, formData, ex._id);
+      window.location.reload();
+      // let experiences = await FetchExperience(userID);
+      // let lastindex = experiences.length - 1
     }
-    EditExperienceImage(userID, formData, experience._id);
+
+    // console.log(
+    //   "return di EditExperienceImage:",
+    //   await EditExperienceImage(userID, formData, experience._id)
+    // );
   };
 
   // handleFile per l'immagine del post
@@ -242,7 +263,7 @@ export const ExperienceModal = ({
   return (
     <Modal show={showModal} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit experience</Modal.Title>
+        <Modal.Title>{edit ? "Edit Experience" : "Add Experience"}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -291,6 +312,7 @@ export const ExperienceModal = ({
             <FormControl
               type="date"
               rows="1"
+              value={expData?.startDate.slice(0, 10)}
               onChange={(e) => {
                 handleChange(setExpData, expData, "startDate", e.target.value);
               }}
@@ -301,6 +323,7 @@ export const ExperienceModal = ({
             <FormControl
               type="date"
               rows="1"
+              value={expData?.endDate?.slice(0, 10)}
               onChange={(e) => {
                 handleChange(setExpData, expData, "endDate", e.target.value);
               }}
