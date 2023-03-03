@@ -7,7 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import bg from "../assets/imgs/bg.jpg";
 import { ProfileModal, ImageModal } from "./CustomModals";
 import Experiences from "./Experiences";
-import FetchExperience from "./Fetches/FetchExperience";
+import { FetchExperience } from "./Fetches/FetchExperience";
 import {
   PersonPlusFill,
   ShieldLockFill,

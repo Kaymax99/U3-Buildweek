@@ -10,6 +10,7 @@ import {
 import { EditExperience } from "./Fetches/EditExperience";
 import { EditProfile, EditProfilePhoto } from "./Fetches/EditProfile";
 import { DeleteExperience } from "./Fetches/DeleteExperience";
+import { EditExperienceImage } from "./Fetches/FetchExperience";
 
 const handleChange = (setData, data, propertyName, propertyValue) => {
   setData({ ...data, [propertyName]: propertyValue });
@@ -182,6 +183,8 @@ export const ExperienceModal = ({
   userID,
   updateExp,
 }) => {
+  const [formData, setFormData] = useState(new FormData());
+
   const [expData, setExpData] = useState({
     role: "",
     company: "",
@@ -221,7 +224,19 @@ export const ExperienceModal = ({
       );
     } else {
       EditExperience(userID, "", "POST", expData, updateExp);
+      console.log(experience._id);
     }
+    EditExperienceImage(userID, formData, experience._id);
+  };
+
+  // handleFile per l'immagine del post
+
+  const handleFile = (ev) => {
+    setFormData((prev) => {
+      prev.delete("experience");
+      prev.append("experience", ev.target?.files[0]);
+      return prev;
+    });
   };
 
   return (
@@ -308,6 +323,8 @@ export const ExperienceModal = ({
                 );
               }}
             ></FormControl>
+            <Form.Label>Aggiungi Immagine</Form.Label>
+            <Form.Control type="file" onChange={handleFile}></Form.Control>
           </FormGroup>
         </Form>
       </Modal.Body>
@@ -340,7 +357,7 @@ export const ExperienceModal = ({
   );
 };
 
-// MODALE PER L'IMMAGINE
+// MODALE PER L'IMMAGINE DEL PROFILO
 export const ImageModal = (props) => {
   const handleClose = () => {
     props.setShowModal(false);
@@ -360,9 +377,12 @@ export const ImageModal = (props) => {
     await EditProfilePhoto(props.idProfile, fd);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     sendPicture();
+    setInterval(() => {
+      handleClose();
+      window.location.reload();
+    }, 100);
   };
 
   return (

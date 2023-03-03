@@ -301,6 +301,7 @@ nav .viewProfile {
   border-radius: 30px;
   padding: 10px;
   display: flex;
+  justify-content: center;
   width: 100%;
 }
 .PostButton:hover {
