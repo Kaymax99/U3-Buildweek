@@ -35,6 +35,9 @@ function CreaUnPost() {
       if (formData.get("post")) {
         addPostImage(res._id, formData);
       }
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     }
   };
 

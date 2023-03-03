@@ -161,7 +161,9 @@ export const CustomNavbar = () => {
                       <h6>Manage</h6>
                       <ul className="text-muted">
                         <a href="#">
-                          <li>Posts & Activity</li>
+                          <Link to={"/"}>
+                            <li>Posts & Activity</li>
+                          </Link>
                         </a>
                         <a href="#">
                           <li>Job Posting Account</li>
