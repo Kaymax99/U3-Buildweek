@@ -276,6 +276,7 @@ export const ExperienceModal = ({
             <FormControl
               type="date"
               rows="1"
+              value={expData?.startDate.slice(0, 10)}
               onChange={(e) => {
                 handleChange(setExpData, expData, "startDate", e.target.value);
               }}
@@ -286,6 +287,7 @@ export const ExperienceModal = ({
             <FormControl
               type="date"
               rows="1"
+              value={expData?.endDate?.slice(0, 10)}
               onChange={(e) => {
                 handleChange(setExpData, expData, "endDate", e.target.value);
               }}

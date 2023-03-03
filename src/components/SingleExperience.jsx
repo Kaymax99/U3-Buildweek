@@ -6,7 +6,7 @@ import { formatDate } from "../hooks/formatDate";
 import { ExperienceModal } from "./CustomModals";
 
 const SingleExperience = ({ experience, updateExp }) => {
-  // console.log(experience);
+  console.log(experience);
   const [showModal, setShowModal] = useState(false);
   const params = useParams();
   const handleShow = () => setShowModal(true);
