@@ -14,8 +14,15 @@ const SingleExperience = ({ experience, updateExp }) => {
     <>
       <Row className="mt-4 align-items-start experience mx-1 position-relative">
         <Col xs={2} className="ps-3 pe-0">
-          {" "}
-          <img src="http://via.placeholder.com/50x50" alt="" />{" "}
+          <img
+            className="experience-img"
+            src={
+              experience.image
+                ? experience.image
+                : "http://via.placeholder.com/50x50"
+            }
+            alt="experience-img"
+          />
         </Col>
         <Col xs={10}>
           <div>
