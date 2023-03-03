@@ -360,9 +360,12 @@ export const ImageModal = (props) => {
     await EditProfilePhoto(props.idProfile, fd);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     sendPicture();
+    setInterval(() => {
+      handleClose();
+      window.location.reload();
+    }, 100);
   };
 
   return (
