@@ -263,7 +263,7 @@ export const ExperienceModal = ({
   return (
     <Modal show={showModal} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit experience</Modal.Title>
+        <Modal.Title>{edit ? "Edit Experience" : "Add Experience"}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
