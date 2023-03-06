@@ -14,6 +14,8 @@ import {
   EditExperienceImage,
   FetchExperience,
 } from "./Fetches/FetchExperience";
+import { GetComments, PostComments } from "./Fetches/FetchComments";
+import { DELETE, PUT } from "../redux/actions";
 
 const handleChange = (setData, data, propertyName, propertyValue) => {
   setData({ ...data, [propertyName]: propertyValue });
@@ -431,5 +433,78 @@ export const ImageModal = (props) => {
         </Modal.Footer>
       </Modal>
     </>
+  );
+};
+
+export const CommentModal = ({
+  showModal,
+  setShowModal,
+  comment,
+  retrieveData,
+}) => {
+  const handleClose = () => {
+    setShowModal(false);
+  };
+  const [newComment, setNewComment] = useState({
+    comment: "",
+  });
+
+  useEffect(() => {
+    if (comment) {
+      setNewComment({
+        comment: comment?.comment,
+      });
+    }
+  }, [comment]);
+
+  return (
+    <Modal show={showModal} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Edit Comment</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <FormGroup>
+            <FormControl
+              type="text"
+              as="textarea"
+              value={newComment?.comment}
+              rows="1"
+              onChange={(e) => {
+                handleChange(
+                  setNewComment,
+                  newComment,
+                  "comment",
+                  e.target.value
+                );
+              }}
+            ></FormControl>
+          </FormGroup>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer className="d-flex justify-content-between">
+        <Button
+          variant="danger"
+          onClick={async () => {
+            handleClose();
+            await GetComments(comment._id, DELETE);
+            retrieveData();
+          }}
+        >
+          Delete
+        </Button>
+        <Button
+          variant="primary"
+          onClick={async (e) => {
+            e.preventDefault();
+            handleClose();
+            await PostComments(newComment, PUT, comment._id);
+            retrieveData();
+          }}
+        >
+          Save
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 };

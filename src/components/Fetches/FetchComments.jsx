@@ -2,10 +2,10 @@ const BaseURL = "https://striveschool-api.herokuapp.com/api/comments/";
 
 // FETCH DEI COMMENTI DI UN POST
 
-export const GetComments = async (postId) => {
+export const GetComments = async (id, type) => {
   try {
-    const res = await fetch(BaseURL + postId, {
-      method: "GET",
+    const res = await fetch(BaseURL + id, {
+      method: type,
       headers: {
         Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN_COMMENTS,
       },
@@ -23,11 +23,12 @@ export const GetComments = async (postId) => {
 
 //POST DI UN COMMENTO
 
-export const PostComments = async (props) => {
-  console.log(props);
+export const PostComments = async (props, type, postID) => {
+  // console.log(props);
+  // console.log(type);
   try {
-    const response = await fetch(BaseURL, {
-      method: "POST",
+    const response = await fetch(BaseURL + postID, {
+      method: type,
       body: JSON.stringify(props),
       headers: {
         Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN_COMMENTS,

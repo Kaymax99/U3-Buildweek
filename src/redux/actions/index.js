@@ -1,5 +1,9 @@
 export const GET_PROFILE = "GET_PROFILE";
 export const GET_PEOPLE = "GET_PEOPLE";
+export const GET = "GET";
+export const POST = "POST";
+export const PUT = "PUT";
+export const DELETE = "DELETE";
 
 export const getProfileAction = (idProfile, type) => {
   return async (dispatch, getState) => {
