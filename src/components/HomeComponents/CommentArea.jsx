@@ -2,15 +2,44 @@ import { Col, Image, Row } from "react-bootstrap";
 import { FaRegSmile } from "react-icons/fa";
 import { SlPicture } from "react-icons/sl";
 import unRegistered from "../../assets/imgs/unregistered.png";
+import { GetComments, PostComments } from "../Fetches/FetchComments";
 import SingleComment from "./SingleComment";
+import { useEffect, useState } from "react";
 
 const CommentArea = (props) => {
-  let mioCommento = {
-    author: "Cannavacciuolo",
-    comment:
-      "La laurea in psicologia può aprire molte strade oltre a quella dello psicologo, per fortuna con un po' di specializzazione aggiuntiva si ha l'imbarazzo della scelta: risorse umane, marketing, assistenza clienti, vendite, etc...per orientarsi meglio sulla direzione due buone domande potrebbero essere: In quali attività operative i miei punti di forza mi farebbero spiccare? Quali problemi che hanno le aziende/persone mi piacerebbe aiutare a risolvere?",
-    createdAt: "2023-03-05",
+  const [comments, setComments] = useState([]);
+
+  const [commentText, setCommentText] = useState("");
+  const handleChange = (e) => {
+    setCommentText(e.target.value);
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await PostComments({
+      comment: commentText,
+      rate: 1,
+      elementId: props.post,
+    });
+    await GetComments(props.post);
+  };
+
+  const retrieveData = async () => {
+    let data = await GetComments(props.post);
+    setComments(data);
+    //console.log(data);
+  };
+
+  useEffect(() => {
+    retrieveData();
+  }, []);
+
+  //   let mioCommento = {
+  //     author: "Cannavacciuolo",
+  //     comment:
+  //       "La laurea in psicologia può aprire molte strade oltre a quella dello psicologo, per fortuna con un po' di specializzazione aggiuntiva si ha l'imbarazzo della scelta: risorse umane, marketing, assistenza clienti, vendite, etc...per orientarsi meglio sulla direzione due buone domande potrebbero essere: In quali attività operative i miei punti di forza mi farebbero spiccare? Quali problemi che hanno le aziende/persone mi piacerebbe aiutare a risolvere?",
+  //     createdAt: "2023-03-05",
+  //   };
 
   return (
     <div className="contenitore-commenti">
@@ -23,13 +52,16 @@ const CommentArea = (props) => {
           />
         </Col>
         <Col xs={8} className="align-self-center">
-          <input
-            autoFocus="true"
-            className="PostButton"
-            ref={props.inputRef}
-            type="text"
-            placeholder="Aggiungi un commento"
-          />
+          <form onSubmit={handleSubmit}>
+            <input
+              autoFocus={true}
+              className="PostButton"
+              //   ref={props.inputRef}
+              type="text"
+              placeholder="Aggiungi un commento"
+              onChange={handleChange}
+            />
+          </form>
         </Col>
         <Col xs={2}>
           <div className="text-dark fs-6">
@@ -44,7 +76,10 @@ const CommentArea = (props) => {
         </Col>
       </Row>
       <Row>
-        <SingleComment comment={mioCommento} />
+        {comments?.length > 0 &&
+          comments?.map((element, i) => (
+            <SingleComment key={i} comment={element} />
+          ))}
       </Row>
     </div>
   );
