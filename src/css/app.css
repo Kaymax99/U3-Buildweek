@@ -410,8 +410,9 @@ nav .viewProfile {
 }
 
 .PostMainImg {
-  height: 270px;
   padding: 0px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .AdvertismentRow {

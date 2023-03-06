@@ -1,11 +1,6 @@
 import { Col, Row, Image, Button } from "react-bootstrap";
 import { BsX, BsThreeDots } from "react-icons/bs";
-import {
-  HandThumbsUp,
-  GlobeAmericas,
-  ChatText,
-  ArrowRepeat,
-} from "react-bootstrap-icons";
+import { HandThumbsUp, GlobeAmericas, ChatText, ArrowRepeat } from "react-bootstrap-icons";
 import { RiSendPlaneFill } from "react-icons/ri";
 import like from "../../assets/imgs/like.svg";
 import clap from "../../assets/imgs/clap.svg";
@@ -13,6 +8,9 @@ import love from "../../assets/imgs/love.svg";
 import { formatDate, transformToDate } from "../../hooks/formatDate";
 import { deletePost } from "../Fetches/FetchPosts";
 import { useSelector } from "react-redux";
+
+import Comment from "../Comments/GetSingleComment";
+import PostComment from "../Comments/PostComment";
 
 const PostLinkedin = ({ post, retrievePosts }) => {
   const profile = useSelector((state) => state.profile.content);
@@ -39,11 +37,7 @@ const PostLinkedin = ({ post, retrievePosts }) => {
       <div className="ContenitorePrincipale mb-3">
         <Row xs={12} className="my-2 d-flex">
           <Col xs={3} sm={2} className="text-center pe-1">
-            <Image
-              className="PostProfileImg"
-              src={post.user.image}
-              alt="image-profile"
-            />
+            <Image className="PostProfileImg" src={post.user.image} alt="image-profile" />
           </Col>
           <Col xs={7} sm={8} className="ps-0">
             <a href={`/` + post.user._id}>
@@ -73,9 +67,7 @@ const PostLinkedin = ({ post, retrievePosts }) => {
                     handleDeletePost(post._id);
                     retrievePosts();
                     setTimeout(() => {
-                      alert(
-                        "Much wow, very delete. Will disappear in a couple of seconds"
-                      );
+                      alert("Much wow, very delete. Will disappear in a couple of seconds");
                     }, 100);
                   }}
                 />
@@ -89,6 +81,7 @@ const PostLinkedin = ({ post, retrievePosts }) => {
         <Row xs={12}>
           <h2 className="PostH2 mb-0">{post.text}</h2>
         </Row>
+        <PostComment />
         <Row xs={12}>
           {post?.image ? (
             <Image
@@ -106,10 +99,7 @@ const PostLinkedin = ({ post, retrievePosts }) => {
           <Col>
             <ul className="d-flex justify-content-between border-bottom">
               <li>
-                <Button
-                  variant="none"
-                  className="reactionsContainer px-0 d-flex align-items-center"
-                >
+                <Button variant="none" className="reactionsContainer px-0 d-flex align-items-center">
                   <img src={like} alt="like" className="reaction"></img>
                   <img src={clap} alt="clap" className="reaction"></img>
                   <img src={love} alt="love" className="reaction"></img>
