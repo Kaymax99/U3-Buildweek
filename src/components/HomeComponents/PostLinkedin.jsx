@@ -10,11 +10,12 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import like from "../../assets/imgs/like.svg";
 import clap from "../../assets/imgs/clap.svg";
 import love from "../../assets/imgs/love.svg";
-import { formatDate, transformToDate } from "../../hooks/formatDate";
+import { transformToDate } from "../../hooks/formatDate";
 import { deletePost } from "../Fetches/FetchPosts";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-const PostLinkedin = ({ post, retrievePosts }) => {
+export const PostLinkedin = ({ post, retrievePosts }) => {
   const profile = useSelector((state) => state.profile.content);
 
   const randomReactions = () => {
@@ -39,14 +40,16 @@ const PostLinkedin = ({ post, retrievePosts }) => {
       <div className="ContenitorePrincipale mb-3">
         <Row xs={12} className="my-2 d-flex">
           <Col xs={3} sm={2} className="text-center pe-1">
-            <Image
-              className="PostProfileImg"
-              src={post.user.image}
-              alt="image-profile"
-            />
+            <Link to={`/` + post.user._id}>
+              <Image
+                className="PostProfileImg"
+                src={post.user.image}
+                alt="image-profile"
+              />
+            </Link>
           </Col>
           <Col xs={7} sm={8} className="ps-0">
-            <a href={`/` + post.user._id}>
+            <Link to={`/` + post.user._id}>
               <h1 className="PostH1 bold marginTopMod">
                 {post?.user.name
                   ? post?.user.surname
@@ -54,9 +57,8 @@ const PostLinkedin = ({ post, retrievePosts }) => {
                     : post?.user.name
                   : "Unknown User"}
               </h1>
-            </a>
+            </Link>
             <h3 className="PostH3 marginTopMod gap-1">
-              {/* {post?.createdAt ? formatDate(post.createdAt.slice(0, 10)) : ""} */}
               {post?.createdAt && transformToDate(post.createdAt)}
               <GlobeAmericas />
             </h3>
@@ -145,5 +147,3 @@ const PostLinkedin = ({ post, retrievePosts }) => {
     </>
   );
 };
-
-export default PostLinkedin;

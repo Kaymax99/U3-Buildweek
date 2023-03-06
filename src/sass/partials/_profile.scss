@@ -11,6 +11,7 @@
     left: 20px;
     width: 110px;
     aspect-ratio: 1/1;
+    object-fit: cover;
     @media screen and (min-width: 400px) {
       width: 125px;
     }

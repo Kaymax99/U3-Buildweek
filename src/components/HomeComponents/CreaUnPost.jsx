@@ -12,7 +12,7 @@ import { RiArticleFill } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import unRegistered from "../../assets/imgs/unregistered.png";
 
-function CreaUnPost({ retrievePosts }) {
+export const CreaUnPost = ({ retrievePosts }) => {
   const profile = useSelector((state) => state.profile.content);
   const [show, setShow] = useState(false);
   const [postText, setPostText] = useState("");
@@ -125,5 +125,4 @@ function CreaUnPost({ retrievePosts }) {
       </Modal>
     </>
   );
-}
-export default CreaUnPost;
+};
