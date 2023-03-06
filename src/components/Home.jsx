@@ -13,6 +13,7 @@ export const Home = () => {
 
   const retrievePosts = async () => {
     const data = await fetchPosts();
+    // console.log(data.reverse().slice(0, 20));
     setTitles(() => {
       return data.slice(0, 5);
     });
@@ -63,7 +64,7 @@ export const Home = () => {
             </Row>
           </Col>
 
-          <Col sm={0} lg={3}>
+          <Col sm={0} lg={3} className="d-none d-lg-block">
             <Row>
               <HomeRightCards titles={titles} />
             </Row>
