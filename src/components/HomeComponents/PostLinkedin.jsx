@@ -10,20 +10,19 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import like from "../../assets/imgs/like.svg";
 import clap from "../../assets/imgs/clap.svg";
 import love from "../../assets/imgs/love.svg";
-import { formatDate } from "../../hooks/formatDate";
+import { formatDate, transformToDate } from "../../hooks/formatDate";
 import { deletePost } from "../Fetches/FetchPosts";
 import { useSelector } from "react-redux";
 
 const PostLinkedin = ({ post, retrievePosts }) => {
   const profile = useSelector((state) => state.profile.content);
+
   const randomReactions = () => {
     return Math.floor(Math.random() * (50 - 1 + 1)) + 20;
   };
   const randomComments = () => {
     return Math.floor(Math.random() * (20 - 1 + 1)) + 1;
   };
-
-  // console.log(post);
 
   const handleDeletePost = async (postId) => {
     try {
@@ -57,7 +56,8 @@ const PostLinkedin = ({ post, retrievePosts }) => {
               </h1>
             </a>
             <h3 className="PostH3 marginTopMod gap-1">
-              {post?.createdAt ? formatDate(post.createdAt.slice(0, 10)) : ""}
+              {/* {post?.createdAt ? formatDate(post.createdAt.slice(0, 10)) : ""} */}
+              {post?.createdAt && transformToDate(post.createdAt)}
               <GlobeAmericas />
             </h3>
           </Col>
