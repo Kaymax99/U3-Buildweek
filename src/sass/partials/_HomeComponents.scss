@@ -136,8 +136,9 @@
 }
 
 .PostMainImg {
-  height: 270px;
+  // height: 270px;
   padding: 0px;
+  object-fit: contain;
 }
 
 .AdvertismentRow {
