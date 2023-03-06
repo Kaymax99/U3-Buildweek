@@ -50,25 +50,37 @@ export const fetchPostById = async (postId) => {
 // DATA DEVE ESSERE UN OGGETTO CON PROPRIETA' "text" ⚠️
 
 export const addPost = async (data) => {
-  try {
-    const response = await fetch(BaseURL, {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    if (response.ok) {
-      const data = await response.json();
+  if (data.text.trim()) {
+    try {
+      const response = await fetch(BaseURL, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Post added successfully!");
 
-      return data;
-    } else {
-      console.log("Response is not OK", response.status);
+        return data;
+      } else {
+        console.log("Response is not OK", response.status);
+        return {
+          hasError: true,
+          message: "Post non aggiunto: status code" + response.status,
+        };
+      }
+    } catch (error) {
+      console.log("ERRORE CATCH", error);
+      return { hasError: true, message: "Post non aggiunto Bad request" };
     }
-  } catch (error) {
-    console.log("ERRORE CATCH", error);
-  }
+  } else
+    return {
+      hasError: true,
+      message: "Post non aggiunto: Prova ad aggiungere del testo",
+    };
 };
 
 // FETCH PER MODIFICARE UN POST
@@ -113,5 +125,29 @@ export const deletePost = async (postId) => {
     } else return true;
   } catch (error) {
     console.log("ERRORE CATCH", error);
+  }
+};
+
+// AGGIUNGI IMMAGINE AL POST
+export const addPostImage = async (postId, formData) => {
+  if (postId) {
+    try {
+      const response = await fetch(BaseURL + postId, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+
+        return data;
+      } else {
+        console.log("Response is not OK", response.status);
+      }
+    } catch (error) {
+      console.log("ERRORE CATCH", error);
+    }
   }
 };

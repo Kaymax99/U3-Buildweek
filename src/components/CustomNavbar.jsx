@@ -19,21 +19,22 @@ import {
   Grid3x3GapFill,
 } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/imgs/logo.svg";
 import pic from "../assets/imgs/unregistered.png";
 
 export const CustomNavbar = () => {
+  const navigate = useNavigate();
   const profile = useSelector((state) => state.profile.content);
   return (
-    <Navbar bg="white" expand="sm" className="py-0" fixed="top">
-      <Container fluid>
+    <Navbar bg="white" className="py-0 border-bottom" fixed="top">
+      <Container className="px-0">
         <Nav
           className="me-auto my-lg-0 align-items-center w-100"
           style={{ maxHeight: "100px" }}
         >
-          <Col xs={1} lg={3} className="d-flex justify-content-center">
+          <Col xs={1} lg={3} className="d-flex justify-content-center ps-2">
             <Link to={"/"}>
               <img src={logo} alt="logo" className="logo me-lg-3"></img>
             </Link>
@@ -47,8 +48,8 @@ export const CustomNavbar = () => {
             </Form>
           </Col>
           <Col xs={11} lg={9}>
-            <Row className="align-items-center">
-              <Col className="d-block d-lg-none">
+            <Row className="align-items-center w-100 mx-0">
+              <Col className="d-block d-lg-none px-0">
                 <Nav.Link
                   href="#action1"
                   className="d-flex flex-column align-items-center p-0"
@@ -57,7 +58,7 @@ export const CustomNavbar = () => {
                   <span className="navSpan">Search</span>
                 </Nav.Link>
               </Col>
-              <Col>
+              <Col className="px-0">
                 <Link
                   to={"/"}
                   className="d-flex nav-link flex-column align-items-center p-0"
@@ -66,7 +67,7 @@ export const CustomNavbar = () => {
                   <span className="navSpan">Home</span>
                 </Link>
               </Col>
-              <Col>
+              <Col className="px-0">
                 <Link
                   to={"/"}
                   className="d-flex nav-link flex-column align-items-center p-0"
@@ -75,7 +76,7 @@ export const CustomNavbar = () => {
                   <span className="navSpan">My Network</span>
                 </Link>
               </Col>
-              <Col>
+              <Col className="px-0">
                 <Link
                   to={"/"}
                   className="d-flex nav-link flex-column align-items-center p-0"
@@ -84,7 +85,7 @@ export const CustomNavbar = () => {
                   <span className="navSpan">Jobs</span>
                 </Link>
               </Col>
-              <Col>
+              <Col className="px-0">
                 <Link
                   to={"/"}
                   className="d-flex nav-link flex-column align-items-center p-0"
@@ -93,7 +94,7 @@ export const CustomNavbar = () => {
                   <span className="navSpan">Messaging</span>
                 </Link>
               </Col>
-              <Col>
+              <Col className="px-0">
                 <Link
                   to={"/"}
                   className="d-flex nav-link flex-column align-items-center p-0"
@@ -102,7 +103,7 @@ export const CustomNavbar = () => {
                   <span className="navSpan">Notifications</span>
                 </Link>
               </Col>
-              <Col className="border-secondary border-end">
+              <Col className="border-end px-0">
                 <Dropdown href="#" className="d-flex justify-content-center">
                   <Dropdown.Toggle
                     variant="none"
@@ -134,8 +135,12 @@ export const CustomNavbar = () => {
                       <Button
                         variant="outline-primary"
                         className="rounded-pill mx-2 viewProfile py-0 fw-bold"
+                        onClick={() => {
+                          navigate("/me");
+                        }}
                       >
-                        <Link to={"/me"}>View Profile</Link>
+                        {/* <Link to={"/me"}></Link> */}
+                        View Profile
                       </Button>
                     </div>
                     <div className="p-3 py-2 border-bottom">
@@ -155,9 +160,9 @@ export const CustomNavbar = () => {
                     <div className="p-3 py-2 border-bottom">
                       <h6>Manage</h6>
                       <ul className="text-muted">
-                        <a href="#">
+                        <Link to={"/"}>
                           <li>Posts & Activity</li>
-                        </a>
+                        </Link>
                         <a href="#">
                           <li>Job Posting Account</li>
                         </a>
@@ -169,7 +174,7 @@ export const CustomNavbar = () => {
                   </Dropdown.Menu>
                 </Dropdown>
               </Col>
-              <Col>
+              <Col className="d-none d-sm-block px-0">
                 <Nav.Link
                   href="#"
                   className="d-flex flex-column align-items-center"

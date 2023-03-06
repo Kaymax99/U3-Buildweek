@@ -18,6 +18,8 @@ export const EditExperience = async (
     if (res.ok) {
       console.log("Successfully posted");
       callbackFn();
+      console.log(res);
+      return await res.json();
     } else {
       console.log("Unable to submit");
     }

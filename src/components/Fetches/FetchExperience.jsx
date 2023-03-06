@@ -1,8 +1,8 @@
-const FetchExperience = async (idProfile) => {
-  try {
-    const BaseUrl = `https://striveschool-api.herokuapp.com/api/profile/${idProfile}/experiences`;
+const BaseUrl = `https://striveschool-api.herokuapp.com/api/profile/`;
 
-    const response = await fetch(BaseUrl, {
+export const FetchExperience = async (idProfile) => {
+  try {
+    const response = await fetch(BaseUrl + `${idProfile}/experiences`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
@@ -21,4 +21,27 @@ const FetchExperience = async (idProfile) => {
   }
 };
 
-export default FetchExperience;
+// https://striveschool-api.herokuapp.com/api/profile/{userId}/experiences/:expId/picture
+
+export const EditExperienceImage = async (idProfile, formData, expID) => {
+  try {
+    let res = await fetch(
+      BaseUrl + `${idProfile}/experiences/${expID}/picture`,
+      {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
+        },
+      }
+    );
+    if (res.ok) {
+      let data = await res.json();
+      return data;
+    } else {
+      console.log("ATTENZIONE! ", res.status);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

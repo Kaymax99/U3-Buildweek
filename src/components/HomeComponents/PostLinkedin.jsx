@@ -1,31 +1,28 @@
 import { Col, Row, Image, Button } from "react-bootstrap";
 import { BsX, BsThreeDots } from "react-icons/bs";
-import { HandThumbsUp, GlobeAmericas, ChatText, ArrowRepeat } from "react-bootstrap-icons";
+import {
+  HandThumbsUp,
+  GlobeAmericas,
+  ChatText,
+  ArrowRepeat,
+} from "react-bootstrap-icons";
 import { RiSendPlaneFill } from "react-icons/ri";
 import like from "../../assets/imgs/like.svg";
 import clap from "../../assets/imgs/clap.svg";
 import love from "../../assets/imgs/love.svg";
-
+import { formatDate, transformToDate } from "../../hooks/formatDate";
 import { deletePost } from "../Fetches/FetchPosts";
+import { useSelector } from "react-redux";
 
-const PostLinkedin = ({ post }) => {
-  const formatDate = (input) => {
-    var datePart = input.match(/\d+/g),
-      year = datePart[0].substring(2), // get only two digits
-      month = datePart[1],
-      day = datePart[2];
+const PostLinkedin = ({ post, retrievePosts }) => {
+  const profile = useSelector((state) => state.profile.content);
 
-    return day + "-" + month + "-" + year;
-  };
   const randomReactions = () => {
     return Math.floor(Math.random() * (50 - 1 + 1)) + 20;
   };
   const randomComments = () => {
     return Math.floor(Math.random() * (20 - 1 + 1)) + 1;
   };
-
-  formatDate("2010/01/18"); // "18/01/10"
-  console.log(post);
 
   const handleDeletePost = async (postId) => {
     try {
@@ -41,17 +38,26 @@ const PostLinkedin = ({ post }) => {
     <>
       <div className="ContenitorePrincipale mb-3">
         <Row xs={12} className="my-2 d-flex">
-          <Col xs={2} className="text-center pe-1">
-            <Image className="PostProfileImg" src={post.user.image} alt="image-profile" />
+          <Col xs={3} sm={2} className="text-center pe-1">
+            <Image
+              className="PostProfileImg"
+              src={post.user.image}
+              alt="image-profile"
+            />
           </Col>
-          <Col xs={8} className="ps-0">
+          <Col xs={7} sm={8} className="ps-0">
             <a href={`/` + post.user._id}>
               <h1 className="PostH1 bold marginTopMod">
-                {post.user.name ? post.user.name + " " + post.user.surname : "Unknown User"}
+                {post?.user.name
+                  ? post?.user.surname
+                    ? post?.user.name + " " + post?.user.surname
+                    : post?.user.name
+                  : "Unknown User"}
               </h1>
             </a>
             <h3 className="PostH3 marginTopMod gap-1">
-              {formatDate(post.createdAt.slice(0, 10))}
+              {/* {post?.createdAt ? formatDate(post.createdAt.slice(0, 10)) : ""} */}
+              {post?.createdAt && transformToDate(post.createdAt)}
               <GlobeAmericas />
             </h3>
           </Col>
@@ -60,7 +66,22 @@ const PostLinkedin = ({ post }) => {
               <BsThreeDots className="PostSingleIcon" />
             </div>
             <div>
-              <BsX className="PostSingleIcon" onClick={() => handleDeletePost(post._id)} />
+              {post.user._id === profile._id ? (
+                <BsX
+                  className="PostSingleIcon"
+                  onClick={() => {
+                    handleDeletePost(post._id);
+                    retrievePosts();
+                    setTimeout(() => {
+                      alert(
+                        "Much wow, very delete. Will disappear in a couple of seconds"
+                      );
+                    }, 100);
+                  }}
+                />
+              ) : (
+                <div></div>
+              )}
             </div>
           </Col>
         </Row>
@@ -85,10 +106,10 @@ const PostLinkedin = ({ post }) => {
           <Col>
             <ul className="d-flex justify-content-between border-bottom">
               <li>
-                <Button variant="none" className="reactionsContainer px-0 d-flex align-items-center">
-                  {/* <span className="like">
-                    <HandThumbsUpFill color="white" className="likeSVG" />
-                  </span> */}
+                <Button
+                  variant="none"
+                  className="reactionsContainer px-0 d-flex align-items-center"
+                >
                   <img src={like} alt="like" className="reaction"></img>
                   <img src={clap} alt="clap" className="reaction"></img>
                   <img src={love} alt="love" className="reaction"></img>
@@ -104,18 +125,18 @@ const PostLinkedin = ({ post }) => {
           </Col>
         </Row>
 
-        <Row xs={12} className="mt-2">
+        <Row xs={12} className="my-1">
           <div className="BottomButtons">
-            <Button className="pt-0">
+            <Button>
               <HandThumbsUp /> Consiglia
             </Button>
-            <Button className="pt-0">
+            <Button>
               <ChatText /> Commenta
             </Button>
-            <Button className="pt-0">
+            <Button>
               <ArrowRepeat /> Diffondi il post
             </Button>
-            <Button className="pt-0">
+            <Button>
               <RiSendPlaneFill /> Invia
             </Button>
           </div>

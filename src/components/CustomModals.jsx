@@ -8,8 +8,12 @@ import {
   Modal,
 } from "react-bootstrap";
 import { EditExperience } from "./Fetches/EditExperience";
-import { EditProfile } from "./Fetches/EditProfile";
+import { EditProfile, EditProfilePhoto } from "./Fetches/EditProfile";
 import { DeleteExperience } from "./Fetches/DeleteExperience";
+import {
+  EditExperienceImage,
+  FetchExperience,
+} from "./Fetches/FetchExperience";
 
 const handleChange = (setData, data, propertyName, propertyValue) => {
   setData({ ...data, [propertyName]: propertyValue });
@@ -124,24 +128,6 @@ export const ProfileModal = ({
             ></FormControl>
           </FormGroup>
           <FormGroup className="mb-2">
-            <FormLabel>Nickname</FormLabel>
-            <FormControl
-              type="text"
-              as="textarea"
-              value={profileData.username}
-              placeholder="Insert your nickname"
-              rows="1"
-              onChange={(e) => {
-                handleChange(
-                  setProfileData,
-                  profileData,
-                  "username",
-                  e.target.value
-                );
-              }}
-            ></FormControl>
-          </FormGroup>
-          <FormGroup className="mb-2">
             <FormLabel>Location</FormLabel>
             <FormControl
               type="text"
@@ -200,6 +186,8 @@ export const ExperienceModal = ({
   userID,
   updateExp,
 }) => {
+  const [formData, setFormData] = useState(new FormData());
+
   const [expData, setExpData] = useState({
     role: "",
     company: "",
@@ -226,26 +214,56 @@ export const ExperienceModal = ({
     setShowModal(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     handleClose();
+
     if (edit) {
-      EditExperience(
+      await EditExperience(
         experience.user,
         experience._id,
         "PUT",
         expData,
         updateExp
       );
+
+      EditExperienceImage(userID, formData, experience._id);
     } else {
-      EditExperience(userID, "", "POST", expData, updateExp);
+      let ex = await EditExperience(
+        experience.user,
+        "",
+        "POST",
+        expData,
+        updateExp
+      );
+      // await FetchExperience(userID);
+
+      await EditExperienceImage(experience.user, formData, ex._id);
+      window.location.reload();
+      // let experiences = await FetchExperience(userID);
+      // let lastindex = experiences.length - 1
     }
+
+    // console.log(
+    //   "return di EditExperienceImage:",
+    //   await EditExperienceImage(userID, formData, experience._id)
+    // );
+  };
+
+  // handleFile per l'immagine del post
+
+  const handleFile = (ev) => {
+    setFormData((prev) => {
+      prev.delete("experience");
+      prev.append("experience", ev.target?.files[0]);
+      return prev;
+    });
   };
 
   return (
     <Modal show={showModal} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit experience</Modal.Title>
+        <Modal.Title>{edit ? "Edit Experience" : "Add Experience"}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -294,6 +312,7 @@ export const ExperienceModal = ({
             <FormControl
               type="date"
               rows="1"
+              value={expData?.startDate.slice(0, 10)}
               onChange={(e) => {
                 handleChange(setExpData, expData, "startDate", e.target.value);
               }}
@@ -304,6 +323,7 @@ export const ExperienceModal = ({
             <FormControl
               type="date"
               rows="1"
+              value={expData?.endDate?.slice(0, 10)}
               onChange={(e) => {
                 handleChange(setExpData, expData, "endDate", e.target.value);
               }}
@@ -326,6 +346,8 @@ export const ExperienceModal = ({
                 );
               }}
             ></FormControl>
+            <Form.Label>Aggiungi Immagine</Form.Label>
+            <Form.Control type="file" onChange={handleFile}></Form.Control>
           </FormGroup>
         </Form>
       </Modal.Body>
@@ -355,5 +377,57 @@ export const ExperienceModal = ({
         </Button>
       </Modal.Footer>
     </Modal>
+  );
+};
+
+// MODALE PER L'IMMAGINE DEL PROFILO
+export const ImageModal = (props) => {
+  const handleClose = () => {
+    props.setShowModal(false);
+  };
+
+  const [fd, setFd] = useState(new FormData());
+
+  const handleFile = (ev) => {
+    setFd((prev) => {
+      prev.delete("profile");
+      prev.append("profile", ev.target?.files[0]);
+      return prev;
+    });
+  };
+
+  const sendPicture = async () => {
+    await EditProfilePhoto(props.idProfile, fd);
+  };
+
+  const handleSubmit = () => {
+    sendPicture();
+    setInterval(() => {
+      handleClose();
+      window.location.reload();
+    }, 100);
+  };
+
+  return (
+    <>
+      <Modal show={props.showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cambia l'immagine profilo</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form>
+            <input type="file" onChange={handleFile} />
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            Send
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import { formatDate } from "../hooks/formatDate";
 import { ExperienceModal } from "./CustomModals";
 
 const SingleExperience = ({ experience, updateExp }) => {
@@ -12,17 +13,29 @@ const SingleExperience = ({ experience, updateExp }) => {
   return (
     <>
       <Row className="mt-4 align-items-start experience mx-1 position-relative">
-        <Col xs={2} className="ps-3 pe-0">
-          {" "}
-          <img src="http://via.placeholder.com/50x50" alt="" />{" "}
+        <Col xs={3} sm={2} className="ps-md-3 pe-md-0">
+          <img
+            className="experience-img"
+            src={
+              experience.image
+                ? experience.image
+                : "http://via.placeholder.com/50x50"
+            }
+            alt="experience-img"
+          />
         </Col>
-        <Col xs={10} className="ps-0">
+        <Col xs={9} sm={10}>
           <div>
             <h5>{experience.role}</h5>
             <p>
               {experience.company} <br />
               <span className="text-secondary">
-                {experience.startDate.slice(0, 10)} <br />
+                {experience?.startDate &&
+                  formatDate(experience?.startDate.slice(0, 10))}{" "}
+                {experience.endDate
+                  ? "- " + formatDate(experience.endDate.slice(0, 10))
+                  : ""}
+                <br />
                 {experience.area}
               </span>
             </p>
