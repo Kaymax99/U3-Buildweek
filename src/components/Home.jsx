@@ -3,7 +3,6 @@ import HomeProfileCard from "./HomeComponents/HomeProfileCard";
 import PostLinkedin from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
 
-
 import {
   addPost,
   fetchPosts,
@@ -12,14 +11,10 @@ import {
 } from "./Fetches/FetchPosts";
 import HomeRightCard from "./HomeComponents/HomeRightCards";
 
-import { fetchPosts } from "./Fetches/FetchPosts";
 import CreaUnPost from "./HomeComponents/CreaUnPost";
 import LeftFixedCard from "./HomeComponents/LeftFixedCard";
- HEAD
-claudio
 
 import HomeRightCards from "./HomeComponents/HomeRightCards";
- develop
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -79,14 +74,6 @@ export const Home = () => {
             </Row>
           </Col>
         </Row>
-<<<<<<< HEAD
-        <Col xs={3} md={3}>
-          <Row>
-            <HomeRightCard />
-          </Row>
-        </Col>
-=======
->>>>>>> claudio
       </Container>
     </>
   );
