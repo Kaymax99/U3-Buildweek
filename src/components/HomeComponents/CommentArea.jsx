@@ -2,9 +2,19 @@ import { Col, Image, Row } from "react-bootstrap";
 import { FaRegSmile } from "react-icons/fa";
 import { SlPicture } from "react-icons/sl";
 import unRegistered from "../../assets/imgs/unregistered.png";
+import { PostComments } from "../Fetches/PostComments";
 import SingleComment from "./SingleComment";
 
 const CommentArea = (props) => {
+  const handleSubmit = async (e) => {
+    await PostComments({
+      comment: e.target.value,
+      rate: 0,
+      elementId: props.post,
+    });
+    // INSERIRE ALTRA FETCH
+  };
+
   let mioCommento = {
     author: "Cannavacciuolo",
     comment:
@@ -24,11 +34,12 @@ const CommentArea = (props) => {
         </Col>
         <Col xs={8} className="align-self-center">
           <input
-            autoFocus="true"
+            autoFocus={true}
             className="PostButton"
             ref={props.inputRef}
             type="text"
             placeholder="Aggiungi un commento"
+            onSubmit={handleSubmit}
           />
         </Col>
         <Col xs={2}>

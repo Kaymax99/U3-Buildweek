@@ -14,6 +14,7 @@ import { transformToDate } from "../../hooks/formatDate";
 import { deletePost } from "../Fetches/FetchPosts";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { PostComments } from "../Fetches/PostComments";
 
 import CommentArea from "./CommentArea";
 import { useState } from "react";
@@ -44,7 +45,9 @@ export const PostLinkedin = ({ post, retrievePosts }) => {
   };
 
   const handleClick = () => {
-    ref.current.focus();
+    if (ref) {
+      ref.current.focus();
+    }
   };
 
   return (
@@ -162,7 +165,11 @@ export const PostLinkedin = ({ post, retrievePosts }) => {
         </Row>
         <Row>
           {showCommentArea && (
-            <CommentArea image={profile?.image} inputRef={ref} />
+            <CommentArea
+              image={profile?.image}
+              inputRef={ref}
+              post={post._id}
+            />
           )}
         </Row>
       </div>
