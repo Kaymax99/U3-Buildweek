@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 // import { useScrollPosition } from "../../hooks/useScrollPosition";
 
-function LeftFixedCard() {
+export const LeftFixedCard = () => {
   // const scrollPosition = useScrollPosition();
   // console.log(scrollPosition);
   return (
@@ -22,6 +22,4 @@ function LeftFixedCard() {
       <p className="my-2 text-muted fw-semibold">Scopri di più</p>
     </Card>
   );
-}
-
-export default LeftFixedCard;
+};
