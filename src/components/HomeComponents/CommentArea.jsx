@@ -9,17 +9,23 @@ import { useEffect, useState } from "react";
 const CommentArea = (props) => {
   const [comments, setComments] = useState([]);
 
+  const [commentText, setCommentText] = useState("");
+  const handleChange = (e) => {
+    setCommentText(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
+    e.preventDefault();
     await PostComments({
-      comment: e.target.value,
-      rate: 0,
+      comment: commentText,
+      rate: 1,
       elementId: props.post,
     });
-    // INSERIRE ALTRA FETCH
+    await GetComments(props.post);
   };
 
   const retrieveData = async () => {
-    let data = await GetComments();
+    let data = await GetComments(props.post);
     setComments(data);
     //console.log(data);
   };
@@ -46,14 +52,16 @@ const CommentArea = (props) => {
           />
         </Col>
         <Col xs={8} className="align-self-center">
-          <input
-            autoFocus={true}
-            className="PostButton"
-            ref={props.inputRef}
-            type="text"
-            placeholder="Aggiungi un commento"
-            onSubmit={handleSubmit}
-          />
+          <form onSubmit={handleSubmit}>
+            <input
+              autoFocus={true}
+              className="PostButton"
+              //   ref={props.inputRef}
+              type="text"
+              placeholder="Aggiungi un commento"
+              onChange={handleChange}
+            />
+          </form>
         </Col>
         <Col xs={2}>
           <div className="text-dark fs-6">
@@ -69,7 +77,9 @@ const CommentArea = (props) => {
       </Row>
       <Row>
         {comments?.length > 0 &&
-          comments?.map((element, i) => <SingleComment comment={element} />)}
+          comments?.map((element, i) => (
+            <SingleComment key={i} comment={element} />
+          ))}
       </Row>
     </div>
   );

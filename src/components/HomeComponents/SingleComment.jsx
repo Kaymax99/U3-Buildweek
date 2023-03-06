@@ -3,6 +3,7 @@ import unregistered from "../../assets/imgs/unregistered.png";
 import { transformToDate } from "../../hooks/formatDate";
 
 const SingleComment = ({ comment }) => {
+  // console.log(comment);
   return (
     <>
       <Col xs={2}>
@@ -11,7 +12,7 @@ const SingleComment = ({ comment }) => {
       <Col xs={10}>
         <div className="single_comment_container px-3 mb-3 pb-2">
           <Row className="justify-content-between mb-3">
-            <Col xs={8} className="mt-2">
+            <Col xs={8} className="mt-2 fw-bold">
               {comment.author}
             </Col>
             <Col xs={4} className="mt-2 text-secondary">

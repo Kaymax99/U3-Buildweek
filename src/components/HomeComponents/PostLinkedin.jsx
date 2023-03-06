@@ -45,9 +45,9 @@ export const PostLinkedin = ({ post, retrievePosts }) => {
   };
 
   const handleClick = () => {
-    if (ref) {
-      ref.current.focus();
-    }
+    // if (ref) {
+    //   ref.current.focus();
+    // }
   };
 
   return (
