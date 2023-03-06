@@ -2,10 +2,13 @@ import { Col, Image, Row } from "react-bootstrap";
 import { FaRegSmile } from "react-icons/fa";
 import { SlPicture } from "react-icons/sl";
 import unRegistered from "../../assets/imgs/unregistered.png";
-import { PostComments } from "../Fetches/PostComments";
+import { GetComments, PostComments } from "../Fetches/FetchComments";
 import SingleComment from "./SingleComment";
+import { useEffect, useState } from "react";
 
 const CommentArea = (props) => {
+  const [comments, setComments] = useState([]);
+
   const handleSubmit = async (e) => {
     await PostComments({
       comment: e.target.value,
@@ -15,12 +18,22 @@ const CommentArea = (props) => {
     // INSERIRE ALTRA FETCH
   };
 
-  let mioCommento = {
-    author: "Cannavacciuolo",
-    comment:
-      "La laurea in psicologia può aprire molte strade oltre a quella dello psicologo, per fortuna con un po' di specializzazione aggiuntiva si ha l'imbarazzo della scelta: risorse umane, marketing, assistenza clienti, vendite, etc...per orientarsi meglio sulla direzione due buone domande potrebbero essere: In quali attività operative i miei punti di forza mi farebbero spiccare? Quali problemi che hanno le aziende/persone mi piacerebbe aiutare a risolvere?",
-    createdAt: "2023-03-05",
+  const retrieveData = async () => {
+    let data = await GetComments();
+    setComments(data);
+    //console.log(data);
   };
+
+  useEffect(() => {
+    retrieveData();
+  }, []);
+
+  //   let mioCommento = {
+  //     author: "Cannavacciuolo",
+  //     comment:
+  //       "La laurea in psicologia può aprire molte strade oltre a quella dello psicologo, per fortuna con un po' di specializzazione aggiuntiva si ha l'imbarazzo della scelta: risorse umane, marketing, assistenza clienti, vendite, etc...per orientarsi meglio sulla direzione due buone domande potrebbero essere: In quali attività operative i miei punti di forza mi farebbero spiccare? Quali problemi che hanno le aziende/persone mi piacerebbe aiutare a risolvere?",
+  //     createdAt: "2023-03-05",
+  //   };
 
   return (
     <div className="contenitore-commenti">
@@ -55,7 +68,8 @@ const CommentArea = (props) => {
         </Col>
       </Row>
       <Row>
-        <SingleComment comment={mioCommento} />
+        {comments?.length > 0 &&
+          comments?.map((element, i) => <SingleComment comment={element} />)}
       </Row>
     </div>
   );
