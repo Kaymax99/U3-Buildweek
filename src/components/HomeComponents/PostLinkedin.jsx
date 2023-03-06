@@ -15,7 +15,15 @@ import { deletePost } from "../Fetches/FetchPosts";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+import CommentArea from "./CommentArea";
+import { useState } from "react";
+import { useRef } from "react";
+
 export const PostLinkedin = ({ post, retrievePosts }) => {
+  const ref = useRef(null);
+
+  const [showCommentArea, setShowCommentArea] = useState(false);
+
   const profile = useSelector((state) => state.profile.content);
 
   const randomReactions = () => {
@@ -33,6 +41,10 @@ export const PostLinkedin = ({ post, retrievePosts }) => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleClick = () => {
+    ref.current.focus();
   };
 
   return (
@@ -132,7 +144,12 @@ export const PostLinkedin = ({ post, retrievePosts }) => {
             <Button>
               <HandThumbsUp /> Consiglia
             </Button>
-            <Button>
+            <Button
+              onClick={() => {
+                setShowCommentArea(true);
+                handleClick();
+              }}
+            >
               <ChatText /> Commenta
             </Button>
             <Button>
@@ -142,6 +159,11 @@ export const PostLinkedin = ({ post, retrievePosts }) => {
               <RiSendPlaneFill /> Invia
             </Button>
           </div>
+        </Row>
+        <Row>
+          {showCommentArea && (
+            <CommentArea image={profile?.image} inputRef={ref} />
+          )}
         </Row>
       </div>
     </>

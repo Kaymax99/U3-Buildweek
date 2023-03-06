@@ -34,6 +34,8 @@ export const ProfileModal = ({
     area: "",
   });
 
+  const [experienceId, setExperienceId] = useState();
+
   useEffect(() => {
     if (profile) {
       setProfileData({
