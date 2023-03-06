@@ -131,6 +131,8 @@
 .PostProfileImg {
   width: 50px;
   height: 50px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
   border: solid 1px lightgrey;
   border-radius: 100%;
 }
@@ -243,5 +245,17 @@
   p {
     text-align: center;
     cursor: pointer;
+  }
+}
+
+// Area commenti
+.single_comment_container {
+  background-color: #f2f2f2;
+  border-radius: 0 20px 20px 20px;
+  .text-secondary {
+    font-size: 0.7em;
+  }
+  .testo_comment {
+    width: 100%;
   }
 }

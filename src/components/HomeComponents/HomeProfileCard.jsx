@@ -10,7 +10,7 @@ import bg from "../../assets/imgs/bg.jpg";
 import unRegistered from "../../assets/imgs/unregistered.png";
 import { useSelector } from "react-redux";
 
-function HomeProfileCard() {
+export const HomeProfileCard = () => {
   const profile = useSelector((state) => state.profile.content);
   return (
     <>
@@ -69,6 +69,4 @@ function HomeProfileCard() {
       </div>
     </>
   );
-}
-
-export default HomeProfileCard;
+};
