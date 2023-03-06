@@ -10,9 +10,10 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import like from "../../assets/imgs/like.svg";
 import clap from "../../assets/imgs/clap.svg";
 import love from "../../assets/imgs/love.svg";
-import { formatDate, transformToDate } from "../../hooks/formatDate";
+import { transformToDate } from "../../hooks/formatDate";
 import { deletePost } from "../Fetches/FetchPosts";
 import { useSelector } from "react-redux";
+import CommentArea from "./CommentArea";
 
 const PostLinkedin = ({ post, retrievePosts }) => {
   const profile = useSelector((state) => state.profile.content);
@@ -140,6 +141,9 @@ const PostLinkedin = ({ post, retrievePosts }) => {
               <RiSendPlaneFill /> Invia
             </Button>
           </div>
+        </Row>
+        <Row>
+          <CommentArea image={profile?.image} />
         </Row>
       </div>
     </>
