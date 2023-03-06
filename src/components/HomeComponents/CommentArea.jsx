@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { Col, Image, Row } from "react-bootstrap";
 import { FaRegSmile } from "react-icons/fa";
 import { SlPicture } from "react-icons/sl";
@@ -25,6 +24,7 @@ const CommentArea = (props) => {
         </Col>
         <Col xs={8} className="align-self-center">
           <input
+            autoFocus="true"
             className="PostButton"
             ref={props.inputRef}
             type="text"
