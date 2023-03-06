@@ -14,8 +14,14 @@ import { transformToDate } from "../../hooks/formatDate";
 import { deletePost } from "../Fetches/FetchPosts";
 import { useSelector } from "react-redux";
 import CommentArea from "./CommentArea";
+import { useState } from "react";
+import { useRef } from "react";
 
 const PostLinkedin = ({ post, retrievePosts }) => {
+  const ref = useRef(null);
+
+  const [showCommentArea, setShowCommentArea] = useState(false);
+
   const profile = useSelector((state) => state.profile.content);
 
   const randomReactions = () => {
@@ -33,6 +39,10 @@ const PostLinkedin = ({ post, retrievePosts }) => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleClick = () => {
+    ref.current.focus();
   };
 
   return (
@@ -131,7 +141,12 @@ const PostLinkedin = ({ post, retrievePosts }) => {
             <Button>
               <HandThumbsUp /> Consiglia
             </Button>
-            <Button>
+            <Button
+              onClick={() => {
+                setShowCommentArea(true);
+                handleClick();
+              }}
+            >
               <ChatText /> Commenta
             </Button>
             <Button>
@@ -143,7 +158,9 @@ const PostLinkedin = ({ post, retrievePosts }) => {
           </div>
         </Row>
         <Row>
-          <CommentArea image={profile?.image} />
+          {showCommentArea && (
+            <CommentArea image={profile?.image} inputRef={ref} />
+          )}
         </Row>
       </div>
     </>
