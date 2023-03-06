@@ -20,8 +20,8 @@ export const transformToDate = (textDate) => {
   };
 
   switch (true) {
-    //se inferiore a 5 min
-    case minuteDifference < 5:
+    //se inferiore a 1 min
+    case minuteDifference < 1:
       return "Adesso";
 
     //se inferiore a 1 ora
