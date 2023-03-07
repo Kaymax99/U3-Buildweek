@@ -1,4 +1,4 @@
-import { Card, Col, Container, ListGroup, Row, Spinner } from "react-bootstrap";
+import { Card, Col, Container, Row, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logoLinkedin from "../../assets/imgs/Linkedin-Logo-700x394.png";
 import { InfoSquareFill } from "react-bootstrap-icons";
