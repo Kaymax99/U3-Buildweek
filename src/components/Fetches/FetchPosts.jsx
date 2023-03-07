@@ -18,7 +18,7 @@ export const fetchPosts = async () => {
       console.log("Response is not OK", response.status);
     }
   } catch (error) {
-    console.log("ERRORE CATCH", error);
+    console.error("ERRORE CATCH", error);
   }
 };
 

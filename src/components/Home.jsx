@@ -6,14 +6,16 @@ import { fetchPosts } from "./Fetches/FetchPosts";
 import { CreaUnPost } from "./HomeComponents/CreaUnPost";
 import { LeftFixedCard } from "./HomeComponents/LeftFixedCard";
 import { HomeRightCards } from "./HomeComponents/HomeRightCards";
+import { useSelector } from "react-redux";
 
 export const Home = () => {
-  const [posts, setPosts] = useState([]);
   const [titles, setTitles] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [friendsPosts, setFriendsPosts] = useState([]);
+  const friendsArray = useSelector((state) => state.friends.content);
 
-  const retrievePosts = async () => {
+  const retrieveAllRecentPosts = async () => {
     const data = await fetchPosts();
-    // console.log(data.reverse().slice(0, 20));
     setTitles(() => {
       return data;
     });
@@ -22,9 +24,26 @@ export const Home = () => {
     });
   };
 
+  const retrieveAllRecentPostsFriends = async () => {
+    const data = await fetchPosts();
+    setTitles(() => {
+      return data.slice(0, 5);
+    });
+
+    setFriendsPosts((prev) => {
+      return [
+        ...prev,
+        ...data
+          .filter((post) =>
+            friendsArray.map((friend) => friend?._id).includes(post.user?._id)
+          )
+          .reverse(),
+      ];
+    });
+  };
+
   useEffect(() => {
-    retrievePosts();
-    // console.log(posts);
+    retrieveAllRecentPostsFriends();
   }, []);
 
   return (
@@ -40,23 +59,23 @@ export const Home = () => {
 
           <Col xs={12} md={7} lg={5}>
             <Row>
-              <CreaUnPost retrievePosts={retrievePosts} />
+              <CreaUnPost retrievePosts={retrieveAllRecentPostsFriends} />
             </Row>
             <Row>
               <hr />
             </Row>
             <Row>
-              {posts?.length === 0 ? (
+              {friendsPosts?.length === 0 ? (
                 <div className="text-center mt-5">
                   <Spinner variant="primary" />
                 </div>
               ) : (
-                posts.map((post, i) => {
+                friendsPosts.map((post, i) => {
                   return (
                     <PostLinkedin
                       key={"post-" + i}
                       post={post}
-                      retrievePosts={retrievePosts}
+                      retrievePosts={retrieveAllRecentPostsFriends}
                     />
                   );
                 })
@@ -74,3 +93,15 @@ export const Home = () => {
     </>
   );
 };
+
+// for (let i = 0; i < data.length; i++) {
+//   const post = data[i];
+//   for (let j = 0; j < friendsArray.length; j++) {
+//     const friend = friendsArray[j];
+//     console.log(post.user._id, friend._id);
+//     // console.log(post?.user?._id);
+//     if (post.user.username === friend.username) {
+//       postAmici.push(post);
+//     }
+//   }
+// }
