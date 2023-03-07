@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Navbar, Spinner } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import { MdPhotoCamera } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import bg from "../assets/imgs/bg.jpg";
 import { ProfileModal, ImageModal } from "./CustomModals";
@@ -14,6 +14,7 @@ import {
   ThreeDots,
 } from "react-bootstrap-icons";
 import { useScrollPosition } from "../hooks/useScrollPosition";
+import { addToFriendsAction, removeFromFriendsAction } from "../redux/actions";
 
 const InfoSection = ({ profileData, updateData }) => {
   const [experienceArray, setExperienceArray] = useState([]);
@@ -28,6 +29,8 @@ const InfoSection = ({ profileData, updateData }) => {
 
   const params = useParams();
   const scrollPosition = useScrollPosition();
+  const dispatch = useDispatch();
+  const friends = useSelector((state) => state.friends.content);
 
   // fetch delle esperienze del profilo
   const retrieveExperiences = async (id) => {
@@ -61,6 +64,14 @@ const InfoSection = ({ profileData, updateData }) => {
     updateExp();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile._id]);
+
+  const connectFn = () => {
+    dispatch(addToFriendsAction(profile));
+  };
+  const disconnectFn = () => {
+    dispatch(removeFromFriendsAction(profile));
+  };
+
   return (
     <>
       <Navbar
@@ -97,14 +108,23 @@ const InfoSection = ({ profileData, updateData }) => {
               </>
             ) : (
               <>
-                <Button variant="outline-primary rounded-pill py-1 px-3 me-2 fw-bold fs-7">
-                  <ShieldLockFill className="me-1 mb-1" />
-                  <span>Messaggio</span>
-                </Button>
-                <Button variant="primary rounded-pill py-1 px-3 fw-bold fs-7">
-                  <PersonPlusFill className="me-1 mb-1" />{" "}
-                  <span>Collegati</span>
-                </Button>
+                {friends.findIndex((person) => person._id === profile._id) ===
+                -1 ? (
+                  <Button
+                    variant="primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7"
+                    onClick={connectFn}
+                  >
+                    <PersonPlusFill className="me-1 mb-1" />
+                    <span>Collegati</span>
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outline-primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7"
+                    onClick={disconnectFn}
+                  >
+                    ✔<span>Collegato</span>
+                  </Button>
+                )}
               </>
             )}
           </div>
@@ -180,10 +200,24 @@ const InfoSection = ({ profileData, updateData }) => {
                     </>
                   ) : (
                     <>
-                      <Button variant="primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7">
-                        <PersonPlusFill className="me-1 mb-1" />{" "}
-                        <span>Collegati</span>
-                      </Button>
+                      {friends.findIndex(
+                        (person) => person._id === profile._id
+                      ) === -1 ? (
+                        <Button
+                          variant="primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7"
+                          onClick={connectFn}
+                        >
+                          <PersonPlusFill className="me-1 mb-1" />
+                          <span>Collegati</span>
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="outline-primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7"
+                          onClick={disconnectFn}
+                        >
+                          ✔<span>Collegato</span>
+                        </Button>
+                      )}
                       <Button variant="outline-primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7">
                         <ShieldLockFill className="me-1 mb-1" />
                         <span>Messaggio</span>

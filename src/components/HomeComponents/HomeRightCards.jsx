@@ -1,19 +1,8 @@
-import { useEffect, useState } from "react";
-import { fetchPosts } from "../Fetches/FetchPosts";
 import { Card, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logoLinkedin from "../../assets/imgs/Linkedin-Logo-700x394.png";
-function HomeRightCards() {
-  const [titles, setTitles] = useState([]);
 
-  useEffect(() => {
-    const getPostTitles = async () => {
-      const titles = await fetchPosts();
-      setTitles(titles);
-    };
-    getPostTitles();
-  }, []);
-  // console.log(titles.reverse().slice(0, 5));
+export const HomeRightCards = ({ titles }) => {
   return (
     <>
       <Card>
@@ -28,7 +17,7 @@ function HomeRightCards() {
                     By:
                     <a href={`/` + post.user._id}>
                       <p className="bold">{post.user.name}</p>
-                    </a>{" "}
+                    </a>
                     Contenuto:
                     <p className="bold"> {post.text.slice(0, 20)}...</p>
                   </li>
@@ -75,13 +64,11 @@ function HomeRightCards() {
 
         <div className="logoImg mt-3">
           <div>
-            <img src={logoLinkedin} alt="" />{" "}
+            <img src={logoLinkedin} alt="" />
             <span className="fw-semibold"> Linkedin Corporation ©2023</span>
           </div>
         </div>
       </div>
     </>
   );
-}
-
-export default HomeRightCards;
+};

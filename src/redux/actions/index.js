@@ -1,5 +1,11 @@
 export const GET_PROFILE = "GET_PROFILE";
 export const GET_PEOPLE = "GET_PEOPLE";
+export const GET = "GET";
+export const POST = "POST";
+export const PUT = "PUT";
+export const DELETE = "DELETE";
+export const ADD_TO_FRIENDS = "ADD_TO_FRIENDS";
+export const REMOVE_FROM_FRIENDS = "REMOVE_FROM_FRIENDS";
 
 export const getProfileAction = (idProfile, type) => {
   return async (dispatch, getState) => {
@@ -26,3 +32,25 @@ export const getProfileAction = (idProfile, type) => {
     }
   };
 };
+
+export const addToFriendsAction = (friend) => {
+  return (dispatch, getState) => {
+    const currentState = getState();
+
+    if (
+      currentState.friends.content.findIndex(
+        (person) => person._id === friend._id
+      ) === -1
+    ) {
+      dispatch({
+        type: ADD_TO_FRIENDS,
+        payload: friend,
+      });
+    }
+  };
+};
+
+export const removeFromFriendsAction = (id) => ({
+  type: REMOVE_FROM_FRIENDS,
+  payload: id,
+});

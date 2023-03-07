@@ -1,17 +1,22 @@
 import { Container, Row, Col, Spinner } from "react-bootstrap";
-import HomeProfileCard from "./HomeComponents/HomeProfileCard";
-import PostLinkedin from "./HomeComponents/PostLinkedin";
+import { HomeProfileCard } from "./HomeComponents/HomeProfileCard";
+import { PostLinkedin } from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
 import { fetchPosts } from "./Fetches/FetchPosts";
-import CreaUnPost from "./HomeComponents/CreaUnPost";
-import LeftFixedCard from "./HomeComponents/LeftFixedCard";
-import HomeRightCards from "./HomeComponents/HomeRightCards";
+import { CreaUnPost } from "./HomeComponents/CreaUnPost";
+import { LeftFixedCard } from "./HomeComponents/LeftFixedCard";
+import { HomeRightCards } from "./HomeComponents/HomeRightCards";
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
+  const [titles, setTitles] = useState([]);
 
   const retrievePosts = async () => {
     const data = await fetchPosts();
+    // console.log(data.reverse().slice(0, 20));
+    setTitles(() => {
+      return data.slice(0, 5);
+    });
     setPosts(() => {
       return data.reverse().slice(0, 20);
     });
@@ -59,9 +64,9 @@ export const Home = () => {
             </Row>
           </Col>
 
-          <Col sm={0} lg={3}>
+          <Col sm={0} lg={3} className="d-none d-lg-block">
             <Row>
-              <HomeRightCards />
+              <HomeRightCards titles={titles} />
             </Row>
           </Col>
         </Row>
