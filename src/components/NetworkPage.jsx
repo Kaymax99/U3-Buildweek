@@ -3,6 +3,17 @@ import { Card, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-bootstrap-icons";
 import php from "../assets/imgs/placeholderpubblicità.png";
 import logoLinkedin from "../assets/imgs/Linkedin-Logo-700x394.png";
+import {
+  FaUserFriends,
+  FaRegAddressBook,
+  FaUser,
+  FaRegCalendarAlt,
+  FaRegFileAlt,
+  FaRegEnvelope,
+  FaHashtag,
+} from "react-icons/fa";
+import React from "react";
+
 function Network() {
   const [profiles, setProfiles] = useState([]);
 
@@ -29,21 +40,44 @@ function Network() {
   const MAX_LENGTH = 100;
 
   return (
-    <div className="container mt-3">
-      <h2>List of Friends</h2>
+    <div className="container newnew mt-3">
       <Row>
         <Col md={3}>
           <Card className="sidecard">
-            <Card.Body>
+            <Card.Body className="newsli">
               <h4>Gestisci la tua rete</h4>
               <ul>
-                <li>Collegamenti</li>
-                <li>Contatti</li>
-                <li>Persone che segui e follower</li>
-                <li>Eventi</li>
-                <li>Pagine</li>
-                <li>News Letter</li>
-                <li>Hashtag</li>
+                {" "}
+                <li>
+                  {" "}
+                  <FaUserFriends />
+                  Collegamenti
+                </li>
+                <li>
+                  <FaRegAddressBook />
+                  Contatti
+                </li>
+                <li>
+                  <FaUser />
+                  Persone che segui e follower
+                </li>
+                <li>
+                  {" "}
+                  <FaRegCalendarAlt />
+                  Eventi
+                </li>
+                <li>
+                  <FaRegFileAlt />
+                  Pagine
+                </li>
+                <li>
+                  <FaRegEnvelope />
+                  News Letter
+                </li>
+                <li>
+                  <FaHashtag />
+                  Hashtag
+                </li>
               </ul>
               <hr />
               <Card.Img variant="top" src={php} />
@@ -51,21 +85,22 @@ function Network() {
               <hr />
               <div className="footerlinks">
                 <div>
-                  <Link>Informazioni</Link> <Link>Accessibilità</Link>
+                  <a href="#"> Informazioni</a> <a href="#">Accessibilità</a>
                 </div>
                 <div>
-                  <Link>Centro Assistenza</Link>{" "}
-                  <Link>Privacy e condizioni</Link>
+                  <a href="#">Centro Assistenza</a>{" "}
+                  <a href="#">Privacy e condizioni</a>
                 </div>
                 <div>
-                  <Link>Opzioni per gli annunci pubblicitari</Link>
+                  <a href="#">Opzioni per gli annunci pubblicitari</a>
                 </div>
                 <div>
-                  <Link>Pubblicità</Link> <Link>Servizi alle aziende</Link>
+                  <a href="#">Pubblicità</a>{" "}
+                  <a href="#">Servizi alle aziende</a>
                 </div>
                 <div>
-                  <Link>Scarica l'app Linkedin</Link>
-                  <Link>Altro</Link>
+                  <a href="#">Scarica l'app Linkedin</a>
+                  <a href="#">Altro</a>
                 </div>
 
                 <div className="logoImg mt-3">
