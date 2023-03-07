@@ -15,7 +15,7 @@ export const Home = () => {
     const data = await fetchPosts();
     // console.log(data.reverse().slice(0, 20));
     setTitles(() => {
-      return data.slice(0, 5);
+      return data;
     });
     setPosts(() => {
       return data.reverse().slice(0, 20);
