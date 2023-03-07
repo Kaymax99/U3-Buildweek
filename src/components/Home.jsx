@@ -14,7 +14,7 @@ export const Home = () => {
   const retrievePosts = async () => {
     const data = await fetchPosts();
     setTitles(() => {
-      return data.slice(0, 5);
+      return data;
     });
     setPosts(() => {
       return data.reverse().slice(0, 20);

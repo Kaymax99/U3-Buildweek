@@ -2,10 +2,14 @@ import { Card, Col, Container, ListGroup, Row, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logoLinkedin from "../../assets/imgs/Linkedin-Logo-700x394.png";
 import { InfoSquareFill } from "react-bootstrap-icons";
-import { transformToDate } from "../../hooks/formatDate";
-import { ChevronCompactDown } from "react-bootstrap-icons";
+import { ChevronCompactDown, ChevronCompactUp } from "react-bootstrap-icons";
+import { useState } from "react";
+import SingleNews from "./SingleNews";
 
 export const HomeRightCards = ({ titles }) => {
+  const [otherNews, setOtherNews] = useState(false);
+  const [newsParam, setNewsParam] = useState(5);
+
   return (
     <>
       <Container className="news-container rounded pb-2">
@@ -20,33 +24,45 @@ export const HomeRightCards = ({ titles }) => {
         <Row>
           <Col className="ms-3">
             <ul className="lista">
-              {titles.length > 0 ? (
-                titles.map((post, i) => (
-                  <div>
-                    <a href={`/` + post.user._id}>
-                      <li key={i}>
-                        <p>{post?.text}</p>
-                      </li>
-                    </a>
-                    <small>
-                      {post?.createdAt && transformToDate(post.createdAt)}
-                    </small>
-                  </div>
-                ))
-              ) : (
+              {titles.length === 0 ? (
                 <div className="text-center my-5">
                   <Spinner variant="primary" />
                 </div>
+              ) : (
+                titles
+                  .slice(0, newsParam)
+                  .map((post, i) => <SingleNews key={i} post={post} />)
               )}
             </ul>
           </Col>
         </Row>
+
+        {/* <ul className="lista">
+          {titles.length > 0 ? (
+            titles
+              .slice(0, 5)
+              .map((post, i) => <SingleNews key={i} post={post} />)
+          ) : (
+            <div className="text-center my-5">
+              <Spinner variant="primary" />
+            </div>
+          )}
+        </ul> */}
+
         <Row>
           {titles?.length > 0 && (
-            <div className="mt-3">
-              <a href="#/" className="altro">
-                Visualizza altro <ChevronCompactDown />
-              </a>
+            <div className="mt-2">
+              <button
+                onClick={() => {
+                  setOtherNews(!otherNews);
+                  !otherNews ? setNewsParam(10) : setNewsParam(5);
+                }}
+                href="#/"
+                className="altro"
+              >
+                {!otherNews ? "Visualizza altro" : "Mostra meno"}
+                {!otherNews ? <ChevronCompactDown /> : <ChevronCompactUp />}
+              </button>
             </div>
           )}
         </Row>
