@@ -82,9 +82,46 @@
 
 // HomeRightCard Component
 
-.listaNews li {
-  list-style-type: disc;
+.news-container {
+  background-color: white;
+  border: 1px solid lightgrey;
+  .lista li {
+    margin-top: 15px;
+    list-style-type: disc;
+    font-size: small;
+    font-weight: 500;
+
+    white-space: nowrap;
+    p {
+      padding-right: 15px;
+      margin: 0;
+      max-width: 270px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  small {
+    font-size: 0.7em;
+    color: rgb(119, 119, 119);
+  }
+  .icona-news {
+    font-size: smaller;
+  }
+  .altro {
+    color: #5e5e5f;
+    background-color: #ebebeb;
+    border-radius: 8px;
+    padding: 2px 8px;
+  }
 }
+
+//ELLIPSIS
+// width: 150px;
+// font-size: 0.9em;
+// text-overflow: ellipsis;
+// overflow: hidden;
+// white-space: nowrap;
+
 .footerlinks {
   margin-top: 10px;
   text-align: center;
