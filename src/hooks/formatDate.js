@@ -20,8 +20,8 @@ export const transformToDate = (textDate) => {
   };
 
   switch (true) {
-    //se inferiore a 5 min
-    case minuteDifference < 5:
+    //se inferiore a 1 min
+    case minuteDifference < 1:
       return "Adesso";
 
     //se inferiore a 1 ora
@@ -31,15 +31,19 @@ export const transformToDate = (textDate) => {
     //se superiore ad un ora ma lo stesso giorno
     case date.toLocaleDateString("it-IT", options) ===
       now.toLocaleDateString("it-IT", options):
-      return Math.floor(minuteDifference / 60) + " ore fa";
+      return Math.floor(minuteDifference / 60) > 1
+        ? Math.floor(minuteDifference / 60) + " ore fa"
+        : "1 ora fa";
 
     //se giorno diverso ma stesso anno
     case date.getFullYear() === now.getFullYear():
       return (
         date.toLocaleDateString("it-IT", options) +
         " alle " +
+        (date.getHours() < 10 ? "0" : "") +
         date.getHours() +
         ":" +
+        (date.getMinutes() < 10 ? "0" : "") +
         date.getMinutes()
       );
 
@@ -48,8 +52,10 @@ export const transformToDate = (textDate) => {
       return (
         date.toLocaleDateString("it-IT", options) +
         " alle " +
+        (date.getHours() < 10 ? "0" : "") +
         date.getHours() +
         ":" +
+        (date.getMinutes() < 10 ? "0" : "") +
         date.getMinutes() +
         " " +
         date.getFullYear()
