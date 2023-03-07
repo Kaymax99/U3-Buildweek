@@ -7,9 +7,10 @@ const initialState = {
 export const peopleReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PEOPLE:
+      // console.log("adding profiles to redux");
       return {
         ...state,
-        content: action.payload,
+        content: [...action.payload],
       };
 
     default:
