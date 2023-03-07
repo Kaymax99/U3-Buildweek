@@ -44,31 +44,6 @@ export const HomeRightCards = ({ titles }) => {
           className="rounded"
         />
       </Card>
-      <div className="footerlinks">
-        <div>
-          <Link>Informazioni</Link> <Link>Accessibilità</Link>
-        </div>
-        <div>
-          <Link>Centro Assistenza</Link> <Link>Privacy e condizioni</Link>
-        </div>
-        <div>
-          <Link>Opzioni per gli annunci pubblicitari</Link>
-        </div>
-        <div>
-          <Link>Pubblicità</Link> <Link>Servizi alle aziende</Link>
-        </div>
-        <div>
-          <Link>Scarica l'app Linkedin</Link>
-          <Link>Altro</Link>
-        </div>
-
-        <div className="logoImg mt-3">
-          <div>
-            <img src={logoLinkedin} alt="" />
-            <span className="fw-semibold"> Linkedin Corporation ©2023</span>
-          </div>
-        </div>
-      </div>
     </>
   );
 };
