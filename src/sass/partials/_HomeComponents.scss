@@ -90,8 +90,10 @@
     list-style-type: disc;
     font-size: small;
     font-weight: 500;
-
     white-space: nowrap;
+    &::marker {
+      color: #5f5f5f;
+    }
     p {
       padding-right: 15px;
       margin: 0;
