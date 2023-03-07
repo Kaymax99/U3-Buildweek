@@ -69,7 +69,7 @@ export const CustomNavbar = () => {
               </Col>
               <Col className="px-0">
                 <Link
-                  to={"/"}
+                  to="/my-network"
                   className="d-flex nav-link flex-column align-items-center p-0"
                 >
                   <PeopleFill className="navIcon" />
