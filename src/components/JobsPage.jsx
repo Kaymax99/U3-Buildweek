@@ -3,15 +3,12 @@ import React from "react";
 import JobsSearchGeneric from "./JobsPageComponents/JobsSearchGeneric";
 import JobsSearchByCompany from "./JobsPageComponents/JobsSearchByCompany";
 import JobsSearchByCategory from "./JobsPageComponents/JobsSearchByCategory";
-import { Col, Row } from "react-bootstrap";
 
 function JobsPage() {
   return (
     <>
       <JobsSearchGeneric />
-
       <JobsSearchByCompany />
-
       <JobsSearchByCategory />
     </>
   );

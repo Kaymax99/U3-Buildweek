@@ -15,7 +15,6 @@ function SearchBar({ onSearch, placeholder }) {
   return (
     <>
       <Container className="SB_Container">
-        <h6>Search Job</h6>
         <input
           className="SB_Input"
           type="text"
