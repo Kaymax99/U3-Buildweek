@@ -15,11 +15,8 @@ import { CreaUnPost } from "./HomeComponents/CreaUnPost";
 import { LeftFixedCard } from "./HomeComponents/LeftFixedCard";
 
 import { HomeRightCards } from "./HomeComponents/HomeRightCards";
-<<<<<<< Updated upstream
-=======
 import { useSelector } from "react-redux";
 import SearchBar from "./SearchBar/searchbarfetch";
->>>>>>> Stashed changes
 
 export const Home = () => {
   const [postCounter, setPostCounter] = useState(5);
