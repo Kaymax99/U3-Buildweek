@@ -20,6 +20,8 @@ import { useSelector } from "react-redux";
 export const Home = () => {
   const [postCounter, setPostCounter] = useState(5);
   const [titles, setTitles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   // const [posts, setPosts] = useState([]);
   const [friendsPosts, setFriendsPosts] = useState([]);
   const friendsArray = useSelector((state) => state.friends.content);
@@ -35,6 +37,7 @@ export const Home = () => {
   // };
 
   const retrieveAllRecentPostsFriends = async () => {
+    setIsLoading(true);
     const data = await fetchPosts();
     setTitles(() => {
       return data.slice(0, 10);
@@ -50,6 +53,8 @@ export const Home = () => {
           .reverse(),
       ];
     });
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -75,11 +80,7 @@ export const Home = () => {
               <hr />
             </Row>
             <Row>
-              {friendsPosts?.length === 0 ? (
-                <div className="text-center mt-5">
-                  <Spinner variant="primary" />
-                </div>
-              ) : (
+              {friendsPosts?.length > 0 && !isLoading ? (
                 friendsPosts.slice(0, postCounter).map((post, i) => {
                   return (
                     <PostLinkedin
@@ -89,10 +90,23 @@ export const Home = () => {
                     />
                   );
                 })
+              ) : isLoading ? (
+                <div className="text-center">
+                  <Spinner variant="primary" />
+                </div>
+              ) : (
+                <div className="text-center">
+                  <span>
+                    Non hai aggiunto ancora nessuno alla tua rete, collegati con
+                    un amico
+                  </span>
+                </div>
               )}
-              <Button onClick={() => setPostCounter(postCounter + 5)}>
-                Altri post
-              </Button>
+              {friendsPosts?.length > 0 && (
+                <Button onClick={() => setPostCounter(postCounter + 5)}>
+                  Altri post
+                </Button>
+              )}
             </Row>
           </Col>
 
