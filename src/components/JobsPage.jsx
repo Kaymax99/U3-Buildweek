@@ -8,6 +8,7 @@ const JobFetch = () => {
   const [jobName, setJobName] = useState("");
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchJobs = async () => {
       const response = await fetch(
         `https://strive-benchmark.herokuapp.com/api/jobs?search=${jobName}`
@@ -40,7 +41,7 @@ const JobFetch = () => {
         </div>
 
         <div className="my-5">
-          {jobs.length > 0 || !isLoading ? (
+          {jobs.length > 0 && !isLoading ? (
             jobs.map((job) => (
               <Row className="row_big" key={"job" + job._id}>
                 <Col sm={12} md={8} className="Col_01">
@@ -52,8 +53,14 @@ const JobFetch = () => {
                 </Col>
               </Row>
             ))
+          ) : isLoading ? (
+            <div className="text-center">
+              <Spinner variant="primary" />
+            </div>
           ) : (
-            <Spinner variant="primary" />
+            <div className="text-center">
+              <span>Nessun Risultato</span>
+            </div>
           )}
         </div>
       </Container>
