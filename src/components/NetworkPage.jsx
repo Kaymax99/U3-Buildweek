@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Card, Button, Row, Col, Form } from "react-bootstrap";
 import { Link } from "react-bootstrap-icons";
 import php from "../assets/imgs/placeholderpubblicità.png";
 import logoLinkedin from "../assets/imgs/Linkedin-Logo-700x394.png";
