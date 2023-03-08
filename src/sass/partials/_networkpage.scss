@@ -8,7 +8,7 @@
 .firstcardnetwork {
   display: flex;
   flex-direction: row;
-  gap: 640px;
+  flex-wrap: wrap;
   margin-bottom: 15px;
 }
 .secondcardnetwork {
