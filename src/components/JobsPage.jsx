@@ -18,7 +18,7 @@ const JobFetch = () => {
       setIsLoading(false);
     };
     fetchJobs();
-  }, [ jobName]);
+  }, [jobName]);
 
   const handleSearch = (value) => {
     setJobName(value);
