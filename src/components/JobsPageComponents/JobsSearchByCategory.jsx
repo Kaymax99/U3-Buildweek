@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Container, Spinner } from "react-bootstrap";
+import { Row, Col, Spinner, Card } from "react-bootstrap";
 import SearchBar from "../SearchBar";
 
 const JobsSearchByCategory = () => {
@@ -30,20 +30,21 @@ const JobsSearchByCategory = () => {
   return (
     <>
       <div className="container newnew mt-3">
-        <div className="my-3">
-          <SearchBar placeholder="Search for jobs by category" onSearch={handleSearch} />
+        <div className="divsearch my-3">
+          <SearchBar placeholder="Search for jobs" onSearch={handleSearch} />
         </div>
 
-        <div className="my-5">
+        <div className="jobcards my-5">
           {jobs.length > 0 && !isLoading ? (
             jobs.map((job) => (
               <Row className="row_big" key={"job" + job._id}>
                 <Col sm={12} md={8} className="Col_01">
-                  <div>
-                    <h4>Job</h4>
-                    <h2>{job.title}</h2>
-                    <h5>Azienda: {job.company_name}</h5>
-                  </div>
+                  <Card style={{ width: "18rem", height: "10rem" }}>
+                    <Card.Body>
+                      <Card.Title>{job.title}</Card.Title>
+                      <Card.Subtitle className="mb-2 text-muted">Azienda: {job.company_name}</Card.Subtitle>
+                    </Card.Body>
+                  </Card>
                 </Col>
               </Row>
             ))
