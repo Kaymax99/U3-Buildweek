@@ -36,19 +36,6 @@ export const HomeRightCards = ({ titles }) => {
             </ul>
           </Col>
         </Row>
-
-        {/* <ul className="lista">
-          {titles.length > 0 ? (
-            titles
-              .slice(0, 5)
-              .map((post, i) => <SingleNews key={i} post={post} />)
-          ) : (
-            <div className="text-center my-5">
-              <Spinner variant="primary" />
-            </div>
-          )}
-        </ul> */}
-
         <Row>
           {titles?.length > 0 && (
             <div className="mt-2">
@@ -60,7 +47,7 @@ export const HomeRightCards = ({ titles }) => {
                 href="#/"
                 className="altro"
               >
-                {!otherNews ? "Visualizza altro" : "Mostra meno"}
+                {!otherNews ? "Visualizza altro " : "Mostra meno "}
                 {!otherNews ? <ChevronCompactDown /> : <ChevronCompactUp />}
               </button>
             </div>
