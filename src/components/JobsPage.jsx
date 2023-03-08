@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Spinner } from "react-bootstrap";
 import SearchBar from "./SearchBar";
 
 const JobFetch = () => {
-  const [job, setJob] = useState("");
+  const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [jobName, setJobName] = useState("");
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs?search=${jobName}`);
+      const response = await fetch(
+        `https://strive-benchmark.herokuapp.com/api/jobs?search=${jobName}`
+      );
       if (response.ok) {
-        const data = await response.json();
-        // setJob(data);
-        // console.log(job);
+        const jobsArray = await response.json();
+        setJobs(jobsArray.data);
+        console.log(jobs);
       }
       setIsLoading(false);
     };
@@ -21,12 +23,14 @@ const JobFetch = () => {
   }, [jobName]);
 
   const handleSearch = (value) => {
+    console.log(value);
+
     setJobName(value);
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <>
@@ -35,17 +39,23 @@ const JobFetch = () => {
           <SearchBar placeholder="Search for jobs" onSearch={handleSearch} />
         </div>
 
-        <Container className="my-5">
-          <Row className="row_big">
-            <Col sm={12} md={8} className="Col_01">
-              <div>
-                <h4>Job</h4>
-                <h2>{job.title}</h2>
-                <h5>Description: {job.description}</h5>
-              </div>
-            </Col>
-          </Row>
-        </Container>
+        <div className="my-5">
+          {jobs.length > 0 || !isLoading ? (
+            jobs.map((job) => (
+              <Row className="row_big" key={"job" + job._id}>
+                <Col sm={12} md={8} className="Col_01">
+                  <div>
+                    <h4>Job</h4>
+                    <h2>{job.title}</h2>
+                    <h5>Azienda: {job.company_name}</h5>
+                  </div>
+                </Col>
+              </Row>
+            ))
+          ) : (
+            <Spinner variant="primary" />
+          )}
+        </div>
       </Container>
     </>
   );

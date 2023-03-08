@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Container, Button } from "react-bootstrap";
 
 function SearchBar({ onSearch, placeholder }) {
-  const [searchValue, setSearchValue] = useState();
+  const [searchValue, setSearchValue] = useState("");
 
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
@@ -16,7 +16,13 @@ function SearchBar({ onSearch, placeholder }) {
     <>
       <Container className="SB_Container">
         <h6>Search Job</h6>
-        <input className="SB_Input" type="text" value={searchValue} onChange={handleInputChange} placeholder={placeholder}/>
+        <input
+          className="SB_Input"
+          type="text"
+          value={searchValue}
+          onChange={handleInputChange}
+          placeholder={placeholder}
+        />
         <Button className="SB_button" onClick={handleSearch}>
           Search
         </Button>
