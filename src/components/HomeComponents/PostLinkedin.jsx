@@ -14,6 +14,8 @@ import { transformToDate } from "../../hooks/formatDate";
 import { deletePost } from "../Fetches/FetchPosts";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { PostComments } from "../Fetches/FetchComments";
+
 import CommentArea from "./CommentArea";
 import { useState } from "react";
 import { useRef } from "react";
