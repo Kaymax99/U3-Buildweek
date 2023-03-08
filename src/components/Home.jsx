@@ -16,6 +16,7 @@ import { LeftFixedCard } from "./HomeComponents/LeftFixedCard";
 
 import { HomeRightCards } from "./HomeComponents/HomeRightCards";
 import { useSelector } from "react-redux";
+import SearchBar from "./SearchBar/searchbarfetch";
 
 export const Home = () => {
   const [postCounter, setPostCounter] = useState(5);
@@ -62,6 +63,7 @@ export const Home = () => {
         <Row className="justify-content-evenly">
           <Col xs={12} md={4} lg={3}>
             <Row>
+              <SearchBar />
               <HomeProfileCard />
               <LeftFixedCard />
             </Row>

@@ -143,6 +143,13 @@ function Network() {
                             profile.bio.slice(0, MAX_LENGTH) +
                               (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
                         </Card.Text>
+                        <Button
+                          className="bottonNetwork"
+                          variant="primary"
+                          onClick={() => disconnectFn(profile)}
+                        >
+                          Smetti di seguire
+                        </Button>
                       </Card.Body>
                       <Button
                         className="bottonNetwork align-self-center mb-2"
@@ -182,6 +189,29 @@ function Network() {
                           profile.bio.slice(0, MAX_LENGTH) +
                             (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
                       </Card.Text>
+                      {friendsArray.findIndex(
+                        (friend) => friend._id === profile._id
+                      ) === -1 ? (
+                        <Button
+                          className="bottonNetwork"
+                          variant="primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7"
+                          onClick={() => {
+                            connectFn(profile);
+                          }}
+                        >
+                          Segui
+                        </Button>
+                      ) : (
+                        <Button
+                          className="bottonNetwork"
+                          variant="outline-primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7"
+                          onClick={() => {
+                            disconnectFn(profile);
+                          }}
+                        >
+                          ✔<span>Collegato</span>
+                        </Button>
+                      )}
                     </Card.Body>
                     {friendsArray.findIndex(
                       (friend) => friend._id === profile._id

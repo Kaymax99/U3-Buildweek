@@ -1,0 +1,22 @@
+.jobcards {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-left: 50px;
+  gap: 10px;
+}
+.divsearch {
+  display: flex;
+  text-align: center;
+  gap: 2px;
+}
+.divsearch input {
+  height: 2.5rem;
+  border: 3px solid #0b5ed7;
+  border-radius: 20px;
+  margin-right: 5px;
+}
+.divsearch button {
+  border: 1px solid #0b5ed7;
+  border-radius: 20px;
+}
