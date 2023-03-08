@@ -2,9 +2,18 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { HomeProfileCard } from "./HomeComponents/HomeProfileCard";
 import { PostLinkedin } from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
-import { fetchPosts } from "./Fetches/FetchPosts";
+
+import {
+  addPost,
+  fetchPosts,
+  fetchPostById,
+  deletePost,
+} from "./Fetches/FetchPosts";
+import HomeRightCard from "./HomeComponents/HomeRightCards";
+
 import { CreaUnPost } from "./HomeComponents/CreaUnPost";
 import { LeftFixedCard } from "./HomeComponents/LeftFixedCard";
+
 import { HomeRightCards } from "./HomeComponents/HomeRightCards";
 import { useSelector } from "react-redux";
 
@@ -17,7 +26,7 @@ export const Home = () => {
   const retrieveAllRecentPosts = async () => {
     const data = await fetchPosts();
     setTitles(() => {
-      return data;
+      return data.slice(0, 5);
     });
     setPosts(() => {
       return data.reverse().slice(0, 20);
@@ -27,7 +36,7 @@ export const Home = () => {
   const retrieveAllRecentPostsFriends = async () => {
     const data = await fetchPosts();
     setTitles(() => {
-      return data.slice(0, 5);
+      return data.slice(0, 10);
     });
 
     setFriendsPosts((prev) => {

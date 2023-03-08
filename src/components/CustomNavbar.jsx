@@ -1,4 +1,14 @@
-import { Button, Card, Col, Container, Dropdown, Form, Nav, Navbar, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Dropdown,
+  Form,
+  Nav,
+  Navbar,
+  Row,
+} from "react-bootstrap";
 import {
   Search,
   HouseDoorFill,
@@ -20,25 +30,39 @@ export const CustomNavbar = () => {
   return (
     <Navbar bg="white" className="py-0 border-bottom" fixed="top">
       <Container className="px-0">
-        <Nav className="me-auto my-lg-0 align-items-center w-100" style={{ maxHeight: "100px" }}>
+        <Nav
+          className="me-auto my-lg-0 align-items-center w-100"
+          style={{ maxHeight: "100px" }}
+        >
           <Col xs={1} lg={3} className="d-flex justify-content-center ps-2">
             <Link to={"/"}>
               <img src={logo} alt="logo" className="logo me-lg-3"></img>
             </Link>
             <Form className="d-none d-lg-block">
-              <Form.Control type="search" placeholder="Search" className="me-2 ps-4 py-0 search" aria-label="Search" />
+              <Form.Control
+                type="search"
+                placeholder="Search"
+                className="me-2 ps-4 py-0 search"
+                aria-label="Search"
+              />
             </Form>
           </Col>
           <Col xs={11} lg={9}>
             <Row className="align-items-center w-100 mx-0">
               <Col className="d-block d-lg-none px-0">
-                <Nav.Link href="#action1" className="d-flex flex-column align-items-center p-0">
+                <Nav.Link
+                  href="#action1"
+                  className="d-flex flex-column align-items-center p-0"
+                >
                   <Search className="navIcon" />
                   <span className="navSpan">Search</span>
                 </Nav.Link>
               </Col>
               <Col className="px-0">
-                <Link to={"/"} className="d-flex nav-link flex-column align-items-center p-0">
+                <Link
+                  to={"/"}
+                  className="d-flex nav-link flex-column align-items-center p-0"
+                >
                   <HouseDoorFill className="navIcon" />
                   <span className="navSpan">Home</span>
                 </Link>
@@ -56,20 +80,34 @@ export const CustomNavbar = () => {
                 </Link>
               </Col>
               <Col className="px-0">
-                <Link to={"/"} className="d-flex nav-link flex-column align-items-center p-0">
+                <Link
+                  to={"/"}
+                  className="d-flex nav-link flex-column align-items-center p-0"
+                >
                   <ChatDotsFill className="navIcon" />
                   <span className="navSpan">Messaging</span>
                 </Link>
               </Col>
               <Col className="px-0">
-                <Link to={"/"} className="d-flex nav-link flex-column align-items-center p-0">
+                <Link
+                  to={"/"}
+                  className="d-flex nav-link flex-column align-items-center p-0"
+                >
                   <BellFill className="navIcon" />
                   <span className="navSpan">Notifications</span>
                 </Link>
               </Col>
               <Col className="border-end px-0">
-                <Dropdown href="#" id="dd" className="d-flex justify-content-center">
-                  <Dropdown.Toggle variant="none" id="dropdown-basic" className="d-flex flex-column align-items-center">
+                <Dropdown
+                  href="#"
+                  id="dd"
+                  className="d-flex justify-content-center"
+                >
+                  <Dropdown.Toggle
+                    variant="none"
+                    id="dropdown-basic"
+                    className="d-flex flex-column align-items-center"
+                  >
                     <img
                       src={profile.image ? profile.image : pic}
                       alt="profile-XS"
@@ -86,7 +124,9 @@ export const CustomNavbar = () => {
                           className="profile-SM rounded-circle"
                         />
                         <Card.Body className="p-0 ps-2">
-                          <Card.Title className="fs-6">{profile.name}</Card.Title>
+                          <Card.Title className="fs-6">
+                            {profile.name}
+                          </Card.Title>
                           <Card.Text>{profile.title}</Card.Text>
                         </Card.Body>
                       </Card>
@@ -133,7 +173,10 @@ export const CustomNavbar = () => {
                 </Dropdown>
               </Col>
               <Col className="d-none d-sm-block px-0">
-                <Nav.Link href="#" className="d-flex flex-column align-items-center">
+                <Nav.Link
+                  href="#"
+                  className="d-flex flex-column align-items-center"
+                >
                   <Grid3x3GapFill className="navIcon" />
                   <span className="navSpan">Work</span>
                 </Nav.Link>

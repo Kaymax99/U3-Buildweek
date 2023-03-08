@@ -1,4 +1,4 @@
-import { Card, Col, Container, ListGroup, Row, Spinner } from "react-bootstrap";
+import { Card, Col, Container, Row, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logoLinkedin from "../../assets/imgs/Linkedin-Logo-700x394.png";
 import { InfoSquareFill } from "react-bootstrap-icons";
@@ -36,19 +36,6 @@ export const HomeRightCards = ({ titles }) => {
             </ul>
           </Col>
         </Row>
-
-        {/* <ul className="lista">
-          {titles.length > 0 ? (
-            titles
-              .slice(0, 5)
-              .map((post, i) => <SingleNews key={i} post={post} />)
-          ) : (
-            <div className="text-center my-5">
-              <Spinner variant="primary" />
-            </div>
-          )}
-        </ul> */}
-
         <Row>
           {titles?.length > 0 && (
             <div className="mt-2">
@@ -60,7 +47,7 @@ export const HomeRightCards = ({ titles }) => {
                 href="#/"
                 className="altro"
               >
-                {!otherNews ? "Visualizza altro" : "Mostra meno"}
+                {!otherNews ? "Visualizza altro " : "Mostra meno "}
                 {!otherNews ? <ChevronCompactDown /> : <ChevronCompactUp />}
               </button>
             </div>
@@ -74,31 +61,6 @@ export const HomeRightCards = ({ titles }) => {
           className="rounded"
         />
       </Card>
-      <div className="footerlinks">
-        <div>
-          <Link>Informazioni</Link> <Link>Accessibilità</Link>
-        </div>
-        <div>
-          <Link>Centro Assistenza</Link> <Link>Privacy e condizioni</Link>
-        </div>
-        <div>
-          <Link>Opzioni per gli annunci pubblicitari</Link>
-        </div>
-        <div>
-          <Link>Pubblicità</Link> <Link>Servizi alle aziende</Link>
-        </div>
-        <div>
-          <Link>Scarica l'app Linkedin</Link>
-          <Link>Altro</Link>
-        </div>
-
-        <div className="logoImg mt-3">
-          <div>
-            <img src={logoLinkedin} alt="" />
-            <span className="fw-semibold"> Linkedin Corporation ©2023</span>
-          </div>
-        </div>
-      </div>
     </>
   );
 };
