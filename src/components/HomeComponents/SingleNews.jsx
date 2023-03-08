@@ -9,6 +9,7 @@ const SingleNews = ({ post }) => {
         </li>
       </a>
       <small>{post?.createdAt && transformToDate(post.createdAt)}</small>
+      <div></div>
     </div>
   );
 };
