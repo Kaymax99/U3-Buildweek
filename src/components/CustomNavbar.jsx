@@ -44,21 +44,13 @@ export const CustomNavbar = () => {
                 </Link>
               </Col>
               <Col className="px-0">
-<<<<<<< Updated upstream
-                <Link to={"/mynetwork"} className="d-flex nav-link flex-column align-items-center p-0">
-=======
                 <Link to="/my-network" className="d-flex nav-link flex-column align-items-center p-0">
->>>>>>> Stashed changes
                   <PeopleFill className="navIcon" />
                   <span className="navSpan">My Network</span>
                 </Link>
               </Col>
               <Col className="px-0">
-<<<<<<< Updated upstream
-                <Link to={"/"} className="d-flex nav-link flex-column align-items-center p-0">
-=======
                 <Link to={"/jobs"} className="d-flex nav-link flex-column align-items-center p-0">
->>>>>>> Stashed changes
                   <BriefcaseFill className="navIcon" />
                   <span className="navSpan">Jobs</span>
                 </Link>
