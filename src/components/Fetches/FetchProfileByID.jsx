@@ -1,3 +1,20 @@
+export const fetchProfiles = async () => {
+  try {
+    const response = await fetch(
+      "https://striveschool-api.herokuapp.com/api/profile/",
+      {
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
+        },
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const FetchProfileByID = async (idProfile) => {
   let BaseUrl = `https://striveschool-api.herokuapp.com/api/profile/${idProfile}/`;
 

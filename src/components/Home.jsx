@@ -1,4 +1,4 @@
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Button } from "react-bootstrap";
 import { HomeProfileCard } from "./HomeComponents/HomeProfileCard";
 import { PostLinkedin } from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
@@ -18,20 +18,21 @@ import { HomeRightCards } from "./HomeComponents/HomeRightCards";
 import { useSelector } from "react-redux";
 
 export const Home = () => {
+  const [postCounter, setPostCounter] = useState(5);
   const [titles, setTitles] = useState([]);
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
   const [friendsPosts, setFriendsPosts] = useState([]);
   const friendsArray = useSelector((state) => state.friends.content);
 
-  const retrieveAllRecentPosts = async () => {
-    const data = await fetchPosts();
-    setTitles(() => {
-      return data.slice(0, 5);
-    });
-    setPosts(() => {
-      return data.reverse().slice(0, 20);
-    });
-  };
+  // const retrieveAllRecentPosts = async () => {
+  //   const data = await fetchPosts();
+  //   setTitles(() => {
+  //     return data.slice(0, 5);
+  //   });
+  //   setPosts(() => {
+  //     return data.reverse().slice(0, 20);
+  //   });
+  // };
 
   const retrieveAllRecentPostsFriends = async () => {
     const data = await fetchPosts();
@@ -79,7 +80,7 @@ export const Home = () => {
                   <Spinner variant="primary" />
                 </div>
               ) : (
-                friendsPosts.map((post, i) => {
+                friendsPosts.slice(0, postCounter).map((post, i) => {
                   return (
                     <PostLinkedin
                       key={"post-" + i}
@@ -89,6 +90,9 @@ export const Home = () => {
                   );
                 })
               )}
+              <Button onClick={() => setPostCounter(postCounter + 5)}>
+                Altri post
+              </Button>
             </Row>
           </Col>
 
