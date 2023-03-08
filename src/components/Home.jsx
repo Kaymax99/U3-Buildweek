@@ -1,4 +1,4 @@
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Button } from "react-bootstrap";
 import { HomeProfileCard } from "./HomeComponents/HomeProfileCard";
 import { PostLinkedin } from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
@@ -22,22 +22,42 @@ import SearchBar from "./SearchBar/searchbarfetch";
 >>>>>>> Stashed changes
 
 export const Home = () => {
-  const [posts, setPosts] = useState([]);
+  const [postCounter, setPostCounter] = useState(5);
   const [titles, setTitles] = useState([]);
+  // const [posts, setPosts] = useState([]);
+  const [friendsPosts, setFriendsPosts] = useState([]);
+  const friendsArray = useSelector((state) => state.friends.content);
 
-  const retrievePosts = async () => {
+  // const retrieveAllRecentPosts = async () => {
+  //   const data = await fetchPosts();
+  //   setTitles(() => {
+  //     return data.slice(0, 5);
+  //   });
+  //   setPosts(() => {
+  //     return data.reverse().slice(0, 20);
+  //   });
+  // };
+
+  const retrieveAllRecentPostsFriends = async () => {
     const data = await fetchPosts();
     setTitles(() => {
-      return data.slice(0, 5);
+      return data.slice(0, 10);
     });
-    setPosts(() => {
-      return data.reverse().slice(0, 20);
+
+    setFriendsPosts((prev) => {
+      return [
+        ...prev,
+        ...data
+          .filter((post) =>
+            friendsArray.map((friend) => friend?._id).includes(post.user?._id)
+          )
+          .reverse(),
+      ];
     });
   };
 
   useEffect(() => {
-    retrievePosts();
-    // console.log(posts);
+    retrieveAllRecentPostsFriends();
   }, []);
 
   return (
@@ -54,31 +74,34 @@ export const Home = () => {
 
           <Col xs={12} md={7} lg={5}>
             <Row>
-              <CreaUnPost retrievePosts={retrievePosts} />
+              <CreaUnPost retrievePosts={retrieveAllRecentPostsFriends} />
             </Row>
             <Row>
               <hr />
             </Row>
             <Row>
-              {posts?.length === 0 ? (
+              {friendsPosts?.length === 0 ? (
                 <div className="text-center mt-5">
                   <Spinner variant="primary" />
                 </div>
               ) : (
-                posts.map((post, i) => {
+                friendsPosts.slice(0, postCounter).map((post, i) => {
                   return (
                     <PostLinkedin
                       key={"post-" + i}
                       post={post}
-                      retrievePosts={retrievePosts}
+                      retrievePosts={retrieveAllRecentPostsFriends}
                     />
                   );
                 })
               )}
+              <Button onClick={() => setPostCounter(postCounter + 5)}>
+                Altri post
+              </Button>
             </Row>
           </Col>
 
-          <Col sm={0} lg={3}>
+          <Col sm={0} lg={3} className="d-none d-lg-block">
             <Row>
               <HomeRightCards titles={titles} />
             </Row>
@@ -88,3 +111,15 @@ export const Home = () => {
     </>
   );
 };
+
+// for (let i = 0; i < data.length; i++) {
+//   const post = data[i];
+//   for (let j = 0; j < friendsArray.length; j++) {
+//     const friend = friendsArray[j];
+//     console.log(post.user._id, friend._id);
+//     // console.log(post?.user?._id);
+//     if (post.user.username === friend.username) {
+//       postAmici.push(post);
+//     }
+//   }
+// }

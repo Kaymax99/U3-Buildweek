@@ -5,6 +5,7 @@ import unRegistered from "../../assets/imgs/unregistered.png";
 import { GetComments, PostComments } from "../Fetches/FetchComments";
 import SingleComment from "./SingleComment";
 import { useEffect, useState } from "react";
+import { GET, POST } from "../../redux/actions";
 
 const CommentArea = (props) => {
   const [comments, setComments] = useState([]);
@@ -16,16 +17,20 @@ const CommentArea = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await PostComments({
-      comment: commentText,
-      rate: 1,
-      elementId: props.post,
-    });
-    await GetComments(props.post);
+    await PostComments(
+      {
+        comment: commentText,
+        rate: 1,
+        elementId: props.post,
+      },
+      POST,
+      ""
+    );
+    retrieveData();
   };
 
   const retrieveData = async () => {
-    let data = await GetComments(props.post);
+    let data = await GetComments(props.post, GET);
     setComments(data);
     //console.log(data);
   };
@@ -78,7 +83,11 @@ const CommentArea = (props) => {
       <Row>
         {comments?.length > 0 &&
           comments?.map((element, i) => (
-            <SingleComment key={i} comment={element} />
+            <SingleComment
+              key={i}
+              comment={element}
+              retrieveData={retrieveData}
+            />
           ))}
       </Row>
     </div>

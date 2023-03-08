@@ -1,9 +1,21 @@
 import { Button, Col, Row } from "react-bootstrap";
+import { PersonPlusFill } from "react-bootstrap-icons";
 import { BsFillPersonPlusFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import noPic from "../assets/imgs/unregistered.png";
+import { addToFriendsAction, removeFromFriendsAction } from "../redux/actions";
 
 const People = ({ singleProfile }) => {
+  const friends = useSelector((state) => state.friends.content);
+  const dispatch = useDispatch();
+
+  const connectFn = () => {
+    dispatch(addToFriendsAction(singleProfile));
+  };
+  const disconnectFn = () => {
+    dispatch(removeFromFriendsAction(singleProfile));
+  };
   return (
     <>
       <Row className="person mt-3 mx-3">
@@ -25,10 +37,23 @@ const People = ({ singleProfile }) => {
             </h5>
           </Link>
           <p className="mb-1">{singleProfile.title}</p>
-          <Button variant="outline-secondary rounded-pill px-3 py-1 mb-3">
-            {<BsFillPersonPlusFill className="mb-1 me-2 collegati" />}
-            <span className="fw-semibold fs-7">Collegati</span>
-          </Button>
+          {friends.findIndex((person) => person._id === singleProfile._id) ===
+          -1 ? (
+            <Button
+              variant="primary rounded-pill px-3 py-1 mb-3 fw-bold fs-7"
+              onClick={connectFn}
+            >
+              <PersonPlusFill className="me-1 mb-1" />
+              <span>Collegati</span>
+            </Button>
+          ) : (
+            <Button
+              variant="outline-primary rounded-pill px-3 py-1 mb-3 fw-bold fs-7"
+              onClick={disconnectFn}
+            >
+              ✔<span>Collegato</span>
+            </Button>
+          )}
         </Col>
       </Row>
     </>

@@ -14,6 +14,8 @@
   border-radius: 100%;
   position: relative;
   padding: 0px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 .post_icons {
@@ -55,6 +57,8 @@
   border-radius: 100%;
   padding: 0px;
   margin: -35px auto 0;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 .Contenitore {
@@ -82,8 +86,45 @@
 
 // HomeRightCard Component
 
-.listaNews li {
-  list-style-type: disc;
+.news-container {
+  background-color: white;
+  border: 1px solid lightgrey;
+  .lista li {
+    margin-top: 10px;
+    list-style-type: disc;
+    font-size: small;
+    font-weight: 500;
+    white-space: nowrap;
+    &::marker {
+      color: #5f5f5f;
+    }
+    p {
+      padding-right: 15px;
+      margin: 0;
+      max-width: 270px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .single-news {
+      background-color: #5f5f5f;
+    }
+  }
+  small {
+    font-size: 0.7em;
+    color: rgb(119, 119, 119);
+  }
+  .icona-news {
+    font-size: smaller;
+  }
+  .altro {
+    border: none;
+    color: #5e5e5f;
+    background-color: #ebebeb;
+    border-radius: 8px;
+    padding: 2px 8px;
+    font-size: 0.9em;
+    font-weight: 400;
+  }
 }
 .footerlinks {
   margin-top: 10px;

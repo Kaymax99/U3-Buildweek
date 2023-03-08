@@ -8,11 +8,14 @@ import { Home } from "./components/Home";
 import { useDispatch } from "react-redux";
 import { getProfileAction, GET_PEOPLE, GET_PROFILE } from "./redux/actions";
 import Network from "./components/NetworkPage";
+import Jobs from "./components/JobsPage";
 
 function App() {
   const dispatch = useDispatch();
+  // useEffect(() => {
   dispatch(getProfileAction("me", GET_PROFILE));
   dispatch(getProfileAction("", GET_PEOPLE));
+  // }, []);
 
   return (
     <BrowserRouter>
@@ -21,6 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/:profileID" element={<Profile />} />
         <Route path="/my-network" element={<Network />} />
+        <Route path="/jobs" element={<Jobs />} />
       </Routes>
       <CustomFooter />
     </BrowserRouter>

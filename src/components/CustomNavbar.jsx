@@ -68,19 +68,13 @@ export const CustomNavbar = () => {
                 </Link>
               </Col>
               <Col className="px-0">
-                <Link
-                  to="/my-network"
-                  className="d-flex nav-link flex-column align-items-center p-0"
-                >
+                <Link to="/my-network" className="d-flex nav-link flex-column align-items-center p-0">
                   <PeopleFill className="navIcon" />
                   <span className="navSpan">My Network</span>
                 </Link>
               </Col>
               <Col className="px-0">
-                <Link
-                  to={"/"}
-                  className="d-flex nav-link flex-column align-items-center p-0"
-                >
+                <Link to={"/jobs"} className="d-flex nav-link flex-column align-items-center p-0">
                   <BriefcaseFill className="navIcon" />
                   <span className="navSpan">Jobs</span>
                 </Link>
@@ -104,7 +98,11 @@ export const CustomNavbar = () => {
                 </Link>
               </Col>
               <Col className="border-end px-0">
-                <Dropdown href="#" className="d-flex justify-content-center">
+                <Dropdown
+                  href="#"
+                  id="dd"
+                  className="d-flex justify-content-center"
+                >
                   <Dropdown.Toggle
                     variant="none"
                     id="dropdown-basic"
@@ -137,9 +135,9 @@ export const CustomNavbar = () => {
                         className="rounded-pill mx-2 viewProfile py-0 fw-bold"
                         onClick={() => {
                           navigate("/me");
+                          document.getElementById("dd").click(); // Chiudi il dropdown
                         }}
                       >
-                        {/* <Link to={"/me"}></Link> */}
                         View Profile
                       </Button>
                     </div>

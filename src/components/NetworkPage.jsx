@@ -13,31 +13,31 @@ import {
   FaHashtag,
 } from "react-icons/fa";
 import React from "react";
+import { fetchProfiles } from "./Fetches/FetchProfileByID";
+import { useDispatch, useSelector } from "react-redux";
+import { addToFriendsAction, removeFromFriendsAction } from "../redux/actions";
 
 function Network() {
+  const dispatch = useDispatch();
+  const friendsArray = useSelector((state) => state.friends.content);
   const [profiles, setProfiles] = useState([]);
+  const retrieveProfiles = async () => {
+    let data = await fetchProfiles();
+    setProfiles(data);
+  };
 
   useEffect(() => {
-    const fetchProfiles = async () => {
-      try {
-        const response = await fetch(
-          "https://striveschool-api.herokuapp.com/api/profile/",
-          {
-            headers: {
-              Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
-            },
-          }
-        );
-        const data = await response.json();
-        setProfiles(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchProfiles();
+    retrieveProfiles();
   }, []);
   const MAX_LENGTH = 100;
+
+  const connectFn = (profile) => {
+    dispatch(addToFriendsAction(profile));
+  };
+
+  const disconnectFn = (profile) => {
+    dispatch(removeFromFriendsAction(profile));
+  };
 
   return (
     <div className="container newnew mt-3">
@@ -88,15 +88,13 @@ function Network() {
                   <a href="#"> Informazioni</a> <a href="#">Accessibilità</a>
                 </div>
                 <div>
-                  <a href="#">Centro Assistenza</a>{" "}
-                  <a href="#">Privacy e condizioni</a>
+                  <a href="#">Centro Assistenza</a> <a href="#">Privacy e condizioni</a>
                 </div>
                 <div>
                   <a href="#">Opzioni per gli annunci pubblicitari</a>
                 </div>
                 <div>
-                  <a href="#">Pubblicità</a>{" "}
-                  <a href="#">Servizi alle aziende</a>
+                  <a href="#">Pubblicità</a> <a href="#">Servizi alle aziende</a>
                 </div>
                 <div>
                   <a href="#">Scarica l'app Linkedin</a>
@@ -106,10 +104,7 @@ function Network() {
                 <div className="logoImg mt-3">
                   <div>
                     <img src={logoLinkedin} alt="" />
-                    <span className="fw-semibold">
-                      {" "}
-                      Linkedin Corporation ©2023
-                    </span>
+                    <span className="fw-semibold"> Linkedin Corporation ©2023</span>
                   </div>
                 </div>
               </div>
@@ -119,16 +114,43 @@ function Network() {
         <Col md={9}>
           <div className="row">
             <Card className="firstcardnetwork">
-              <Card.Body>Nessun invito in sospeso</Card.Body>
-              <Card.Body> Gestisci</Card.Body>
+              <Col xs={12} className="d-flex justify-content-between">
+                <span className="my-4 mx-3">Persone che segui</span>
+                <span className="my-4 mx-3"> Gestisci</span>
+              </Col>
+              {friendsArray.length > 0 ? (
+                friendsArray.map((profile, i) => (
+                  <div className="col-md-4 mb-3" key={"friends-key" + i}>
+                    <Card className="cardNetwork">
+                      <div className="divimgnetwork">
+                        <Card.Img variant="top" src={profile.image} />
+                      </div>
+                      <Card.Body>
+                        <Card.Title>
+                          {profile.name} {profile.surname}
+                        </Card.Title>
+                        <Card.Text>
+                          {profile.bio &&
+                            profile.bio.slice(0, MAX_LENGTH) + (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
+                        </Card.Text>
+                        <Button className="bottonNetwork" variant="primary" onClick={() => disconnectFn(profile)}>
+                          Smetti di seguire
+                        </Button>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                ))
+              ) : (
+                <p>Non si sono ancora persone che segui!</p>
+              )}
             </Card>
             <Card className="secondcardnetwork">
               <Card className="scrittanetwork">
                 <Card.Body>Persone popolari da seguire</Card.Body>
                 <Card.Body>Vedi tutti</Card.Body>
               </Card>
-              {profiles.slice(0, 12).map((profile) => (
-                <div className="col-md-4 mb-3" key={profile._id}>
+              {profiles.slice(0, 12).map((profile, i) => (
+                <div className="col-md-4 mb-3" key={"profile-key" + i}>
                   <Card className="cardNetwork">
                     <div className="divimgnetwork">
                       <Card.Img variant="top" src={profile.image} />
@@ -139,12 +161,29 @@ function Network() {
                       </Card.Title>
                       <Card.Text>
                         {profile.bio &&
-                          profile.bio.slice(0, MAX_LENGTH) +
-                            (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
+                          profile.bio.slice(0, MAX_LENGTH) + (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
                       </Card.Text>
-                      <Button className="bottonNetwork" variant="primary">
-                        Segui
-                      </Button>
+                      {friendsArray.findIndex((friend) => friend._id === profile._id) === -1 ? (
+                        <Button
+                          className="bottonNetwork"
+                          variant="primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7"
+                          onClick={() => {
+                            connectFn(profile);
+                          }}
+                        >
+                          Segui
+                        </Button>
+                      ) : (
+                        <Button
+                          className="bottonNetwork"
+                          variant="outline-primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7"
+                          onClick={() => {
+                            disconnectFn(profile);
+                          }}
+                        >
+                          ✔<span>Collegato</span>
+                        </Button>
+                      )}
                     </Card.Body>
                   </Card>
                 </div>
