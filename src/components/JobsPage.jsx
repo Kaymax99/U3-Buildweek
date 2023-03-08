@@ -1,72 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col, Container, Spinner } from "react-bootstrap";
-import SearchBar from "./SearchBar";
+import React from "react";
 
-const JobFetch = () => {
-  const [jobs, setJobs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [jobName, setJobName] = useState("");
+import JobsSearchGeneric from "./JobsPageComponents/JobsSearchGeneric";
+import JobsSearchByCompany from "./JobsPageComponents/JobsSearchByCompany";
+import JobsSearchByCategory from "./JobsPageComponents/JobsSearchByCategory";
 
-  useEffect(() => {
-    setIsLoading(true);
-    const fetchJobs = async () => {
-      const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs?search=${jobName}`);
-      if (response.ok) {
-        const jobsArray = await response.json();
-        setJobs(jobsArray.data);
-        console.log(jobs);
-      }
-      setIsLoading(false);
-    };
-    fetchJobs();
-  }, [jobName]);
-
-  const handleSearch = (value) => {
-    console.log(value);
-
-    setJobName(value);
-  };
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
+function JobsPage() {
   return (
     <>
-      <div className="container newnew mt-3">
-        <div className="my-3">
-          <SearchBar placeholder="Search for jobs" onSearch={handleSearch} />
-        </div>
-
-        <div className="my-5">
-          {jobs.length > 0 && !isLoading ? (
-            jobs.map((job) => (
-              <Row className="row_big" key={"job" + job._id}>
-                <Col sm={12} md={8} className="Col_01">
-                  <div>
-                    <h4>Job</h4>
-                    <h2>{job.title}</h2>
-                    <h5>Azienda: {job.company_name}</h5>
-                  </div>
-                </Col>
-              </Row>
-            ))
-          ) : isLoading ? (
-            <div className="text-center">
-              <Spinner variant="primary" />
-            </div>
-          ) : (
-            <div className="text-center">
-              <span>Nessun Risultato</span>
-            </div>
-          )}
-        </div>
-      </div>
+      <JobsSearchGeneric />
+      <JobsSearchByCompany />
+      <JobsSearchGeneric />
     </>
   );
-};
+}
 
-export default JobFetch;
+export default JobsPage;
 
 // Oggi aggiungiamo una nuova pagina al progetto!
 
