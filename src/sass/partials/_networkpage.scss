@@ -1,10 +1,16 @@
 .bottonNetwork {
+  width: 90%;
   border: 1px solid blue;
   background-color: white;
   color: blue;
   font-weight: bold;
   border-radius: 100px;
 }
+
+.img {
+  height: 100%;
+}
+
 .firstcardnetwork {
   display: flex;
   flex-direction: row;
