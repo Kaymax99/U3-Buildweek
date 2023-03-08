@@ -27,7 +27,7 @@ export const Home = () => {
   const retrieveAllRecentPostsFriends = async () => {
     const data = await fetchPosts();
     setTitles(() => {
-      return data.slice(0, 5);
+      return data.slice(0, 10);
     });
 
     setFriendsPosts((prev) => {
