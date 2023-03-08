@@ -88,15 +88,13 @@ function Network() {
                   <a href="#"> Informazioni</a> <a href="#">Accessibilità</a>
                 </div>
                 <div>
-                  <a href="#">Centro Assistenza</a>{" "}
-                  <a href="#">Privacy e condizioni</a>
+                  <a href="#">Centro Assistenza</a> <a href="#">Privacy e condizioni</a>
                 </div>
                 <div>
                   <a href="#">Opzioni per gli annunci pubblicitari</a>
                 </div>
                 <div>
-                  <a href="#">Pubblicità</a>{" "}
-                  <a href="#">Servizi alle aziende</a>
+                  <a href="#">Pubblicità</a> <a href="#">Servizi alle aziende</a>
                 </div>
                 <div>
                   <a href="#">Scarica l'app Linkedin</a>
@@ -106,10 +104,7 @@ function Network() {
                 <div className="logoImg mt-3">
                   <div>
                     <img src={logoLinkedin} alt="" />
-                    <span className="fw-semibold">
-                      {" "}
-                      Linkedin Corporation ©2023
-                    </span>
+                    <span className="fw-semibold"> Linkedin Corporation ©2023</span>
                   </div>
                 </div>
               </div>
@@ -136,14 +131,9 @@ function Network() {
                         </Card.Title>
                         <Card.Text>
                           {profile.bio &&
-                            profile.bio.slice(0, MAX_LENGTH) +
-                              (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
+                            profile.bio.slice(0, MAX_LENGTH) + (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
                         </Card.Text>
-                        <Button
-                          className="bottonNetwork"
-                          variant="primary"
-                          onClick={() => disconnectFn(profile)}
-                        >
+                        <Button className="bottonNetwork" variant="primary" onClick={() => disconnectFn(profile)}>
                           Smetti di seguire
                         </Button>
                       </Card.Body>
@@ -171,12 +161,9 @@ function Network() {
                       </Card.Title>
                       <Card.Text>
                         {profile.bio &&
-                          profile.bio.slice(0, MAX_LENGTH) +
-                            (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
+                          profile.bio.slice(0, MAX_LENGTH) + (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
                       </Card.Text>
-                      {friendsArray.findIndex(
-                        (friend) => friend._id === profile._id
-                      ) === -1 ? (
+                      {friendsArray.findIndex((friend) => friend._id === profile._id) === -1 ? (
                         <Button
                           className="bottonNetwork"
                           variant="primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7"

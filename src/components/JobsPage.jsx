@@ -10,9 +10,7 @@ const JobFetch = () => {
   useEffect(() => {
     setIsLoading(true);
     const fetchJobs = async () => {
-      const response = await fetch(
-        `https://strive-benchmark.herokuapp.com/api/jobs?search=${jobName}`
-      );
+      const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs?search=${jobName}`);
       if (response.ok) {
         const jobsArray = await response.json();
         setJobs(jobsArray.data);
@@ -35,7 +33,7 @@ const JobFetch = () => {
 
   return (
     <>
-      <Container>
+      <div className="container newnew mt-3">
         <div className="my-3">
           <SearchBar placeholder="Search for jobs" onSearch={handleSearch} />
         </div>
@@ -63,7 +61,7 @@ const JobFetch = () => {
             </div>
           )}
         </div>
-      </Container>
+      </div>
     </>
   );
 };
