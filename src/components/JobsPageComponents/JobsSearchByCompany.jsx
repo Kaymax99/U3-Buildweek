@@ -31,12 +31,12 @@ const JobsSearchByCompany = () => {
     <>
       <div className="container newnew mt-3">
         <div className="divsearch my-3">
-          <SearchBar placeholder="Search for jobs" onSearch={handleSearch} />
+          <SearchBar placeholder="Search for jobs by Company" onSearch={handleSearch} />
         </div>
 
         <div className="jobcards my-5">
           {jobs.length > 0 && !isLoading ? (
-            jobs.map((job) => (
+            jobs.slice(0, 10).map((job) => (
               <Row className="row_big" key={"job" + job._id}>
                 <Col sm={12} md={8} className="Col_01">
                   <Card style={{ width: "18rem", height: "10rem" }}>
