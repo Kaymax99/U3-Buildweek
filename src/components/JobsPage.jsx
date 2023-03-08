@@ -1,33 +1,57 @@
-import { useState, useEffect } from "react";
-import { Card, Button, Row, Col } from "react-bootstrap";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Row, Col, Container } from "react-bootstrap";
+import SearchBar from "./SearchBar";
 
-function Jobs() {
-  const [jobs, setJobs] = useState([]);
+const JobFetch = () => {
+  const [job, setJob] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [jobName, setJobName] = useState("");
 
   useEffect(() => {
     const fetchJobs = async () => {
-      try {
-        const response = await fetch("https://strive-benchmark.herokuapp.com/api/jobs", {
-          headers: {
-            Authorization: "Bearer " + process.env.REACT_APP_MYTOKEN,
-          },
-        });
+      const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs?search=${jobName}`);
+      if (response.ok) {
         const data = await response.json();
-        setJobs(data);
-      } catch (error) {
-        console.error(error);
+        // setJob(data);
+        // console.log(job);
       }
+      setIsLoading(false);
     };
-
     fetchJobs();
-  }, []);
-  console.log(jobs);
+  }, [ jobName]);
 
-  return <></>;
-}
+  const handleSearch = (value) => {
+    setJobName(value);
+  };
 
-export default Jobs;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <>
+      <Container>
+        <div className="my-3">
+          <SearchBar placeholder="Search for jobs" onSearch={handleSearch} />
+        </div>
+
+        <Container className="my-5">
+          <Row className="row_big">
+            <Col sm={12} md={8} className="Col_01">
+              <div>
+                <h4>Job</h4>
+                <h2>{job.title}</h2>
+                <h5>Description: {job.description}</h5>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </Container>
+    </>
+  );
+};
+
+export default JobFetch;
 
 // Oggi aggiungiamo una nuova pagina al progetto!
 
