@@ -2,9 +2,18 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { HomeProfileCard } from "./HomeComponents/HomeProfileCard";
 import { PostLinkedin } from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
-import { fetchPosts } from "./Fetches/FetchPosts";
+
+import {
+  addPost,
+  fetchPosts,
+  fetchPostById,
+  deletePost,
+} from "./Fetches/FetchPosts";
+import HomeRightCard from "./HomeComponents/HomeRightCards";
+
 import { CreaUnPost } from "./HomeComponents/CreaUnPost";
 import { LeftFixedCard } from "./HomeComponents/LeftFixedCard";
+
 import { HomeRightCards } from "./HomeComponents/HomeRightCards";
 import { useSelector } from "react-redux";
 

@@ -7,7 +7,7 @@ import { Profile } from "./components/Profile";
 import { Home } from "./components/Home";
 import { useDispatch } from "react-redux";
 import { getProfileAction, GET_PEOPLE, GET_PROFILE } from "./redux/actions";
-import { useEffect } from "react";
+import Network from "./components/NetworkPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:profileID" element={<Profile />} />
+        <Route path="/my-network" element={<Network />} />
       </Routes>
       <CustomFooter />
     </BrowserRouter>

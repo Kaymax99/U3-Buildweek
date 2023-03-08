@@ -1,0 +1,45 @@
+.bottonNetwork {
+  border: 1px solid blue;
+  background-color: white;
+  color: blue;
+  font-weight: bold;
+  border-radius: 100px;
+}
+.firstcardnetwork {
+  display: flex;
+  flex-direction: row;
+  gap: 640px;
+  margin-bottom: 15px;
+}
+.secondcardnetwork {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.scrittanetwork {
+  display: flex;
+  flex-direction: row;
+  gap: 624px;
+
+  margin-bottom: 15px;
+  border: none;
+}
+.cardNetwork {
+  height: 608px;
+  margin: 10px;
+  border-radius: 19px;
+}
+.newsli ul li {
+  gap: 5px;
+  display: flex;
+}
+.newsli svg {
+  margin-top: 3px;
+}
+.cardNetwork img.card-img-top {
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
+}
+.newnew {
+  margin-top: 5rem !important;
+}
