@@ -32,6 +32,7 @@ const CommentArea = (props) => {
   const retrieveData = async () => {
     let data = await GetComments(props.post, GET);
     setComments(data);
+    props.setNumComments(data.length);
     //console.log(data);
   };
 
