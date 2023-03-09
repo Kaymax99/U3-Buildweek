@@ -3,14 +3,7 @@ import { HomeProfileCard } from "./HomeComponents/HomeProfileCard";
 import { PostLinkedin } from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
 
-import {
-  addPost,
-  fetchPosts,
-  fetchPostById,
-  deletePost,
-} from "./Fetches/FetchPosts";
-import HomeRightCard from "./HomeComponents/HomeRightCards";
-
+import { fetchPosts } from "./Fetches/FetchPosts";
 import { CreaUnPost } from "./HomeComponents/CreaUnPost";
 import { LeftFixedCard } from "./HomeComponents/LeftFixedCard";
 
@@ -38,22 +31,26 @@ export const Home = () => {
 
   const retrieveAllRecentPostsFriends = async () => {
     setIsLoading(true);
+
     const data = await fetchPosts();
+
     setTitles(() => {
       return data.slice(0, 10);
     });
 
-    setFriendsPosts((prev) => {
-      return [
-        ...prev,
-        ...data
-          .filter((post) =>
-            friendsArray.map((friend) => friend?._id).includes(post.user?._id)
-          )
-          .reverse(),
-      ];
-    });
+    let postdegliamici = data
+      .filter((post) =>
+        friendsArray.map((friend) => friend?._id).includes(post.user?._id)
+      )
+      .reverse();
 
+    setFriendsPosts(() => {
+      return postdegliamici;
+    });
+    // Recupera tutti i post recenti
+    // setFriendsPosts(() => {
+    //   return data.reverse().slice(0, 20);
+    // });
     setIsLoading(false);
   };
 
@@ -120,15 +117,3 @@ export const Home = () => {
     </>
   );
 };
-
-// for (let i = 0; i < data.length; i++) {
-//   const post = data[i];
-//   for (let j = 0; j < friendsArray.length; j++) {
-//     const friend = friendsArray[j];
-//     console.log(post.user._id, friend._id);
-//     // console.log(post?.user?._id);
-//     if (post.user.username === friend.username) {
-//       postAmici.push(post);
-//     }
-//   }
-// }
