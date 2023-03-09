@@ -14,7 +14,7 @@ const JobsSearchGeneric = () => {
       if (response.ok) {
         const jobsArray = await response.json();
         setJobs(jobsArray.data);
-        console.log(jobs);
+        // console.log(jobs);
       }
       setIsLoading(false);
     };
@@ -29,8 +29,9 @@ const JobsSearchGeneric = () => {
   return (
     <>
       <div className="container newnew mt-3">
+        <h3>Search for jobs:</h3>
         <div className="divsearch my-3">
-          <SearchBar placeholder="Search for jobs" onSearch={handleSearch} />
+          <SearchBar placeholder="Search..." onSearch={handleSearch} />
         </div>
 
         <div className="jobcards my-5">
@@ -38,10 +39,10 @@ const JobsSearchGeneric = () => {
             jobs.slice(0, 10).map((job) => (
               <Row className="row_big" key={"job" + job._id}>
                 <Col sm={12} md={8} className="Col_01">
-                  <Card style={{ width: "18rem", height: "10rem" }}>
+                  <Card className="card-job"style={{ width: "18rem", height: "10rem" }}>
                     <Card.Body>
-                      <Card.Title>{job.title}</Card.Title>
-                      <Card.Subtitle className="mb-2 text-muted">Azienda: {job.company_name}</Card.Subtitle>
+                      <Card.Title>Position:{job.title}</Card.Title>
+                      <Card.Subtitle className="mb-2 text-muted">Company: {job.company_name}</Card.Subtitle>
                     </Card.Body>
                   </Card>
                 </Col>
