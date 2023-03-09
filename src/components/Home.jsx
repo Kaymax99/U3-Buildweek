@@ -3,14 +3,7 @@ import { HomeProfileCard } from "./HomeComponents/HomeProfileCard";
 import { PostLinkedin } from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
 
-import {
-  addPost,
-  fetchPosts,
-  fetchPostById,
-  deletePost,
-} from "./Fetches/FetchPosts";
-import HomeRightCard from "./HomeComponents/HomeRightCards";
-
+import { fetchPosts } from "./Fetches/FetchPosts";
 import { CreaUnPost } from "./HomeComponents/CreaUnPost";
 import { LeftFixedCard } from "./HomeComponents/LeftFixedCard";
 
@@ -20,6 +13,8 @@ import { useSelector } from "react-redux";
 export const Home = () => {
   const [postCounter, setPostCounter] = useState(5);
   const [titles, setTitles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   // const [posts, setPosts] = useState([]);
   const [friendsPosts, setFriendsPosts] = useState([]);
   const friendsArray = useSelector((state) => state.friends.content);
@@ -35,21 +30,28 @@ export const Home = () => {
   // };
 
   const retrieveAllRecentPostsFriends = async () => {
+    setIsLoading(true);
+
     const data = await fetchPosts();
+
     setTitles(() => {
       return data.slice(0, 10);
     });
 
-    setFriendsPosts((prev) => {
-      return [
-        ...prev,
-        ...data
-          .filter((post) =>
-            friendsArray.map((friend) => friend?._id).includes(post.user?._id)
-          )
-          .reverse(),
-      ];
+    let postdegliamici = data
+      .filter((post) =>
+        friendsArray.map((friend) => friend?._id).includes(post.user?._id)
+      )
+      .reverse();
+
+    setFriendsPosts(() => {
+      return postdegliamici;
     });
+    // Recupera tutti i post recenti
+    // setFriendsPosts(() => {
+    //   return data.reverse().slice(0, 20);
+    // });
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -75,11 +77,7 @@ export const Home = () => {
               <hr />
             </Row>
             <Row>
-              {friendsPosts?.length === 0 ? (
-                <div className="text-center mt-5">
-                  <Spinner variant="primary" />
-                </div>
-              ) : (
+              {friendsPosts?.length > 0 && !isLoading ? (
                 friendsPosts.slice(0, postCounter).map((post, i) => {
                   return (
                     <PostLinkedin
@@ -89,13 +87,22 @@ export const Home = () => {
                     />
                   );
                 })
+              ) : isLoading ? (
+                <div className="text-center">
+                  <Spinner variant="primary" />
+                </div>
+              ) : (
+                <div className="text-center">
+                  <span>
+                    Non hai aggiunto ancora nessuno alla tua rete, collegati con
+                    un amico
+                  </span>
+                </div>
               )}
-              {friendsPosts?.length > 0 ? (
+              {friendsPosts?.length > 0 && (
                 <Button onClick={() => setPostCounter(postCounter + 5)}>
                   Altri post
                 </Button>
-              ) : (
-                ""
               )}
             </Row>
           </Col>
@@ -110,15 +117,3 @@ export const Home = () => {
     </>
   );
 };
-
-// for (let i = 0; i < data.length; i++) {
-//   const post = data[i];
-//   for (let j = 0; j < friendsArray.length; j++) {
-//     const friend = friendsArray[j];
-//     console.log(post.user._id, friend._id);
-//     // console.log(post?.user?._id);
-//     if (post.user.username === friend.username) {
-//       postAmici.push(post);
-//     }
-//   }
-// }

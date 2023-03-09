@@ -22,7 +22,7 @@ import { useRef } from "react";
 
 export const PostLinkedin = ({ post, retrievePosts }) => {
   const ref = useRef(null);
-
+  const [numComments, setNumComments] = useState(0);
   const [showCommentArea, setShowCommentArea] = useState(false);
 
   const profile = useSelector((state) => state.profile.content);
@@ -134,9 +134,13 @@ export const PostLinkedin = ({ post, retrievePosts }) => {
                 </Button>
               </li>
               <li>
-                <Button variant="none" className="reactionsContainer px-0">
-                  <span>{randomComments()} commenti</span>
-                </Button>
+                {numComments > 0 ? (
+                  <Button variant="none" className="reactionsContainer px-0">
+                    <span>{numComments} commenti</span>
+                  </Button>
+                ) : (
+                  ""
+                )}
               </li>
             </ul>
           </Col>
@@ -169,6 +173,7 @@ export const PostLinkedin = ({ post, retrievePosts }) => {
               image={profile?.image}
               inputRef={ref}
               post={post._id}
+              setNumComments={setNumComments}
             />
           )}
         </Row>
