@@ -1,0 +1,50 @@
+.jobcards {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 10px;
+  justify-content: center;
+}
+.divsearch {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 2px;
+}
+.divsearch input {
+  height: 2.5rem;
+  border: 3px solid #0b5ed7;
+  border-radius: 20px;
+  margin-right: 5px;
+}
+.divsearch button {
+  border: 1px solid #0b5ed7;
+  border-radius: 20px;
+}
+
+.jobscategories {
+  margin-top: 80px;
+  padding: 5px;
+}
+
+.jobscontainer {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(128, 128, 128, 0.381);
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.card-job {
+  border-color: #0b5ed7;
+  background-color: #eeecec99;
+  cursor: pointer;
+}
+
+.card-job:hover {
+  border: #0b5ed7 2px solid;
+}
+
+h6#jobPublicationDate {
+  font-size: 0.8em;
+  color: rgb(178, 178, 178);
+}

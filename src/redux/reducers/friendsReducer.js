@@ -13,9 +13,9 @@ export const friendsReducer = (state = initialState, action) => {
         content: [...state.content, action.payload],
       };
     case REMOVE_FROM_FRIENDS:
-      console.log(
-        state.content.filter((person) => person._id === action.payload._id)
-      );
+      // console.log(
+      //   state.content.filter((person) => person._id === action.payload._id)
+      // );
       return {
         ...state,
         content: state.content.filter(

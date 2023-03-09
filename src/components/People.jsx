@@ -22,7 +22,7 @@ const People = ({ singleProfile }) => {
         <Col xs={3} className="text-center px-0">
           <img
             src={singleProfile?.image ? singleProfile?.image : noPic}
-            alt="people_img"
+            alt="person"
             className="people_img"
           />
         </Col>

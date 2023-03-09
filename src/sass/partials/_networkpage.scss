@@ -1,10 +1,16 @@
 .bottonNetwork {
+  width: 90%;
   border: 1px solid blue;
   background-color: white;
   color: blue;
   font-weight: bold;
   border-radius: 100px;
 }
+
+.img {
+  height: 100%;
+}
+
 .firstcardnetwork {
   display: flex;
   flex-direction: row;
@@ -25,7 +31,8 @@
   border: none;
 }
 .cardNetwork {
-  height: 608px;
+  height: 460px;
+  width: 250px;
   margin: 10px;
   border-radius: 19px;
 }
@@ -39,6 +46,9 @@
 .cardNetwork img.card-img-top {
   border-top-left-radius: 19px;
   border-top-right-radius: 19px;
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
 }
 .newnew {
   margin-top: 5rem !important;
