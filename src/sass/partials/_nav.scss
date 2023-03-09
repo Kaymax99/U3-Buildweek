@@ -72,6 +72,32 @@ nav {
   }
 }
 
-.subNav {
-  z-index: 5;
+.testing {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  transform: translateY(-100%);
+  transition: box-shadow 667ms ease-in-out, transform 667ms ease-in-out,
+    visibility 0s linear 667ms;
+  visibility: hidden;
+  form {
+    margin: 0 auto;
+    width: 100%;
+  }
+  .form-control {
+    border-radius: 5px;
+    border: 2px solid orange !important ;
+    background-color: #eef3f8;
+  }
+}
+
+.showSearch {
+  // box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.5);
+  transform: translateY(100%);
+  transition: box-shadow 667ms ease-in-out, transform 667ms ease-in-out,
+    visibility 0s linear 0s;
+  visibility: visible;
+  @media screen and (max-width: 800px) {
+    transform: translateY(65%);
+  }
 }

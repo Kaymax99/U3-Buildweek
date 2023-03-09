@@ -90,9 +90,13 @@ export const Home = () => {
                   );
                 })
               )}
-              <Button onClick={() => setPostCounter(postCounter + 5)}>
-                Altri post
-              </Button>
+              {friendsPosts?.length > 0 ? (
+                <Button onClick={() => setPostCounter(postCounter + 5)}>
+                  Altri post
+                </Button>
+              ) : (
+                ""
+              )}
             </Row>
           </Col>
 

@@ -1,27 +1,57 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Spinner, Card } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Spinner,
+  Card,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
+import { useNavigate, useParams } from "react-router";
 import { transformToDate } from "../../hooks/formatDate";
 import { fetchJobsGeneric } from "../Fetches/FetchJobs";
-import SearchBar from "../SearchBar";
 
 const JobsSearchGeneric = () => {
+  const navigate = useNavigate();
+  const params = useParams();
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [jobName, setJobName] = useState("");
+  const [jobName, setJobName] = useState(params.jobName);
+  const [query, setQuery] = useState(params.jobName);
+
+  const fetchJobs = async (querySearch) => {
+    let data = await fetchJobsGeneric(querySearch);
+    setJobs(data.slice(0, 10));
+    setTimeout(() => setIsLoading(false), 700);
+  };
 
   useEffect(() => {
     setIsLoading(true);
-    const fetchJobs = async () => {
-      let data = await fetchJobsGeneric(jobName);
-      setJobs(data);
-      setIsLoading(false);
-    };
-    fetchJobs();
+    if (params.jobName === undefined) {
+      fetchJobs("");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (params.jobName !== undefined) {
+      setJobName(params.jobName);
+      setQuery(params.jobName);
+    }
+  }, [params.jobName]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchJobs(jobName);
   }, [jobName]);
 
   const handleSearch = (value) => {
     console.log(value);
-    setJobName(value);
+    navigate("/jobs/" + value);
+  };
+
+  const handleChange = (value) => {
+    setQuery(value);
   };
 
   return (
@@ -29,12 +59,28 @@ const JobsSearchGeneric = () => {
       <div className="container mt-3">
         <h3>Search for jobs:</h3>
         <div className="divsearch my-3">
-          <SearchBar placeholder="Search..." onSearch={handleSearch} />
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearch(query);
+            }}
+          >
+            <FormControl
+              type="text"
+              as="input"
+              placeholder="Search..."
+              value={query}
+              onChange={(e) => {
+                handleChange(e.target.value);
+              }}
+            />
+          </Form>
+          <Button onClick={() => handleSearch(query)}>Search</Button>
         </div>
 
         <div className="jobcards my-5">
           {jobs.length > 0 && !isLoading ? (
-            jobs.slice(0, 10).map((job) => (
+            jobs.map((job) => (
               <Row className="row_big" key={"job" + job._id}>
                 <Col sm={12} md={8} className="Col_01">
                   <Card
@@ -50,7 +96,7 @@ const JobsSearchGeneric = () => {
                       </Card.Subtitle>
                       <Card.Subtitle>
                         <h6 id="jobPublicationDate">
-                          published on:
+                          published on:{" "}
                           {job.publication_date &&
                             transformToDate(job.publication_date)}
                         </h6>

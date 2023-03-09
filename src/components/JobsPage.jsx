@@ -5,7 +5,7 @@ import JobsSearchByCompany from "./JobsPageComponents/JobsSearchByCompany";
 import JobsSearchByCategory from "./JobsPageComponents/JobsSearchByCategory";
 import { Container, Tab, Tabs } from "react-bootstrap";
 
-function JobsPage() {
+export const JobsPage = () => {
   const [key, setKey] = useState("generic");
 
   return (
@@ -32,9 +32,7 @@ function JobsPage() {
       </Container>
     </>
   );
-}
-
-export default JobsPage;
+};
 
 // Oggi aggiungiamo una nuova pagina al progetto!
 
