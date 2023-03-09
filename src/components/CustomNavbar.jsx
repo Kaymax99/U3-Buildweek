@@ -224,7 +224,7 @@ export const CustomNavbar = () => {
               navigate("/jobs/" + query);
               setQuery("");
               let largeSearch = document.getElementById("searchLG");
-              largeSearch.classList.remove("showSearch");
+              largeSearch.classList.remove("showSearch ");
             }}
           >
             <FormControl
