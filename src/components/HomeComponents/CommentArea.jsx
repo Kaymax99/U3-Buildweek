@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { GET, POST } from "../../redux/actions";
 
 const CommentArea = (props) => {
-  const [comments, setComments] = useState([]);
+  // const [comments, setComments] = useState([]);
 
   const [commentText, setCommentText] = useState("");
   const handleChange = (e) => {
@@ -17,27 +17,30 @@ const CommentArea = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await PostComments(
-      {
-        comment: commentText,
-        rate: 1,
-        elementId: props.post,
-      },
-      POST,
-      ""
-    );
-    retrieveData();
+    if (commentText.trim()) {
+      await PostComments(
+        {
+          comment: commentText.trim(),
+          rate: 1,
+          elementId: props.post,
+        },
+        POST,
+        ""
+      );
+      retrieveData();
+    }
   };
 
   const retrieveData = async () => {
-    let data = await GetComments(props.post, GET);
-    setComments(data);
-    props.setNumComments(data.length);
+    // let data = await GetComments(props.post, GET);
+    // setComments(data);
+    // props.setNumComments(data.length);
     //console.log(data);
+    props.getComments();
   };
 
   useEffect(() => {
-    retrieveData();
+    // retrieveData();
   }, []);
 
   //   let mioCommento = {
@@ -82,8 +85,8 @@ const CommentArea = (props) => {
         </Col>
       </Row>
       <Row>
-        {comments?.length > 0 &&
-          comments?.map((element, i) => (
+        {props.comments?.length > 0 &&
+          props.comments?.map((element, i) => (
             <SingleComment
               key={i}
               comment={element}

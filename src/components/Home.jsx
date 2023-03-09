@@ -100,7 +100,10 @@ export const Home = () => {
                 </div>
               )}
               {friendsPosts?.length > 0 && (
-                <Button onClick={() => setPostCounter(postCounter + 5)}>
+                <Button
+                  variant="link"
+                  onClick={() => setPostCounter(postCounter + 5)}
+                >
                   Altri post
                 </Button>
               )}

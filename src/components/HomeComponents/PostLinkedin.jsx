@@ -14,14 +14,15 @@ import { transformToDate } from "../../hooks/formatDate";
 import { deletePost } from "../Fetches/FetchPosts";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { PostComments } from "../Fetches/FetchComments";
+import { GetComments, PostComments } from "../Fetches/FetchComments";
 
 import CommentArea from "./CommentArea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 
 export const PostLinkedin = ({ post, retrievePosts }) => {
   const ref = useRef(null);
+  const [comments, setComments] = useState([]);
   const [numComments, setNumComments] = useState(0);
   const [showCommentArea, setShowCommentArea] = useState(false);
 
@@ -30,9 +31,9 @@ export const PostLinkedin = ({ post, retrievePosts }) => {
   const randomReactions = () => {
     return Math.floor(Math.random() * (50 - 1 + 1)) + 20;
   };
-  const randomComments = () => {
-    return Math.floor(Math.random() * (20 - 1 + 1)) + 1;
-  };
+  // const randomComments = () => {
+  //   return Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+  // };
 
   const handleDeletePost = async (postId) => {
     try {
@@ -43,6 +44,17 @@ export const PostLinkedin = ({ post, retrievePosts }) => {
       console.log(err);
     }
   };
+
+  const getComments = async () => {
+    //recupera i commenti di questo post
+    const c = await GetComments(post._id, "GET");
+    setComments(c);
+    setNumComments(c.length);
+  };
+
+  useEffect(() => {
+    getComments();
+  }, []);
 
   const handleClick = () => {
     // if (ref) {
@@ -173,7 +185,8 @@ export const PostLinkedin = ({ post, retrievePosts }) => {
               image={profile?.image}
               inputRef={ref}
               post={post._id}
-              setNumComments={setNumComments}
+              comments={comments}
+              getComments={getComments}
             />
           )}
         </Row>
