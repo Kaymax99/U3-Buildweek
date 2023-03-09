@@ -216,7 +216,7 @@ export const CustomNavbar = () => {
           </Nav>
         </Container>
       </Navbar>
-      <Navbar id="searchLG" fixed="top" className="testing d-lg-none">
+      <Navbar id="searchLG" fixed="top" className="subNavSearch d-lg-none">
         <Container className="px-0">
           <Form
             onSubmit={(e) => {
