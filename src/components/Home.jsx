@@ -11,6 +11,8 @@ import { HomeRightCards } from "./HomeComponents/HomeRightCards";
 import { useSelector } from "react-redux";
 
 export const Home = () => {
+  const [scrollTop, setScrollTop] = useState(0); // TENTATIVO PER SCROLL DINAMICO DEI POST
+
   const [postCounter, setPostCounter] = useState(5);
   const [titles, setTitles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -53,6 +55,20 @@ export const Home = () => {
     // });
     setIsLoading(false);
   };
+
+  //TENTATIVO SCROLL ⬇️
+  const handleScroll = (event) => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      console.log("sei arrivato in fondo alla pagina!");
+      setPostCounter(postCounter + 5);
+      console.log("post visualizzati: ", postCounter);
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  // return () => {
+  //   window.removeEventListener("scroll", handleScroll);
+  // };
 
   useEffect(() => {
     retrieveAllRecentPostsFriends();
@@ -99,13 +115,26 @@ export const Home = () => {
                   </span>
                 </div>
               )}
-              {friendsPosts?.length > 0 && (
+              {/* {friendsPosts?.length > 0 && (
                 <Button
                   variant="link"
                   onClick={() => setPostCounter(postCounter + 5)}
                 >
                   Altri post
                 </Button>
+              )} */}
+              {/* <Button onClick={() => setPostCounter(postCounter + 5)}> // <--- Inutile perché c'è lo scroll
+                Altri post
+              </Button> */}
+              {friendsPosts?.length !== 0 &&
+              friendsPosts?.length > postCounter ? (
+                <div className="text-center">
+                  <Spinner variant="primary"></Spinner>
+                </div>
+              ) : (
+                <div className="text-center mt-3">
+                  Non ci sono altri post da visualizzare!
+                </div>
               )}
             </Row>
           </Col>
