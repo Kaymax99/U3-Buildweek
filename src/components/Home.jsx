@@ -19,6 +19,8 @@ import { useSelector } from "react-redux";
 import SearchBar from "./SearchBar/searchbarfetch";
 
 export const Home = () => {
+  const [scrollTop, setScrollTop] = useState(0); // TENTATIVO PER SCROLL DINAMICO DEI POST
+
   const [postCounter, setPostCounter] = useState(5);
   const [titles, setTitles] = useState([]);
   // const [posts, setPosts] = useState([]);
@@ -52,6 +54,20 @@ export const Home = () => {
       ];
     });
   };
+
+  //TENTATIVO SCROLL ⬇️
+  const handleScroll = (event) => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      console.log("sei arrivato in fondo alla pagina!");
+      setPostCounter(postCounter + 5);
+      console.log("post visualizzati: ", postCounter);
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  // return () => {
+  //   window.removeEventListener("scroll", handleScroll);
+  // };
 
   useEffect(() => {
     retrieveAllRecentPostsFriends();
@@ -92,9 +108,19 @@ export const Home = () => {
                   );
                 })
               )}
-              <Button onClick={() => setPostCounter(postCounter + 5)}>
+              {/* <Button onClick={() => setPostCounter(postCounter + 5)}> // <--- Inutile perché c'è lo scroll
                 Altri post
-              </Button>
+              </Button> */}
+              {friendsPosts?.length !== 0 &&
+              friendsPosts?.length > postCounter ? (
+                <div className="text-center">
+                  <Spinner variant="primary"></Spinner>
+                </div>
+              ) : (
+                <div className="text-center mt-3">
+                  Non ci sono altri post da visualizzare!
+                </div>
+              )}
             </Row>
           </Col>
 
