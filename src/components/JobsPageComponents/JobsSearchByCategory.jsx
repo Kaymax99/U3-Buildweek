@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Spinner, Card } from "react-bootstrap";
 import SearchBar from "../SearchBar";
 import { transformToDate } from "../../hooks/formatDate";
+import { fetchJobsByCategory } from "../Fetches/FetchJobs";
 
 const JobsSearchByCategory = () => {
   const [jobs, setJobs] = useState([]);
@@ -11,14 +12,8 @@ const JobsSearchByCategory = () => {
   useEffect(() => {
     setIsLoading(true);
     const fetchJobs = async () => {
-      const response = await fetch(
-        `https://strive-benchmark.herokuapp.com/api/jobs?category=${categoryName}`
-      );
-      if (response.ok) {
-        const jobsArray = await response.json();
-        setJobs(jobsArray.data);
-        // console.log(jobs);
-      }
+      let data = await fetchJobsByCategory(categoryName);
+      setJobs(data);
       setIsLoading(false);
     };
     fetchJobs();
@@ -26,7 +21,6 @@ const JobsSearchByCategory = () => {
 
   const handleSearch = (value) => {
     console.log(value);
-
     setCategoryName(value);
   };
 

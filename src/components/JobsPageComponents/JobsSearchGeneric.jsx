@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Spinner, Card } from "react-bootstrap";
 import { transformToDate } from "../../hooks/formatDate";
+import { fetchJobsGeneric } from "../Fetches/FetchJobs";
 import SearchBar from "../SearchBar";
 
 const JobsSearchGeneric = () => {
@@ -11,14 +12,8 @@ const JobsSearchGeneric = () => {
   useEffect(() => {
     setIsLoading(true);
     const fetchJobs = async () => {
-      const response = await fetch(
-        `https://strive-benchmark.herokuapp.com/api/jobs?search=${jobName}`
-      );
-      if (response.ok) {
-        const jobsArray = await response.json();
-        setJobs(jobsArray.data);
-        // console.log(jobs);
-      }
+      let data = await fetchJobsGeneric(jobName);
+      setJobs(data);
       setIsLoading(false);
     };
     fetchJobs();
