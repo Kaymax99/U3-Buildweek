@@ -11,7 +11,9 @@ const JobsSearchByCategory = () => {
   useEffect(() => {
     setIsLoading(true);
     const fetchJobs = async () => {
-      const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs?search=${categoryName}`);
+      const response = await fetch(
+        `https://strive-benchmark.herokuapp.com/api/jobs?category=${categoryName}`
+      );
       if (response.ok) {
         const jobsArray = await response.json();
         setJobs(jobsArray.data);
@@ -30,7 +32,7 @@ const JobsSearchByCategory = () => {
 
   return (
     <>
-      <div className="container newnew mt-3">
+      <div className="container mt-3">
         <h3>Search for jobs by Category:</h3>
         <div className="divsearch my-3">
           <SearchBar placeholder="Search..." onSearch={handleSearch} />
@@ -41,13 +43,24 @@ const JobsSearchByCategory = () => {
             jobs.slice(0, 10).map((job) => (
               <Row className="row_big" key={"job" + job._id}>
                 <Col sm={12} md={8} className="Col_01">
-                  <Card className="card-job" style={{ width: "18rem", height: "10rem" }}>
+                  <Card
+                    className="card-job"
+                    style={{ width: "18rem", height: "10rem" }}
+                  >
                     <Card.Body>
-                      <Card.Title>Category:{job.category}</Card.Title>
+                      <Card.Title className="text-uppercase">
+                        {job.category}
+                      </Card.Title>
                       <Card.Title>{job.title}</Card.Title>
-                      <Card.Subtitle className="mb-2 text-muted">Company: {job.company_name}</Card.Subtitle>
+                      <Card.Subtitle className="mb-2 text-muted">
+                        Company: {job.company_name}
+                      </Card.Subtitle>
                       <Card.Subtitle>
-                        <h6 id="jobCardh6">published on:{job.publication_date && transformToDate(job.publication_date)}</h6>
+                        <h6 id="jobPublicationDate">
+                          published on:
+                          {job.publication_date &&
+                            transformToDate(job.publication_date)}
+                        </h6>
                       </Card.Subtitle>
                     </Card.Body>
                   </Card>

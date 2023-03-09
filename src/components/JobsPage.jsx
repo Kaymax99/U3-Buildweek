@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
 import JobsSearchGeneric from "./JobsPageComponents/JobsSearchGeneric";
 import JobsSearchByCompany from "./JobsPageComponents/JobsSearchByCompany";
 import JobsSearchByCategory from "./JobsPageComponents/JobsSearchByCategory";
-import { Container } from "react-bootstrap";
+import { Container, Tab, Tabs } from "react-bootstrap";
 
 function JobsPage() {
+  const [key, setKey] = useState("generic");
+
   return (
     <>
       <Container className="jobscategories">
         <Container className="jobscontainer">
-          <JobsSearchGeneric />
-        </Container>
-        <Container className="jobscontainer">
-          <JobsSearchByCompany />
-        </Container>
-        <Container className="jobscontainer">
-          <JobsSearchByCategory />
+          <Tabs
+            id="controlled-tab-jobs"
+            activeKey={key}
+            onSelect={(k) => setKey(k)}
+            className="mt-3"
+          >
+            <Tab eventKey="generic" title="Generic">
+              <JobsSearchGeneric />
+            </Tab>
+            <Tab eventKey="company" title="Company">
+              <JobsSearchByCompany />
+            </Tab>
+            <Tab eventKey="category" title="Category">
+              <JobsSearchByCategory />
+            </Tab>
+          </Tabs>
         </Container>
       </Container>
     </>

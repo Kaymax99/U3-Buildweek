@@ -4,7 +4,6 @@
   text-align: center;
   gap: 10px;
   justify-content: center;
-  cursor: pointer;
 }
 .divsearch {
   display: flex;
@@ -24,6 +23,7 @@
 
 .jobscategories {
   margin-top: 80px;
+  padding: 5px;
 }
 
 .jobscontainer {
@@ -36,15 +36,14 @@
 .card-job {
   border-color: #0b5ed7;
   background-color: #eeecec99;
+  cursor: pointer;
 }
 
 .card-job:hover {
   border: #0b5ed7 2px solid;
 }
 
-
-#jobCardh6{
-  font-size: 1vh;
-  color:rgb(178, 178, 178);
-
+h6#jobPublicationDate {
+  font-size: 0.8em;
+  color: rgb(178, 178, 178);
 }
