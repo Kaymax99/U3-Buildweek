@@ -3,12 +3,7 @@ import { HomeProfileCard } from "./HomeComponents/HomeProfileCard";
 import { PostLinkedin } from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
 
-import {
-  addPost,
-  fetchPosts,
-  fetchPostById,
-  deletePost,
-} from "./Fetches/FetchPosts";
+import { addPost, fetchPosts, fetchPostById, deletePost } from "./Fetches/FetchPosts";
 import HomeRightCard from "./HomeComponents/HomeRightCards";
 
 import { CreaUnPost } from "./HomeComponents/CreaUnPost";
@@ -16,7 +11,6 @@ import { LeftFixedCard } from "./HomeComponents/LeftFixedCard";
 
 import { HomeRightCards } from "./HomeComponents/HomeRightCards";
 import { useSelector } from "react-redux";
-import SearchBar from "./SearchBar/searchbarfetch";
 
 export const Home = () => {
   const [postCounter, setPostCounter] = useState(5);
@@ -44,11 +38,7 @@ export const Home = () => {
     setFriendsPosts((prev) => {
       return [
         ...prev,
-        ...data
-          .filter((post) =>
-            friendsArray.map((friend) => friend?._id).includes(post.user?._id)
-          )
-          .reverse(),
+        ...data.filter((post) => friendsArray.map((friend) => friend?._id).includes(post.user?._id)).reverse(),
       ];
     });
   };
@@ -63,7 +53,6 @@ export const Home = () => {
         <Row className="justify-content-evenly">
           <Col xs={12} md={4} lg={3}>
             <Row>
-              <SearchBar />
               <HomeProfileCard />
               <LeftFixedCard />
             </Row>
@@ -83,18 +72,10 @@ export const Home = () => {
                 </div>
               ) : (
                 friendsPosts.slice(0, postCounter).map((post, i) => {
-                  return (
-                    <PostLinkedin
-                      key={"post-" + i}
-                      post={post}
-                      retrievePosts={retrieveAllRecentPostsFriends}
-                    />
-                  );
+                  return <PostLinkedin key={"post-" + i} post={post} retrievePosts={retrieveAllRecentPostsFriends} />;
                 })
               )}
-              <Button onClick={() => setPostCounter(postCounter + 5)}>
-                Altri post
-              </Button>
+              <Button onClick={() => setPostCounter(postCounter + 5)}>Altri post</Button>
             </Row>
           </Col>
 

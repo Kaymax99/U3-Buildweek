@@ -16,6 +16,7 @@ import React from "react";
 import { fetchProfiles } from "./Fetches/FetchProfileByID";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFriendsAction, removeFromFriendsAction } from "../redux/actions";
+import PeopleSearchBar from "./NetworkPageComponents/PeopleSearchBar";
 
 function Network() {
   const dispatch = useDispatch();
@@ -113,6 +114,10 @@ function Network() {
         </Col>
         <Col md={9}>
           <div className="row">
+            <Card className="firstcardnetwork shadow-sm py-2">
+              <PeopleSearchBar />
+            </Card>
+
             <Card className="firstcardnetwork shadow-sm">
               <Col xs={12} className="d-flex justify-content-between">
                 <span className="my-4 mx-3">Persone che segui</span>
