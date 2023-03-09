@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState, useEffect } from "react";
 import { Card, Button, Row, Col, Form } from "react-bootstrap";
 import { Link } from "react-bootstrap-icons";
@@ -118,7 +119,7 @@ function Network() {
         </Col>
         <Col md={9}>
           <div className="row">
-            <Card className="firstcardnetwork">
+            <Card className="firstcardnetwork shadow-sm">
               <Col xs={12} className="d-flex justify-content-between">
                 <span className="my-4 mx-3">Persone che segui</span>
                 <span className="my-4 mx-3"> Gestisci</span>
@@ -126,7 +127,7 @@ function Network() {
               {friendsArray.length > 0 ? (
                 friendsArray.map((profile, i) => (
                   <div className="col-md-4 mb-3" key={"friends-key" + i}>
-                    <Card className="cardNetwork">
+                    <Card className="cardNetwork shadow">
                       <div className="divimgnetwork">
                         <Card.Img
                           className="img"
@@ -165,14 +166,14 @@ function Network() {
                 <p>Non si sono ancora persone che segui!</p>
               )}
             </Card>
-            <Card className="secondcardnetwork">
+            <Card className="secondcardnetwork shadow-sm">
               <Card className="scrittanetwork">
                 <Card.Body>Persone popolari da seguire</Card.Body>
                 <Card.Body>Vedi tutti</Card.Body>
               </Card>
               {profiles.slice(0, 12).map((profile, i) => (
                 <div className="col-md-4 mb-3" key={"profile-key" + i}>
-                  <Card className="cardNetwork">
+                  <Card className="cardNetwork shadow">
                     <div className="divimgnetwork">
                       <Card.Img
                         className="img"
