@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState, useEffect } from "react";
 import { Card, Button, Row, Col, Form } from "react-bootstrap";
-import { Link } from "react-bootstrap-icons";
 import php from "../assets/imgs/placeholderpubblicità.png";
 import logoLinkedin from "../assets/imgs/Linkedin-Logo-700x394.png";
 import {
@@ -89,15 +88,13 @@ function Network() {
                   <a href="#"> Informazioni</a> <a href="#">Accessibilità</a>
                 </div>
                 <div>
-                  <a href="#">Centro Assistenza</a>{" "}
-                  <a href="#">Privacy e condizioni</a>
+                  <a href="#">Centro Assistenza</a> <a href="#">Privacy e condizioni</a>
                 </div>
                 <div>
                   <a href="#">Opzioni per gli annunci pubblicitari</a>
                 </div>
                 <div>
-                  <a href="#">Pubblicità</a>{" "}
-                  <a href="#">Servizi alle aziende</a>
+                  <a href="#">Pubblicità</a> <a href="#">Servizi alle aziende</a>
                 </div>
                 <div>
                   <a href="#">Scarica l'app Linkedin</a>
@@ -107,10 +104,7 @@ function Network() {
                 <div className="logoImg mt-3">
                   <div>
                     <img src={logoLinkedin} alt="" />
-                    <span className="fw-semibold">
-                      {" "}
-                      Linkedin Corporation ©2023
-                    </span>
+                    <span className="fw-semibold"> Linkedin Corporation ©2023</span>
                   </div>
                 </div>
               </div>
@@ -129,28 +123,19 @@ function Network() {
                   <div className="col-md-4 mb-3" key={"friends-key" + i}>
                     <Card className="cardNetwork shadow">
                       <div className="divimgnetwork">
-                        <Card.Img
-                          className="img"
-                          variant="top"
-                          src={profile.image}
-                        />
+                        <Card.Img className="img" variant="top" src={profile.image} />
                       </div>
                       <Card.Body>
                         <Card.Title>
-                          {profile.name} {profile.surname}
+                          <a href={"/" + profile._id}>
+                            {profile.name} {profile.surname}
+                          </a>
                         </Card.Title>
+
                         <Card.Text>
                           {profile.bio &&
-                            profile.bio.slice(0, MAX_LENGTH) +
-                              (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
+                            profile.bio.slice(0, MAX_LENGTH) + (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
                         </Card.Text>
-                        <Button
-                          className="bottonNetwork"
-                          variant="primary"
-                          onClick={() => disconnectFn(profile)}
-                        >
-                          Smetti di seguire
-                        </Button>
                       </Card.Body>
                       <Button
                         className="bottonNetwork align-self-center mb-2"
@@ -175,48 +160,20 @@ function Network() {
                 <div className="col-md-4 mb-3" key={"profile-key" + i}>
                   <Card className="cardNetwork shadow">
                     <div className="divimgnetwork">
-                      <Card.Img
-                        className="img"
-                        variant="top"
-                        src={profile.image}
-                      />
+                      <Card.Img className="img" variant="top" src={profile.image} />
                     </div>
                     <Card.Body>
                       <Card.Title>
-                        {profile.name} {profile.surname}
+                        <a href={"/" + profile._id}>
+                          {profile.name} {profile.surname}
+                        </a>
                       </Card.Title>
                       <Card.Text>
                         {profile.bio &&
-                          profile.bio.slice(0, MAX_LENGTH) +
-                            (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
+                          profile.bio.slice(0, MAX_LENGTH) + (profile.bio.lenght > MAX_LENGTH ? "..." : "")}
                       </Card.Text>
-                      {friendsArray.findIndex(
-                        (friend) => friend._id === profile._id
-                      ) === -1 ? (
-                        <Button
-                          className="bottonNetwork"
-                          variant="primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7"
-                          onClick={() => {
-                            connectFn(profile);
-                          }}
-                        >
-                          Segui
-                        </Button>
-                      ) : (
-                        <Button
-                          className="bottonNetwork"
-                          variant="outline-primary rounded-pill py-1 px-3 my-1 me-2 fw-bold fs-7"
-                          onClick={() => {
-                            disconnectFn(profile);
-                          }}
-                        >
-                          ✔<span>Collegato</span>
-                        </Button>
-                      )}
                     </Card.Body>
-                    {friendsArray.findIndex(
-                      (friend) => friend._id === profile._id
-                    ) === -1 ? (
+                    {friendsArray.findIndex((friend) => friend._id === profile._id) === -1 ? (
                       <Button
                         className="bottonNetwork align-self-center mb-2"
                         variant="primary "
