@@ -51,7 +51,7 @@ const JobsSearchByCategory = () => {
                       </Card.Subtitle>
                       <Card.Subtitle>
                         <h6 id="jobPublicationDate">
-                          published on:
+                          published on: {""}
                           {job.publication_date &&
                             transformToDate(job.publication_date)}
                         </h6>

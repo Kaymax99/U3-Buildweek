@@ -3,7 +3,12 @@ import { HomeProfileCard } from "./HomeComponents/HomeProfileCard";
 import { PostLinkedin } from "./HomeComponents/PostLinkedin";
 import { useEffect, useState } from "react";
 
-import { addPost, fetchPosts, fetchPostById, deletePost } from "./Fetches/FetchPosts";
+import {
+  addPost,
+  fetchPosts,
+  fetchPostById,
+  deletePost,
+} from "./Fetches/FetchPosts";
 import HomeRightCard from "./HomeComponents/HomeRightCards";
 
 import { CreaUnPost } from "./HomeComponents/CreaUnPost";
@@ -38,7 +43,11 @@ export const Home = () => {
     setFriendsPosts((prev) => {
       return [
         ...prev,
-        ...data.filter((post) => friendsArray.map((friend) => friend?._id).includes(post.user?._id)).reverse(),
+        ...data
+          .filter((post) =>
+            friendsArray.map((friend) => friend?._id).includes(post.user?._id)
+          )
+          .reverse(),
       ];
     });
   };
@@ -72,10 +81,22 @@ export const Home = () => {
                 </div>
               ) : (
                 friendsPosts.slice(0, postCounter).map((post, i) => {
-                  return <PostLinkedin key={"post-" + i} post={post} retrievePosts={retrieveAllRecentPostsFriends} />;
+                  return (
+                    <PostLinkedin
+                      key={"post-" + i}
+                      post={post}
+                      retrievePosts={retrieveAllRecentPostsFriends}
+                    />
+                  );
                 })
               )}
-              <Button onClick={() => setPostCounter(postCounter + 5)}>Altri post</Button>
+              {friendsPosts?.length > 0 ? (
+                <Button onClick={() => setPostCounter(postCounter + 5)}>
+                  Altri post
+                </Button>
+              ) : (
+                ""
+              )}
             </Row>
           </Col>
 
