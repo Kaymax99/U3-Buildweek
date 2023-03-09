@@ -1,33 +1,33 @@
-.jobcards {
+.jobCards {
   display: flex;
   flex-wrap: wrap;
   text-align: center;
   gap: 10px;
   justify-content: center;
 }
-.divsearch {
+.divSearch {
   display: flex;
   justify-content: center;
   text-align: center;
   gap: 2px;
-}
-.divsearch input {
-  height: 2.5rem;
-  border: 3px solid #0b5ed7;
-  border-radius: 20px;
-  margin-right: 5px;
-}
-.divsearch button {
-  border: 1px solid #0b5ed7;
-  border-radius: 20px;
+  input {
+    height: 2.5rem;
+    margin-right: 5px;
+    border: 1px solid #0b5ed7;
+    border-radius: 25px;
+  }
+  button {
+    border: 1px solid #0b5ed7;
+    border-radius: 20px;
+  }
 }
 
-.jobscategories {
+.jobsCategories {
   margin-top: 80px;
   padding: 5px;
 }
 
-.jobscontainer {
+.jobsContainer {
   background-color: rgb(255, 255, 255);
   border: 1px solid rgba(128, 128, 128, 0.381);
   border-radius: 10px;

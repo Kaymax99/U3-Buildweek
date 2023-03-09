@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table } from "react-bootstrap";
+import { FormControl, Table } from "react-bootstrap";
 
 function PeopleSearchBar() {
   const [queryy, setQuery] = useState("");
@@ -14,7 +14,9 @@ function PeopleSearchBar() {
       },
     });
     const data = await response.json();
-    const filteredData = data.filter((profile) => profile.name.toLowerCase().startsWith(queryy.toLowerCase()));
+    const filteredData = data.filter((profile) =>
+      profile.name.toLowerCase().startsWith(queryy.toLowerCase())
+    );
     return filteredData;
   };
 
@@ -30,9 +32,14 @@ function PeopleSearchBar() {
   };
 
   return (
-    <div>
+    <div className="w-100">
       <h4>Search someone you might know</h4>
-      <input type="text" placeholder="Insert a name to start" onChange={handleInputChange} className="d-flex" />
+      <FormControl
+        type="input"
+        placeholder="Insert a name to start"
+        onChange={handleInputChange}
+        className="d-flex mx-auto w-50 mb-1 rounded-pill border-primary"
+      />
       <Table striped bordered hover>
         <tbody>
           {results.map((profile) => (

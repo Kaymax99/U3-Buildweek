@@ -7,7 +7,7 @@ import { Profile } from "./components/Profile";
 import { Home } from "./components/Home";
 import { useDispatch } from "react-redux";
 import { getProfileAction, GET_PEOPLE, GET_PROFILE } from "./redux/actions";
-import Network from "./components/NetworkPage";
+import { Network } from "./components/NetworkPage";
 import { JobsPage } from "./components/JobsPage";
 
 function App() {

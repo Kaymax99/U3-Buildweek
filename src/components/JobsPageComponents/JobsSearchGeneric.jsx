@@ -58,7 +58,7 @@ const JobsSearchGeneric = () => {
     <>
       <div className="container mt-3">
         <h3>Search for jobs:</h3>
-        <div className="divsearch my-3">
+        <div className="divSearch my-3">
           <Form
             onSubmit={(e) => {
               e.preventDefault();
@@ -78,7 +78,7 @@ const JobsSearchGeneric = () => {
           <Button onClick={() => handleSearch(query)}>Search</Button>
         </div>
 
-        <div className="jobcards my-5">
+        <div className="jobCards my-5">
           {jobs.length > 0 && !isLoading ? (
             jobs.map((job) => (
               <Row className="row_big" key={"job" + job._id}>

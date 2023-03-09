@@ -9,9 +9,14 @@ export const JobsPage = () => {
 
   return (
     <>
-      <Container className="jobscategories">
-        <Container className="jobscontainer">
-          <Tabs id="controlled-tab-jobs" activeKey={key} onSelect={(k) => setKey(k)} className="mt-3">
+      <Container className="jobsCategories">
+        <Container className="jobsContainer">
+          <Tabs
+            id="controlled-tab-jobs"
+            activeKey={key}
+            onSelect={(k) => setKey(k)}
+            className="mt-3"
+          >
             <Tab eventKey="generic" title="Generic">
               <JobsSearchGeneric />
             </Tab>
