@@ -132,9 +132,11 @@ export const Home = () => {
                   <Spinner variant="primary"></Spinner>
                 </div>
               ) : (
-                <div className="text-center mt-3">
-                  Non ci sono altri post da visualizzare!
-                </div>
+                !isLoading && (
+                  <div className="text-center mt-3">
+                    Non ci sono altri post da visualizzare!
+                  </div>
+                )
               )}
             </Row>
           </Col>
