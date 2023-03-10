@@ -78,7 +78,7 @@ const InfoSection = ({ profileData, updateData }) => {
         className={scrollPosition > 250 ? "subNav visible py-0" : "subNav py-0"}
         fixed="top"
       >
-        <Container fluid className="py-1 mx-5">
+        <Container className="py-1 mx-auto">
           <div className="d-flex">
             <img
               src={profile?.image}
